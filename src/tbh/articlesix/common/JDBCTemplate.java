@@ -2,17 +2,18 @@ package tbh.articlesix.common;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class JDBCTemplate {
 
-	// JDBCTemplate ³»ºÎ¸ð¾çÀº ¼ö½Ê°¡Áö~
 	public JDBCTemplate() {
 	}
 
 	public static Connection getConnection() {
 		Connection con = null;
 		String dr = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe"; // TODO: ¼³¸í
+		String url = "jdbc:oracle:thin:@localhost:1521:xe"; // TODO: ï¿½ï¿½ï¿½ï¿½
 		String uid = "health";
 		String pwd = "khtbh0123";
 
@@ -20,7 +21,7 @@ public class JDBCTemplate {
 			Class.forName(dr);
 			con = DriverManager.getConnection(url, uid, pwd);
 			if (con == null) {
-				System.out.println("¿¬°á½ÇÆÐ");
+				System.out.println("ì—°ê²°ì‹¤íŒ¨");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -32,6 +33,28 @@ public class JDBCTemplate {
 		try {
 			if (con != null) con.close();
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void close(PreparedStatement p) {
+		try {
+			p.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public static void close(ResultSet r) {
+		try {
+			r.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}public static void setAutoCommit(Connection con, boolean onOff) {
+		try {
+			con.setAutoCommit(onOff);
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
