@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../../css/reservationMain.css" />
+    <link rel="stylesheet" href="../../css/header.css" />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <script>
+      const all = (ele) => document.querySelectorAll(ele);
+      const one = (ele) => document.querySelector(ele);
+      const slide = (_) => {
+        const wrap = one(".imageRoom");
+        const target = wrap.children[0];
+        const len = target.children.length;
+        const liStyle = `
+                position:absolute;
+                left:0;right:0;top:0;bottom:0;transition:1s;opacity:0
+            `;
+        target.style.cssText = `position:relative;`;
+        Array.from(target.children).forEach(
+          (ele) => (ele.style.cssText = liStyle)
+        );
+        target.children[0].style.opacity = 1;
+        let pos = 0;
+        setInterval((_) => {
+          target.children[pos].style.opacity = 0;
+          pos = (pos + 1) % len;
+          target.children[pos].style.opacity = 1;
+        }, 2000);
+      };
+      window.onload = function () {
+        slide();
+      };
+    </script>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <div class="headerLogo">
+          <h1>T.B.H</h1>
+          <button class="loginButton">로그인</button>
+        </div>
+        <div class="headerNav">
+          <ul class="headerNavList">
+            <li>
+              <a href="http://127.0.0.1:5500/semi/src/main/index.html"
+                >메인페이지</a
+              >
+            </li>
+            <li>
+              <a href="http://127.0.0.1:5500/semi/src/reservation/main.html"
+                >예약페이지</a
+              >
+            </li>
+            <li>
+              <a href="http://127.0.0.1:5500/semi/src/market/main.html"
+                >중고나라</a
+              >
+            </li>
+            <li>
+              <a href="#">게시판</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <section class="body">
+      <div class="imageTool">
+        <div class="imageRoom">
+          <ul>
+            <a href="http://www.naver.com"><li></li></a>
+            <a href="http://www.naver.com"><li></li></a>
+            <a href="http://www.naver.com"><li></li></a>
+            <a href="http://www.naver.com"><li></li></a>
+          </ul>
+        </div>
+      </div>
+      <div class="dateBox">
+        <ul class="date">
+          <li>월</li>
+          <li>화</li>
+          <li>수</li>
+          <li>목</li>
+          <li>금</li>
+          <li>토</li>
+          <li>일</li>
+        </ul>
+      </div>
+      <div class="areaBox">
+        <ul class="area">
+          <li>서울</li>
+          <li>경기</li>
+          <li>인천</li>
+          <li>강원</li>
+          <li>충북</li>
+          <li>충남</li>
+        </ul>
+      </div>
+      <div class="exerBox">
+        <ul class="exer">
+          <li>헬스</li>
+          <li>필라테스</li>
+          <li>크로스핏</li>
+          <li>mma</li>
+          <li>축구</li>
+          <li>농구</li>
+        </ul>
+      </div>
+      <div class="contentBox">
+        <ul class="content">
+          <li>
+            <a href="http://127.0.0.1:5500/semi/src/reservation/detail.html"
+              >content1</a
+            >
+          </li>
+          <li>content2</li>
+          <li>content3</li>
+          <li>content4</li>
+          <li>content5</li>
+          <li>content6</li>
+          <li>content7</li>
+          <li>content8</li>
+          <li>content9</li>
+          <li>content10</li>
+        </ul>
+      </div>
+    </section>
+    <footer>이 페이지는 상업용이 아닙니다.</footer>
+  </body>
+</html>
