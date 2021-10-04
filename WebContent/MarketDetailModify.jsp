@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="./css/marketModify.css" />
   </head>
   <body>
-    <jsp:include page="./Header.jsp">
+     <%@ include file="./Header.jsp" %>
 
     <section class="body">
       <div class="formBox">
@@ -48,7 +48,7 @@
       </div>
     </section>
 
-     <jsp:include page="./Footer.jsp">
+     <%@ include file="./Footer.jsp" %>
 
     <script>
       const input = document.querySelectorAll(".body .formBox table tr td input");

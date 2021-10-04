@@ -12,7 +12,7 @@
     <link rel="stylesheet" href=".css/marketAdd.css" />
   </head>
   <body>
-    <jsp:include page="./Header.jsp">
+     <%@ include file="./Header.jsp" %>
 
     <section class="body">
       <div class="formBox">
@@ -46,7 +46,7 @@
       </div>
     </section>
 
-   <jsp:include page="./Footer.jsp">
+    <%@ include file="./Footer.jsp" %>
 
     <script>
       function onClick() {

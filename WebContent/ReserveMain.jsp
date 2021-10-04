@@ -39,7 +39,7 @@
     </script>
   </head>
   <body>
-    <jsp:include page="./Header.jsp">
+    <%@ include file="./Header.jsp" %>
 
     <section class="body">
       <div class="imageTool">
@@ -102,7 +102,7 @@
         </ul>
       </div>
     </section>
-     <jsp:include page="./Footer.jsp">
+      <%@ include file="./Footer.jsp" %>
     <script src="./js/header.js"></script>
   </body>
 </html>

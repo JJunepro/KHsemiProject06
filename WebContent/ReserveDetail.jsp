@@ -13,8 +13,7 @@
     <title>Document</title>
   </head>
   <body>
-     <jsp:include page="./Header.jsp">
-
+     <%@ include file="./Header.jsp" %>
     <section class="body">
       <div class="reserve">
         <div class="intro">
@@ -62,7 +61,7 @@
       </div>
      
     </section>
-     <jsp:include page="./Footer.jsp">
+      <%@ include file="./Footer.jsp" %>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPXpQ8rAOKLR2vQCYV4AS6QQQum8qUjB8&callback=initMap&region=kr"></script>
     <script src="./js/map.js"></script>
     <script src="./js/header.js"></script>

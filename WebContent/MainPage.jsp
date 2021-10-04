@@ -43,7 +43,7 @@
     </script>
   </head>
   <body>
-   <jsp:include page="./Header.jsp">
+   <%@ include file="./Header.jsp" %>
     
     <section class="body">
       <div class="imageTool">
@@ -60,16 +60,16 @@
         <h3 class="subTitle">오늘의 인기 Top10!</h3>
         <div id="hotSlideShow">
           <ul class="hotSlides">
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+           <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
             
           </ul>
         </div>
@@ -82,16 +82,16 @@
         <h3 class="subTitle">모집 마감 임박!</h3>
         <div id="scSlideShow">
           <ul class="scSlides">
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
             
           </ul>
         </div>
@@ -104,16 +104,16 @@
         <h3 class="subTitle">코로나 시대에 무슨 모임?</h3>
         <div id="thSlideShow">
           <ul class="thSlides">
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
           </ul>
         </div>
         <p class="thController">
@@ -125,16 +125,16 @@
         <h3 class="subTitle">비대면 모임 Top10!</h3>
         <div id="foSlideShow">
           <ul class="foSlides">
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
-            <li><img src="../../img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+             <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/nature.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/space.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/flower.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/fox.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/lightning.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
+            <li><img src="./img/moon.jpg" alt="img" /><p>모임:농구<br>위치:서울 강남</p></li>
           </ul>
         </div>
         <p class="foController">
@@ -143,9 +143,9 @@
         </p>
       </div>
     </section>
-
-    <jsp:include page="./Footer.jsp">
-    <script src="../../js/indexSlides.js"></script>
-    <script src="../../js/header.js"></script>
+	<%@ include file="./Footer.jsp" %>
+    
+    <script src="./js/indexSlides.js"></script>
+    <script src="./js/header.js"></script>
   </body>
 </html>

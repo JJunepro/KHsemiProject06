@@ -17,17 +17,17 @@
         <div class="headerNav">
           <ul class="headerNavList">
             <li>
-              <a href="http://127.0.0.1:5500/semi/src/main/index.html"
+              <a href="http://localhost:8090/TBH/MainPage.jsp"
                 >메인페이지</a
               >
             </li>
             <li>
-              <a href="http://127.0.0.1:5500/semi/src/reservation/main.html"
+              <a href="http://localhost:8090/TBH/ReserveMain.jsp"
                 >예약페이지</a
               >
             </li>
             <li>
-              <a href="http://127.0.0.1:5500/semi/src/market/main.html">중고나라</a>
+              <a href="http://localhost:8090/TBH/MarketMain.jsp">중고나라</a>
             </li>
             <li>
               <a href="#">게시판</a>
