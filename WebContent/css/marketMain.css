@@ -1,0 +1,119 @@
+.searchBox {
+  margin: 1em 11em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchBox #search {
+  width: 300px;
+  height: 30px;
+}
+
+.searchBox #searchBtn{
+  width: 40px;
+  height: 30px;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.subTitle {
+  padding: 0.5em 9.5em;
+}
+
+li{
+  list-style: none;
+}
+
+.slideBox {
+  background-color: #fafafa;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  
+}
+
+#hotSlideShow {
+  position: relative;
+  width: 70%;
+  height: 300px;
+  overflow: hidden;
+  margin: 0 11em;
+}
+
+.hotSlides {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2000px;
+  transition: left 0.5s ease-out;
+}
+
+.hotSlides li {
+  float: left;
+}
+
+.hotSlides li:first-child{
+  margin-left: 0px;
+  margin-right: 50px;
+}
+.hotSlides li:not(:first-child){
+  margin-right: 50px;
+}
+
+.hotSlides li img{
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+.hotcontroller span{
+  position: absolute;
+  background-color: transparent;
+  color: black;
+  text-align: center;
+  border-radius: 50%;
+  padding: 10px 20px;
+  top: 37%;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.hotcontroller span:hover{
+  background-color: rgba(128,128,128,0.11);
+}
+
+.hotPrev {
+  left: 8%;
+}
+
+.hotPrev:hover {
+  transform: translateX(-10px);
+}
+
+.hotNext {
+  right: 12%;
+}
+
+.hotNext:hover{
+  transform: translateX(10px);
+}
+
+.listBox{
+  margin: 0 11em;
+  padding-top: 1em;
+  background-color: #fafafa;
+}
+
+.listContent li {
+  display: flex;
+  margin: 0.3em 0;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.listContent li img{
+  width: 150px;
+  height: 150px;
+}
+
