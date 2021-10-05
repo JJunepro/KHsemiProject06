@@ -27,6 +27,7 @@ li{
 }
 
 .slideBox {
+  position: relative;
   background-color: #fafafa;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
@@ -74,7 +75,7 @@ li{
   text-align: center;
   border-radius: 50%;
   padding: 10px 20px;
-  top: 37%;
+  top: 50%;
   font-size: 1.3em;
   cursor: pointer;
 }

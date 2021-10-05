@@ -47,7 +47,7 @@
 			</div>
 			<div class="btnBox">
 				<Button>
-					<a href="http://127.0.0.1:5500/semi/src/market/detailModify.html">수정</a>
+					<a href="http://localhost:8090/TBH/MarketDetailModify.jsp">수정</a>
 				</Button>
 				<Button>삭제</Button>
 			</div>

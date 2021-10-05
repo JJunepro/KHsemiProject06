@@ -14,6 +14,10 @@
     
   }
 
+  .headerLogo h1 {
+    cursor: pointer;
+  }
+
   header .header{
     position: fixed;
     width: 100%;

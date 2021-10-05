@@ -24,7 +24,7 @@
 					<input type="button" id="searchBtn" value="확인" />
 				</div>
 				<div>
-					<a href="http://127.0.0.1:5500/semi/src/market/add.html"><button
+					<a href="http://localhost:8090/TBH/MarketAdd.jsp"><button
 							id="searchBtn">추가</button></a>
 				</div>
 			</div>
@@ -83,7 +83,7 @@
 			<div class="listBox">
 				<ul class="listContent">
 					<li><a
-						href="http://127.0.0.1:5500/semi/src/market/detail.html"><img
+						href="http://localhost:8090/TBH/MarketDetail.jsp"><img
 							src="./img/flower.jpg" alt="img" /></a>
 						<p>설명</p></li>
 					<li><img src="./img/fox.jpg" alt="img" />

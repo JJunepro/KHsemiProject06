@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href=".css/header.css" />
-    <link rel="stylesheet" href=".css/footer.css" />
-    <link rel="stylesheet" href=".css/marketAdd.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/marketAdd.css" />
   </head>
   <body>
      <%@ include file="./Header.jsp" %>
@@ -48,27 +48,6 @@
 
     <%@ include file="./Footer.jsp" %>
 
-    <script>
-      function onClick() {
-        const fileImg = document.querySelector(".input");
-        const divImg = document.querySelector(".divImg");
-        divImg.innerHTML = fileImg.files[0].name;
-      }
-
-
-      const test = {
-        test1 : function(){console.log("sdfsdfsf")}
-      }
-
-      test.test1();
-
-
-      const f1 = "a";
-      const f2 = "a";
-      if(f1 == f2){
-        console.log("true")
-      }
-    </script>
     <script src="./js/header.js"></script>
   </body>
 </html>

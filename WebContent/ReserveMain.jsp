@@ -86,7 +86,7 @@
       <div class="contentBox">
         <ul class="content">
           <li>
-            <a href="http://127.0.0.1:5500/semi/src/reservation/detail.html"
+            <a href="http://localhost:8090/TBH/ReserveDetail.jsp"
               >content1</a
             >
           </li>
