@@ -13,7 +13,7 @@ public class JDBCTemplate {
 	public static Connection getConnection() {
 		Connection con = null;
 		String dr = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe"; // TODO: ï¿½ï¿½ï¿½ï¿½
+		String url = "jdbc:oracle:thin:@localhost:1521:xe"; // TODO: 
 		String uid = "health";
 		String pwd = "khtbh0123";
 
@@ -21,7 +21,7 @@ public class JDBCTemplate {
 			Class.forName(dr);
 			con = DriverManager.getConnection(url, uid, pwd);
 			if (con == null) {
-				System.out.println("ì—°ê²°ì‹¤íŒ¨");
+				System.out.println("¿¬°á½ÇÆÐ");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
