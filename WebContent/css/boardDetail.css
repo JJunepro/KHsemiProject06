@@ -1,0 +1,76 @@
+section {
+  background-color: #fafafa;
+  height: auto;
+}
+
+.body {
+  padding: 3rem 11rem;
+}
+
+.textBox {
+  background-color: #fafafa;
+  padding: 1rem 11rem;
+  align-items: center;
+}
+
+textarea {
+  width: 100%;
+  height: 50px;
+}
+
+.update {
+  float: right;
+}
+
+.replyBox {
+  padding: 1rem 11rem;
+}
+
+.replyBox ul {
+  list-style: none;
+}
+
+.replyBox ul li {
+  margin-bottom: 0.5rem;
+  background-color: white;
+}
+
+.replyBox ul li button {
+  float: right;
+}
+
+.replyNum {
+  padding: 1rem 11rem;
+}
+
+.replyNum ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+}
+
+.replyNum ul li {
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.replyNum ul li:hover {
+  opacity: 60%;
+}
+
+#reply {
+	resize:none;
+}
+
+#textVal {
+  width: 1150px;
+  height: 800px;
+  overflow-y: visible;
+  border: none;
+  resize: none;
+  background-color: #fafafa;
+}
+
+#textVal:focus {
+  outline: none;
+}
