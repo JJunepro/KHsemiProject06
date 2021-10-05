@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tbh.articlesix.member.service.MemberService;
-
 /**
- * Servlet implementation class LoginMemberServlet
+ * Servlet implementation class JoinMemberServlet
  */
-@WebServlet("/login")
-public class LoginMemberServlet extends HttpServlet {
+@WebServlet("/joinMember")
+public class JoinMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public LoginMemberServlet() {
+    public JoinMemberServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -29,11 +27,6 @@ public class LoginMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
-		String m_id = request.getParameter("id");
-		String m_pw = request.getParameter("pw");
-		
-		int result = new MemberService().login(m_id, m_pw);
 	}
 
 	/**
