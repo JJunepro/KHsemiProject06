@@ -1,0 +1,78 @@
+form {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    /* height: 800px; 안먹힘*/
+    margin-left: -200px;
+    margin-top: -150px;
+}
+
+fieldset{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: rgb(224, 224, 224);
+    border: none;
+    border-radius: 3%;
+}
+
+#selectBtn{
+    padding-top: 8px;
+}
+.selectBtn{
+    width: 95px;
+    height: 38px;
+    border: none;
+}
+#nameBox{
+    padding-top: 20px;
+}
+#uName{
+    width: 330px;
+    height: 40px;
+    border: none;
+}
+#cellNumBox{
+    padding-top: 20px;
+}
+#uEmail{
+    width: 250px;
+    height: 40px;
+    border: none;
+}
+#nameBox > input{
+    margin-top: 12px;
+}
+#cellNumBox > input{
+    margin-top: 12px;
+}
+#authentication{
+    width: 200px;
+    height: 30px;
+    border: none;
+}
+#findBtn{
+    padding-top: 20px;
+}
+#find{
+    width: 300px;
+    height: 40px;
+    border: none;
+}
+label{
+    font-weight: bold;
+}
+#all{
+    text-align: left;
+    position: relative;
+    left: 35px;
+}
+#send{
+    position: relative;
+    top: 10px;
+}
+#check{
+    position: relative;
+    top: 5px;
+}
