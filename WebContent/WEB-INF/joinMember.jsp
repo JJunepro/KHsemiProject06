@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="/WebContent/WEB-INF/js/joinMember.js"></script>
-    <link href="/WebContent/css/header.css" rel="stylesheet" type="text/css">
     <link href="/WebContent/css/joinMember.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -35,8 +33,8 @@
                             <label>성별</label><br>
                             <select id="selectGender">
                             <option value="">성별</option>
-                            <option value="male" id="male">남성</option>
-                            <option value="female" id="female">여성</option>
+                            <option value="m" id="male">남성</option>
+                            <option value="f" id="female">여성</option>
                             </select>
                         </div>
                         <div id="birth">
@@ -55,8 +53,9 @@
                 <label>주소</label><br>
                 <input type="text" class="textBox" placeholder="우편번호" ><br>
                 <input type="text" class="textBox" placeholder="상세주소"><br>
-                <input type="text" class="textBox" placeholder="나머지"><br>
+                <input type="text" class="textBox" placeholder="나머지"><br><!-- 카카오맵 api -->
             </div>
+            <!-- 
             <div>
                 <p>관심운동선택</p>
                 <input type="radio" value="aaa">
@@ -72,14 +71,12 @@
                 <input type="radio" value="aaa">
                 <input type="radio" value="aaa">
                 <a>radio모양변경 및 버튼안에 내용추가</a><br>
-                <!-- 카카오맵 api -->
-            </div>
+            </div> -->
             <div>
             <!-- TODO 유효성 체크 후 그곳에서 submit() -->
                 <input type="submit" value="회원가입">
             </div>
         </div>
-    </fieldset>
     </form>
 </body>
 </html>

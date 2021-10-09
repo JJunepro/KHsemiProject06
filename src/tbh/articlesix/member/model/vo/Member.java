@@ -31,11 +31,29 @@ public class Member {
 	private String m_createDate;
 	private String m_deleteDate;
 	
-	public Member() {
-		
+	public Member() {	
 	}
-
-
+	
+	public Member(String m_id, String m_pw, char m_auth, String m_name, String m_nick, String m_birth, char m_gender,
+			String m_phone, String m_email, String m_address, String m_address_detail, double m_degree,
+			String m_createDate, String m_deleteDate) {
+		super();
+		this.m_id = m_id;
+		this.m_pw = m_pw;
+		this.m_auth = m_auth;
+		this.m_name = m_name;
+		this.m_nick = m_nick;
+		this.m_birth = m_birth;
+		this.m_gender = m_gender;
+		this.m_phone = m_phone;
+		this.m_email = m_email;
+		this.m_address = m_address;
+		this.m_address_detail = m_address_detail;
+		this.m_degree = m_degree;
+		this.m_createDate = m_createDate;
+		this.m_deleteDate = m_deleteDate;
+	}
+	
 	@Override
 	public String toString() {
 		return "Member [m_id=" + m_id + ", m_pw=" + m_pw + ", m_auth=" + m_auth + ", m_name=" + m_name + ", m_nick="

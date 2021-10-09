@@ -6,19 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LogoutMemberServlet
+ * Servlet implementation class UpdateMemberServlet
  */
-@WebServlet("/logout")
-public class LogoutMemberServlet extends HttpServlet {
+@WebServlet("/update")
+public class UpdateMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public LogoutMemberServlet() {
+    public UpdateMemberServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -26,10 +26,9 @@ public class LogoutMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if(session != null) session.invalidate(); 
-		 response.sendRedirect("/WEB-INF/MainPage.jsp"); 
+		request.getRequestDispatcher("/WEB-INF/updateMember.jsp").forward(request, response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

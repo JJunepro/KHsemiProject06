@@ -1,12 +1,16 @@
 package tbh.articlesix.member.controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tbh.articlesix.member.model.vo.Member;
 import tbh.articlesix.member.service.MemberService;
 
 /**
@@ -24,20 +28,6 @@ public class JoinMemberDoServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    //1 m_id : String
-    //2 m_pw : String
-    //3 m_auth : Char
-    //4 m_name : String
-    //5 m_nick : String
-    //6 m_birth : Date
-    //7 m_gender : Char
-    //8 m_phone : String
-    //9 m_email : String
-    //10 m_address : String
-    //11 m_address_detail : String
-    //12 m_degree : int
-    //12 m_createDate : Date
-    //13 m_deleteDate : Date
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -59,24 +49,26 @@ public class JoinMemberDoServlet extends HttpServlet {
 //		String addressDetail = request.getParameter("m_adress_detail");
 //		String degreeStr = request.getParameter("m_degree");
 //		double degree = 36.5;
-//		String createDate = request.getParameter("m_createDate");
+//		String createDate = LocalDate.now().format(DateTimeFormatter.ofPattern("YYYY-mm-DD"));
 //		String deleteDate = request.getParameter("m_deleteDate");
-//		
-		String id = "user11";
-		String pw = "pass11";
+		
+		String id = "asd";
+		String pw = "qwe";
 		char auth = "U".charAt(0);
-		String name = "사용자1";
-		String nick = "닉";
+		String name = "사용자2";
+		String nick = "닉2";
 		String birth = "2000/05/04";
 		char gender = "M".charAt(0);
-		String phone = "01011112222";
-		String email = "user11@aaa.com";
+		String phone = "0101111";
+		String email = "user12@aaa.com";
 		String address = "우편번호에 의한 주소지임";
 		String addressDetail = "01-11";
 		String degreeStr = "36.5";
 		double degree = 36.5;
-		String createDate = "2020/06/07";
+		String createDate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String deleteDate = "";
+		
+		Member member = new Member(id, pw, auth, name, nick, birth, gender, phone, email, address, addressDetail, degree, createDate, deleteDate);
 		
 		try {
 			degree = Double.parseDouble(degreeStr);
@@ -84,11 +76,11 @@ public class JoinMemberDoServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		//TODO 		
-		new MemberService().createMember(null);
+		new MemberService().createMember(member);
 		
 		//TODO 
 		//Main 페이지/ 로그인 페이지
-		response.sendRedirect("/");
+		response.sendRedirect("/WEB-INF/Congratulations.jsp");
 	}
 
 }

@@ -8,17 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class LogoutMemberServlet
- */
-@WebServlet("/logout")
-public class LogoutMemberServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import tbh.articlesix.member.service.MemberService;
 
+/**
+ * Servlet implementation class deleteMemberDoServlet
+ */
+@WebServlet("/delete.do")
+public class DeleteMemberDoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
     /**
-     * Default constructor. 
+     * @see HttpServlet#HttpServlet()
      */
-    public LogoutMemberServlet() {
+    public DeleteMemberDoServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -26,16 +29,20 @@ public class LogoutMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		if(session != null) session.invalidate(); 
-		 response.sendRedirect("/WEB-INF/MainPage.jsp"); 
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		MemberService mservice = new MemberService();
+		int result = mservice.deleteMember(request.getParameter("m_id"));
+		if(result > 0) {
+			HttpSession session = request.getSession(false);
+			session.invalidate();
+		}
+		response.sendRedirect("/WEB-INF/MainPage.jsp");
 	}
 
 }

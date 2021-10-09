@@ -14,11 +14,24 @@ public class JDBCTemplate {
 
 	public static Connection getConnection() {
 		Connection conn = null;
-		
+//		String dr = "oracle.jdbc.driver.OracleDriver";
+//		String url = "jdbc:oracle:thin:@localhost:1521:xe"; // TODO: ����
+//		String uid = "health";
+//		String pwd = "khtbh0123";
+//
+//		try {
+//			Class.forName(dr);
+//			conn = DriverManager.getConnection(url, uid, pwd);
+//			if (conn != null) 
+//				System.out.println("연결성공!");
+//				else System.out.println("연결실패!");
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		try {
 			Context initContext = new InitialContext();
 			Context envContext = (Context)initContext.lookup("java:/comp/env");  //Tomcat resource 설정을 찾기. server.xm;, context.xml
-			// TODO
 			DataSource ds = (DataSource)envContext.lookup("jdbc/gymDclass"); //jdbc/gymLocal   //jdbc/gymDclass  
 			conn = ds.getConnection();
 			
