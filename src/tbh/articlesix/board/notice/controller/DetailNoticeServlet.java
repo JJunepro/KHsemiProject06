@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class DetailNoticeServlet
  */
-@WebServlet("/DetailNoticeServlet")
+@WebServlet("/noticecontent")
 public class DetailNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,10 @@ public class DetailNoticeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		
+		request.getRequestDispatcher("/WEB-INF/noticecontent.jsp").forward(request, response);
 	}
 
 	/**

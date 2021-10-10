@@ -21,14 +21,32 @@ public class NoticeService {
 	}
 	
 	//2. 공지사항 화면에 보여줄 것들만 골라서 출력
-	public ArrayList<Notice> selectNoticeList(int start, int end) {
-		ArrayList<Notice> nolist = null;
+//	public ArrayList<Notice> selectNoticeList(int start, int end) {
+//		ArrayList<Notice> nolist = null;
+//		Connection con = JDBCTemplate.getConnection();
+//		
+//		nolist = new NoticeDao().selectNoticeList(con, start, end);
+//		
+//		JDBCTemplate.close(con);
+//		return nolist;
+//	}
+	
+	
+	public int getNoticeCount() {
+		int result = 0;
 		Connection con = JDBCTemplate.getConnection();
-		
-		nolist = new NoticeDao().selectNoticeList(con, start, end);
-		
+		result = new NoticeDao().getNoticeCount(con);
 		JDBCTemplate.close(con);
-		return nolist;
+		return result;
 	}
 	
+//	public int insertNotice(Notice no) {
+//		int result = -1;
+//		Connection con = JDBCTemplate.getConnection();
+//		
+//		result = new NoticeDao().insertNotice(con, no);
+//		JDBCTemplate.close(con);
+//		return result;
+//	}
+
 }
