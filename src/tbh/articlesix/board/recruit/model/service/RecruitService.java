@@ -18,14 +18,6 @@ public class RecruitService {
 		return vo;
 	}
 
-	public int getBoardCount() {
-		int result = 0;
-		Connection conn = JDBCTemplate.getConnection();
-		result = new RecruitDao().getRecruitCount(conn);
-		JDBCTemplate.close(conn);
-		return result;
-	}
-
 	public ArrayList<Recruit> selectRecruitList(int start, int end) {
 		ArrayList<Recruit> volist = null;
 		Connection conn = JDBCTemplate.getConnection();
@@ -46,12 +38,10 @@ public class RecruitService {
 		return volist;
 	}
 
-	public int insertBoard(Recruit vo) {
-		int result = -1;
+	public int getRecruitCount() {
+		int result = 0;
 		Connection conn = JDBCTemplate.getConnection();
-
-		result = new RecruitDao().RecruitBoard(conn, vo);
-
+		result = new RecruitDao().getRecruitCount(conn);
 		JDBCTemplate.close(conn);
 		return result;
 	}
