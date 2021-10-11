@@ -28,7 +28,7 @@ import java.sql.Date;
 //	    B_FACILITY VARCHAR2(2000),
 //	    B_TIMESTAMP DATE NOT NULL,
 //	    B_VIEW NUMBER    
-//	    );
+
 
 public class Recruit {
 	private int b_n;
@@ -57,16 +57,9 @@ public class Recruit {
 	private Date b_timestamp;
 	private int b_view;
 	
-	public Recruit() {
-	}
 
-	public Recruit(int b_n, String b_title, String b_content, String m_id) {
-		this.b_n=b_n;
-		this.b_title=b_title;
-		this.b_content=b_content;
-		this.m_id=m_id;
-	}
-	
+
+	// 글 작성
 	public Recruit(int b_n, String m_id, int ca_n, char b_type, String b_title, String b_content, Date b_start,
 			Date b_end, int b_total, int b_attend, String b_place, int b_fee, char b_match, char b_gender, char b_age,
 			char b_equip, int b_minpeople, String b_progress, char b_shower, char b_parking, char b_rental,
@@ -98,16 +91,22 @@ public class Recruit {
 		this.b_timestamp = b_timestamp;
 		this.b_view = b_view;
 	}
+	// 글 수정
+
+	
 	
 	@Override
 	public String toString() {
-		return "Board_recruit [b_n=" + b_n + ", m_id=" + m_id + ", ca_n=" + ca_n + ", b_type=" + b_type + ", b_title="
+		return "Recruit [b_n=" + b_n + ", m_id=" + m_id + ", ca_n=" + ca_n + ", b_type=" + b_type + ", b_title="
 				+ b_title + ", b_content=" + b_content + ", b_start=" + b_start + ", b_end=" + b_end + ", b_total="
 				+ b_total + ", b_attend=" + b_attend + ", b_place=" + b_place + ", b_fee=" + b_fee + ", b_match="
 				+ b_match + ", b_gender=" + b_gender + ", b_age=" + b_age + ", b_equip=" + b_equip + ", b_minpeople="
 				+ b_minpeople + ", b_progress=" + b_progress + ", b_shower=" + b_shower + ", b_parking=" + b_parking
 				+ ", b_rental=" + b_rental + ", b_cloth=" + b_cloth + ", b_facility=" + b_facility + ", b_timestamp="
 				+ b_timestamp + ", b_view=" + b_view + "]";
+	}
+
+	public Recruit() {
 	}
 
 	public int getB_n() {
