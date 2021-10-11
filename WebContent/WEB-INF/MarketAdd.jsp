@@ -14,7 +14,7 @@
 
     <section class="body">
       <div class="formBox">
-         <form action="/marketAdd" method="GET"> 
+         <form action="KHsemiProject06/doAddMarket" method="POST">
           <h3>중고 물품 등록</h3>
          <table>
            <tr>
