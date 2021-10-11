@@ -70,12 +70,12 @@ public class NoticeListServlet extends HttpServlet {
 		}
 		
 		ArrayList<Notice> nolist = new NoticeService().selectNoticeList();
-		if (nolist.size() > 0) {
-			for (Notice no : nolist) {
-				out.println("<p>"+no.toString()+"</p>");
-			}
+//		if (nolist.size() > 0) {
+//			for (Notice no : nolist) {
+//				out.println("<p>"+no.toString()+"</p>");
+//			}
 		}
-	}
+//	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

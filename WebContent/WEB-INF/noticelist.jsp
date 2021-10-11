@@ -20,7 +20,7 @@ int pageCount = (int) request.getAttribute("pageCount");
 <title>Insert title here</title>
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
+	<%@ include file="./Header.jsp"%>
 	<hr>
 	<article>
 		<nav>
@@ -56,7 +56,7 @@ int pageCount = (int) request.getAttribute("pageCount");
 						</td>
 						<td>
 							<%
-                        		for (int i=0; i<no.getBreLevel(); i++) {
+                        		for (int i=0; i<5; i++) {
                         	%> Re : <%
 								}
 							%> <%=no.getBn_title()%>
