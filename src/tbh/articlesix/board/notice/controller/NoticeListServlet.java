@@ -16,7 +16,7 @@ import tbh.articlesix.board.notice.vo.Notice;
 /**
  * Servlet implementation class NoticeListServlet
  */
-@WebServlet("/noticelist")
+@WebServlet({"/noticelist", "/notice"})
 public class NoticeListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -52,30 +52,12 @@ public class NoticeListServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
-		PrintWriter out = response.getWriter();
-		
-		final int P_SIZE = 10;
-		final int P_BLOCK = 3;
-		int bCount = 0;
-		int pageCount = 0;
-		int startPage = 1;
-		int endPage = 1;
-		int currentPage = 1;
-		int startRnum = 1;
-		int endRnum = 1;
-		
-		String pageNum = request.getParameter("pagenum");
-		if (pageNum != null) {
-			currentPage = Integer.parseInt(pageNum);
-		}
-		
 		ArrayList<Notice> nolist = new NoticeService().selectNoticeList();
-//		if (nolist.size() > 0) {
-//			for (Notice no : nolist) {
-//				out.println("<p>"+no.toString()+"</p>");
-//			}
-		}
-//	}
+		
+		request.setAttribute("noticenolist", nolist);
+		
+		request.getRequestDispatcher("/WEB-INF/noticelist.jsp").forward(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

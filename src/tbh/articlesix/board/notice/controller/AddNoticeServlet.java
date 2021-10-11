@@ -15,7 +15,7 @@ import tbh.articlesix.board.notice.vo.Notice;
 /**
  * Servlet implementation class AddNoticeServlet
  */
-@WebServlet("/noticewrite")
+@WebServlet("/noticewrite.do")
 public class AddNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,19 +31,39 @@ public class AddNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
 		request.getRequestDispatcher("/WEB-INF/noticewrite.jsp").forward(request, response);
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String bn_title = request.getParameter("bn_title");
+		String m_id = request.getParameter("m_id");
+		String bn_content = request.getParameter("bn_content");
+		
+		out.println("입력된 title: "+ bn_title);
+		out.println("<br>입력된 content: "+ bn_content);
+		
+//		String m_id = (String)request.getSession().getAttribute("memberLoginInfo");
+		if (m_id == null) {
+			m_id = "Manager";
+		}
+		
+		Notice no = new Notice(bn_title, m_id, bn_content);
+		
+		int result = new NoticeService().insertNotice(no);
+		response.sendRedirect("noticelist");
+		
+	
 	}
-
 }

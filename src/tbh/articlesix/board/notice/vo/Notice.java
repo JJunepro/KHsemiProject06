@@ -9,12 +9,18 @@ public class Notice {
 	private String bn_content;
 	private Date bn_timestamp;
 	private int bn_view;
-
-
+	
 	public Notice() {
-		// TODO Auto-generated constructor stub
+		
 	}
-
+	
+	public Notice(String bn_title, String m_id, String bn_content) {
+		super();
+		this.bn_title = bn_title;
+		this.m_id = m_id;
+		this.bn_content = bn_content;
+	}
+	
 	@Override
 	public String toString() {
 		return "Notice [bn_n=" + bn_n + ", m_id=" + m_id + ", bn_title=" + bn_title + ", bn_content=" + bn_content
@@ -75,11 +81,9 @@ public class Notice {
 		return bn_view;
 	}
 
-
 	public void setBn_view(int bn_view) {
 		this.bn_view = bn_view;
 	}
-	
 	
 
 }

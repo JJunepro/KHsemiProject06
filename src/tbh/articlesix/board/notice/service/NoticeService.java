@@ -40,13 +40,37 @@ public class NoticeService {
 		return result;
 	}
 	
-//	public int insertNotice(Notice no) {
+	public String getDate() {
+		String result = "";
+		Connection con = JDBCTemplate.getConnection();
+		result = new NoticeDao().getDate(con);
+		JDBCTemplate.close(con);
+		return result;
+	}
+	
+//	public int writeNotice(String m_id, String bn_title, String bn_content) {
 //		int result = -1;
 //		Connection con = JDBCTemplate.getConnection();
-//		
-//		result = new NoticeDao().insertNotice(con, no);
-//		JDBCTemplate.close(con);
+//		result = new NoticeDao().writeNotice(con, m_id, bn_title, bn_content);
 //		return result;
 //	}
+	
+	public int insertNotice(Notice no) {
+		int result = -1;
+		Connection con = JDBCTemplate.getConnection();
+		
+		result = new NoticeDao().insertNotice(con, no);
+		
+		JDBCTemplate.close(con);
+		return result;
+	}
+	
+	public Notice getNotice(int bn_n) {
+		Notice no = null;
+		Connection con = JDBCTemplate.getConnection();
+		no = new NoticeDao().getNotice(con, bn_n);
+		JDBCTemplate.close(con);
+		return no;
+	}
 
 }
