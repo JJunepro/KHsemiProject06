@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.google.gson.GsonBuilder;
+
 import tbh.articlesix.common.JDBCTemplate;
 import tbh.articlesix.member.model.vo.Member;
 
@@ -60,6 +62,21 @@ public class MemberDao {
 				result = new Member();
 				result.setM_id(rset.getString("m_id"));
 				result.setM_pw(rset.getString("m_pw"));
+				result.setM_auth(rset.getString("m_auth").charAt(0));
+				result.setM_name(rset.getString("m_name"));
+				result.setM_nick(rset.getString("m_nick"));
+				result.setM_birth(rset.getString("m_birth"));
+				result.setM_gender(rset.getString("m_gender").charAt(0));
+				result.setM_phone(rset.getString("m_phone"));
+				result.setM_email(rset.getString("m_email"));
+				result.setM_address(rset.getString("m_address"));
+				result.setM_address_detail(rset.getString("m_address_detail"));
+				result.setM_degree(rset.getDouble("m_degree"));
+				result.setM_createDate(rset.getString("m_createdate"));
+				result.setM_deleteDate("m_deletedate");
+				
+				
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,5 +1,9 @@
+<%@page import="tbh.articlesix.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Member m = (Member) session.getAttribute("member");
+%>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="/WebContent/css/login.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <form action="login.do" method="POST" id="frm">
@@ -18,10 +22,10 @@
                     <h1 id="qwe">로그인</h1>
                 </div>
                 <div id="textBox">
-                    <input type="text" id="loginId" name="loginId" placeholder="  아이디" class="loginField"><br><br>
-                    <input type="password" id="loginPw" name="loginPw" placeholder="  비밀번호" class="loginField"><br><br>
+                    <input type="text" id="loginId" name="loginId" placeholder=" 아이디" class="loginField"><br><br>
+                    <input type="password" id="loginPw" name="loginPw" placeholder=" 비밀번호" class="loginField"><br><br>
                     <input type="button" id="loginBtn" value="로그인"><br>
-                    <!-- <input type="checkbox" id="saveId"> 아이디 저장 -->
+                    
                 </div>
             </fieldset>
                 <div id="url">
@@ -55,7 +59,7 @@
     function callLogin(id, pw) {
         $.ajax({
             type: "POST",
-            url: "login",
+            url: "login.do",
             data: {
                 m_id: id,
                 m_pw: pw
@@ -63,8 +67,10 @@
             dataType : "json",
             success : function(data) {
                 if(data.result == "ok"){
-                    console.log(data.result)
+                    console.log(data.result);
                     alert("로그인 성공.");
+                    // TODO questio 질문하기
+                    window.location.replace("/KHsemiProject06/");
                 }else{
                     console.log(data.result)
                     alert("아이디와 비밀번호를 확인해주세요.");

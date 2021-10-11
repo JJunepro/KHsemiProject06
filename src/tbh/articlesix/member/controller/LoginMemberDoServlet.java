@@ -2,6 +2,10 @@ package tbh.articlesix.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.JsonObject;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import tbh.articlesix.member.model.vo.Member;
 import tbh.articlesix.member.service.MemberService;
@@ -43,32 +49,47 @@ public class LoginMemberDoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
-		System.out.println("login.do진입");
+		response.setContentType("application/json;charset=UTF-8");
+		
 		MemberService mservice = new MemberService();
 		String m_id = request.getParameter("m_id");
 		String m_pw = request.getParameter("m_pw");
+		System.out.println("m_id: " + m_id);
+		System.out.println("m_passwd: " + m_pw);
 		PrintWriter out = response.getWriter();
 		
-		//TODO: gson 쓰세요~
-//		JSONObject job = new JSONObject();
-		JsonObject job = new JsonObject();
-		Member result = mservice.loginMember(m_id, m_pw);
-		if(result != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("member", result);
-//			job.put("result", "ok");
-//			job.put("name", result.getM_name());
-			out.write("성공!");
-//			
+		Gson gObject = new GsonBuilder().setPrettyPrinting().create();
+		String gobStr = "";
+		
+		List<Member> voList = new ArrayList<Member>();
+		Member m = mservice.loginMember(m_id, m_pw);
+		if(m != null) {
+			System.out.println("로그인 성공");
+			HttpSession seeSession = request.getSession();
+			seeSession.setAttribute("member", m.getM_id());
+			
+			voList.add(m);
+			voList.add(m);
+			
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("result", "ok");
+			map2.put("name", m.getM_name());
+			map2.put("memberInfo", m);
+			gobStr = gObject.toJson(map2);
+			out.println(gobStr);
+			
 		}else {
-//			job.put("result", "fail");
+			System.out.println("로그인 실패");
+			Map<String, Object> map2 = new HashMap<String, Object>();
+			map2.put("result", "fail");
+			gobStr = gObject.toJson(map2);
+			out.println(gobStr);
 		}
-//		out.println(job.toJSONString());
+		System.out.println("gobStr : " + gobStr);
 		out.flush();
 		out.close();
-		System.out.println("로그인실패!");
+		
 	}
-
+		
 
 }

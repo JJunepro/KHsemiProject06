@@ -52,11 +52,11 @@ public class JoinMemberDoServlet extends HttpServlet {
 //		String createDate = LocalDate.now().format(DateTimeFormatter.ofPattern("YYYY-mm-DD"));
 //		String deleteDate = request.getParameter("m_deleteDate");
 		
-		String id = "asd";
-		String pw = "qwe";
+		String id = "test01";
+		String pw = "test01";
 		char auth = "U".charAt(0);
-		String name = "사용자2";
-		String nick = "닉2";
+		String name = "test";
+		String nick = "닉1";
 		String birth = "2000/05/04";
 		char gender = "M".charAt(0);
 		String phone = "0101111";
