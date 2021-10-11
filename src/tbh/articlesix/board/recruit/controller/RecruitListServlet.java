@@ -2,6 +2,7 @@ package tbh.articlesix.board.recruit.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,10 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kh.my.board.board.model.service.BoardService;
+import kh.my.board.board.model.vo.Board;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 /**
  * Servlet implementation class RecruitListServlet
  */
+import tbh.articlesix.board.recruit.model.vo.Recruit;
 @WebServlet("/RecruitListServlet")
 public class RecruitListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,25 +39,25 @@ public class RecruitListServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		final int PAGE_SIZE = 5; // ÇÑ ÆäÀÌÁö ´ç ±Û¼ö
-		final int PAGE_BLOCK = 3; // ÇÑ È­¸é¿¡ ³ªÅ¸³¯ ÆäÀÌÁö ¸µÅ© ¼ö
-		int bCount = 0; // ÃÑ ±Û¼ö
-		int pageCount = 0; // ÃÑ ÆäÀÌÁö¼ö
-		int startPage = 1; // È­¸é¿¡ ³ªÅ¸³¯ ½ÃÀÛÆäÀÌÁö
-		int endPage = 1; // È­¸é¿¡ ³ªÅ¸³¯ ¸¶Áö¸·ÆäÀÌÁö
+		final int PAGE_SIZE = 5; // í•œ í˜ì´ì§€ ë‹¹ ê¸€ìˆ˜
+		final int PAGE_BLOCK = 3; // í•œ í™”ë©´ì— ë‚˜íƒ€ë‚  í˜ì´ì§€ ë§í¬ ìˆ˜
+		int bCount = 0; // ì´ ê¸€ìˆ˜
+		int pageCount = 0; // ì´ í˜ì´ì§€ìˆ˜
+		int startPage = 1; // í™”ë©´ì— ë‚˜íƒ€ë‚  ì‹œì‘í˜ì´ì§€
+		int endPage = 1; // í™”ë©´ì— ë‚˜íƒ€ë‚  ë§ˆì§€ë§‰í˜ì´ì§€
 		int currentPage = 1;
-		int startRnum = 1; // È­¸é¿¡ ±Û
-		int endRnum = 1; // È­¸é¿¡ ±Û
+		int startRnum = 1; // í™”ë©´ì— ê¸€
+		int endRnum = 1; // í™”ë©´ì— ê¸€
 		
 		String pageNum = request.getParameter("pagenum");
-		if (pageNum != null) { // ´­·ÁÁø ÆäÀÌÁö°¡ ÀÖÀ½.
-			currentPage = Integer.parseInt(pageNum); // ´­·ÁÁø ÆäÀÌÁö
+		if (pageNum != null) { // ëˆŒë ¤ì§„ í˜ì´ì§€ê°€ ìˆìŒ.
+			currentPage = Integer.parseInt(pageNum); // ëˆŒë ¤ì§„ í˜ì´ì§€
 		}
-		// ÃÑ ±Û¼ö
-		bCount = new RecruitService().getBoardCount();
-		// ÃÑ ÆäÀÌÁö¼ö = (ÃÑ±Û°³¼ö / ÆäÀÌÁö´ç±Û¼ö) + (ÃÑ±Û°³¼ö¿¡¼­ ÆäÀÌÁö´ç±Û¼ö·Î ³ª´« ³ª¸ÓÁö°¡ 0ÀÌ ¾Æ´Ï¶ó¸é ÆäÀÌÁö°³¼ö¸¦ 1 Áõ°¡)
+		// ì´ ê¸€ìˆ˜
+		bCount = new RecruitService().getRecruitCount();
+		// ì´ í˜ì´ì§€ìˆ˜ = (ì´ê¸€ê°œìˆ˜ / í˜ì´ì§€ë‹¹ê¸€ìˆ˜) + (ì´ê¸€ê°œìˆ˜ì—ì„œ í˜ì´ì§€ë‹¹ê¸€ìˆ˜ë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ê°€ 0ì´ ì•„ë‹ˆë¼ë©´ í˜ì´ì§€ê°œìˆ˜ë¥¼ 1 ì¦ê°€)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
-		// rownum Á¶°Ç °è»ê
+		// rownum ì¡°ê±´ ê³„ì‚°
 		startRnum = (currentPage - 1) * PAGE_SIZE + 1; // 1//6//11/16//21
 		endRnum = startRnum + PAGE_SIZE - 1;
 		if (endRnum > bCount)
@@ -68,6 +72,18 @@ public class RecruitListServlet extends HttpServlet {
 		if (endPage > pageCount)
 			endPage = pageCount;
 	}
+	// DBì—ì„œ ê°’ ì½ì–´ì˜¤ê¸°
+	ArrayList<Recruit> volist = new RecruitService().selectRecruitList(startRnum, endRnum);
+//	System.out.println("volist.size()" + volist.size());
+	
+	// data ì „ë‹¬ì„ ìœ„í•´ì„œ requestì— ì…‹
+	request.setAttribute("recruitvolist", volist);
+	request.setAttribute("startPage", startPage);
+	request.setAttribute("endPage", endPage);
+	request.setAttribute("pageCount", pageCount);
+	
+	// page ì´ë™í•˜ë©´ì„œ dataë¡œ ì „ë‹¬í•¨
+	request.getRequestDispatcher("/boardlist.jsp").forward(request, response);
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
