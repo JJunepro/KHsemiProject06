@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>Notice</display-name>
+ <display-name>Together Be Healthy</display-name>
+  <servlet>
+  	<servlet-name>mvc</servlet-name>
+  	<servlet-class>com.sist.controller.Controller</servlet-class>
+  </servlet>
+	
+  	<!-- applicationContext.xml의 위치 -->
+  <init-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>C:\webDev\20201012-MVC1\WebContent\WEB-INF\applicationContext.xml</param-value>
+  </init-param>
+	
+	<!-- uri 패턴 -->
+  <servlet-mapping>
+  	<servlet-name>mvc</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,4 +26,11 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+<!--  <resource-ref>
+  	<descriptrion>ojdbc6 connection pool</descriptrion>
+  	<res-ref-name>jdbc/jdbchealthLocal</res-ref-name>
+  	<res-type>javax.sql.DataSource</res-type>
+  	<res-auth>Container</res-auth>
+  </resource-ref>
+   --> 
 </web-app>
