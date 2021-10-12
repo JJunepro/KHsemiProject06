@@ -10,9 +10,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
+	<script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 <style>
-	.form label{
-		width:100%; text-align:left;
+	.container {
+	position : relative;
 	}
 </style>
 <title>공지사항 글 등록</title>
@@ -36,9 +37,9 @@
 							<td><input type="text" class="form-control" placeholder="작성자" name="m_id" maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><textarea cols="50" rows="10" name="bn_content" placeholder="글 내용" maxlength="2048"></textarea></td>
+							<td><textarea cols="50" rows="10" name="bn_content" id="editor4" placeholder="글 내용" maxlength="2048"></textarea></td>
+							<script>CKEDITOR.replace('editor4');</script>
 						</tr>
-						
 					</tbody>
 				</table>
 				<input type="submit" class="btn btn-primary pull-right" value="등록">
