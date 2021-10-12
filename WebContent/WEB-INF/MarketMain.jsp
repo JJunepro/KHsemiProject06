@@ -3,10 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	ArrayList<Market> mkList = (ArrayList<Market>)request.getAttribute("mkList");
+	ArrayList<Market> mkList = (ArrayList<Market>) request.getAttribute("mkList");
+	ArrayList<Market> hotMkList = (ArrayList<Market>) request.getAttribute("hotMkList");
+	ArrayList<Market> searchMkList = (ArrayList<Market>) request.getAttribute("searchMkList");
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -18,102 +20,71 @@
 <link rel="stylesheet" href="css/marketMain.css" />
 </head>
 <body>
-	 <%@ include file="./Header.jsp" %>
+	<%@ include file="./Header.jsp"%>
 
-		<section class="body">
-			<div class="searchBox">
-				<div>
-					<input type="text" id="search" placeholder="찾고 싶은 상품을 입력해주세요" />
-					<input type="button" id="searchBtn" value="확인" />
-				</div>
-				<div>
-					<a href="#"><button
-							id="searchBtn">추가</button></a>
-				</div>
+	<section class="body">
+		<div class="searchBox">
+			<form method="GET" action="searchMarket" id="frm1">
+				<input type="text" id="search" name="searchTitle" placeholder="찾고 싶은 상품을 입력해주세요" />
+				 <input type="submit" id="searchBtn" value="확인" />
+			</form>
+			<div>
+				<a href="<%=request.getContextPath()%>/marketAdd"><button
+						id="searchBtn">추가</button></a>
 			</div>
-			
-			<%
-				if(mkList != null){
-					for(Market no: mkList){
-					
-			%>
-			<div class="slideBox">
-				<h3 class="subTitle">오늘의 HOT 아이템!</h3>
-				<div id="hotSlideShow">
-					<ul class="hotSlides">
-						<li><img src="WebContent/WEB-INF/img/flower.jpg" alt="img" />
-							<p>
-								제목:꽃<br />가격:5600
-							</p></li>
-						<li><img src="img/fox.jpg" alt="img" />
-							<p>
-								제목:여우<br />가격:5600
-							</p></li>
-						<li><img src="img/lightning.jpg" alt="img" />
-							<p>
-								제목:전구<br />가격:5600
-							</p></li>
-						<li><img src="img/moon.jpg" alt="img" />
-							<p>
-								제목:달<br />가격:5600
-							</p></li>
-						<li><img src="img/nature.jpg" alt="img" />
-							<p>
-								제목:자연<br />가격:5600
-							</p></li>
-						<li><img src="img/space.jpg" alt="img" />
-							<p>
-								제목:우주<br />가격:5600
-							</p></li>
-						<li><img src="img/flower.jpg" alt="img" />
-							<p>
-								제목:꽃<br />가격:5600
-							</p></li>
-						<li><img src="img/fox.jpg" alt="img" />
-							<p>
-								제목:꽃<br />가격:5600
-							</p></li>
-						<li><img src="img/lightning.jpg" alt="img" />
-							<p>
-								제목:꽃<br />가격:5600
-							</p></li>
-						<li><img src="img/moon.jpg" alt="img" />
-							<p>
-								제목:꽃<br />가격:5600
-							</p></li>
-					</ul>
-				</div>
-				<p class="hotcontroller">
-					<span class="hotPrev">&lang;</span> <span class="hotNext">&rang;</span>
-				</p>
-			</div>
-			
-			<%
-			}
-			}%>
+		</div>
 
 
-			<%
-				if(mkList != null){
-					for(Market no: mkList){
-					
-			%>
-			<div class="listBox">
-				<ul class="listContent">
-					<li>
-						<a href="#"><img src="img/flower.jpg" alt="img" /></a>
-						<h5><%=no.getBmTitle() %></h5>
-						<p><%=no.getBmContent() %></p>
-					</li>
+
+		<div class="slideBox">
+			<h3 class="subTitle">오늘의 HOT 아이템!</h3>
+			<div id="hotSlideShow">
+				<ul class="hotSlides">
+					<%
+						if (hotMkList != null) {
+							for (Market no : hotMkList) {
+					%><a href="javascript:btnonClick();">
+						<li><img src="#" alt="img" />
+							<p>
+								제목:<%=no.getBmTitle()%>
+								<br />가격:<%=no.getPrice()%>
+							</p></li>
+					</a>
+
+					<%
+						}
+						}
+					%>
 				</ul>
 			</div>
-			<%
-			}
-			}%>
-		</section>
- <%@ include file="./Footer.jsp" %>
-		
+			<p class="hotcontroller">
+				<span class="hotPrev">&lang;</span> <span class="hotNext">&rang;</span>
+			</p>
+		</div>
 
-			<script src="js/marketMain.js"></script>
-			<script src="js/header.js"></script></body>
+
+		<%
+			if (mkList != null) {
+				for (Market no : mkList) {
+		%>
+		<div class="listBox">
+			<ul class="listContent">
+				<a href="marketDetail?no=<%=no.getBmN()%>">
+					<li><img src="#" alt="img" />
+						<h5><%=no.getBmTitle()%></h5>
+						<p><%=no.getBmContent()%></p></li>
+				</a>
+			</ul>
+		</div>
+		<%
+			}
+			}
+		%>
+	</section>
+	<%@ include file="./Footer.jsp"%>
+
+
+	<script src="js/marketMain.js"></script>
+	<script src="js/header.js"></script>
+</body>
 </html>

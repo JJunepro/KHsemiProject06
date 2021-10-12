@@ -16,7 +16,7 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet("/RecruitList")
+@WebServlet("/RecruitList2")
 public class RecruiAdmintListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     

@@ -18,7 +18,7 @@
 <title>공지사항 글 등록</title>
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
+	<%@ include file="./Header.jsp"%>
 	<div class="container">
 		<div class="row">
 			<form method="post" action="noticewrite.do">

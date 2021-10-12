@@ -48,11 +48,11 @@ public class RecruitWriteServlet extends HttpServlet {
 		Recruit vo = new Recruit();
 
 //		int result = new RecruitService().insertBoard(vo);
-		if (result == 0) {
-			out.println("<br>게시글 되지 않았습니다. <br>작성된 글에 비속어가 포함되어 있습니다. <br>다시 작성해 주세요.");
-		} else {
-			out.println("<br>게시글 입력되었습니다.");
-		}
+//		if (result == 0) {
+//			out.println("<br>게시글 되지 않았습니다. <br>작성된 글에 비속어가 포함되어 있습니다. <br>다시 작성해 주세요.");
+//		} else {
+//			out.println("<br>게시글 입력되었습니다.");
+//		}
 	}
 
 	/**

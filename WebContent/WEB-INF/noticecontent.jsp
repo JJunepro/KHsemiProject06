@@ -32,7 +32,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
+	<%@ include file="./Header.jsp"%>
 	<%
 	%>
 	<div class="article">

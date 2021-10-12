@@ -29,7 +29,7 @@ public class ModifyMarketServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketModify.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketDetailModify.jsp");
     	requestDispatcher.forward(request, response);
 	}
 

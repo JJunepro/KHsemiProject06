@@ -1,5 +1,10 @@
+<%@page import="tbh.articlesix.market.vo.Market"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	ArrayList<Market> mkList = (ArrayList<Market>) request.getAttribute("mkList");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,13 +35,17 @@
 					</p>
 				</div>
 			</div>
+			<%
+			if (mkList != null) {
+				for (Market mk : mkList) {
+			%>
 			<div class="content">
 				<div class="expContent">
-					<h4>컨텐츠 제목</h4>
+					<h4><%=mk.getBmContent() %></h4>
 					<div>
-						<p>작성자:홍길동</p>
-						<p>가격:52000원</p>
-						<p>설명을 적어놓는 칸입니다</p>
+						<p>작성자:<%=mk.getmId() %></p>
+						<p>가격:<%=mk.getPrice() %></p>
+						<p><%=mk.getBmContent() %></p>
 					</div>
 				</div>
 				<div class="reserveContent">
@@ -44,11 +53,15 @@
 				</div>
 			</div>
 			<div class="btnBox">
-				<Button>
-					<a href="http://localhost:8090/TBH/MarketDetailModify.jsp">수정</a>
-				</Button>
-				<Button>삭제</Button>
+			<form action="marketModify" method="GET">
+				<input type="submit" value="수정" name="mk"/>
+			</form>
+				
 			</div>
+			<%
+			}
+			}
+		%>
 
 			<div class="relatedContent">
 				<h4>관련 상품</h4>

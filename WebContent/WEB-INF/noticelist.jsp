@@ -208,7 +208,7 @@ section.notice {
 </style>
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
+	<%@ include file="./Header.jsp"%>
 	
 	<section class="notice">
 		<div class="page-title">

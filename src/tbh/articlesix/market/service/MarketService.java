@@ -21,6 +21,13 @@ public class MarketService {
 		return mkList;
 	}
 	
+	public ArrayList<Market> HotListMarket() {
+		ArrayList<Market> mkList = null;
+		Connection conn = JDBCTemplate.getConnection();
+		mkList = new MarketDao().ListMarket(conn);
+		return mkList;
+	}
+	
 	public ArrayList<Market> SearchMarket(String title) {
 		ArrayList<Market> mkList = null;
 		Connection conn = JDBCTemplate.getConnection();
@@ -28,16 +35,22 @@ public class MarketService {
 		return mkList;
 	}
 	
-	public ArrayList<Market> DetailMarket() {
+	public ArrayList<Market> DetailMarket(int bmN) {
 		ArrayList<Market> mkList = null;
 		Connection conn = JDBCTemplate.getConnection();
-		mkList = new MarketDao().DetailMarket(conn);
+		mkList = new MarketDao().DetailMarket(conn, bmN);
 		return mkList;
 	}
 	
-	public int AddMarket(Market mk) {
+	public int CountList() {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new MarketDao().AddMarket(mk, conn);
+		int result = new MarketDao().CountList(conn);
+		return result;
+	}
+	
+	public int AddMarket(Market mk,int countList) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MarketDao().AddMarket(mk, conn,countList);
 		return result;
 	}
 	
