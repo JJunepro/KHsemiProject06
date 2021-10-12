@@ -30,7 +30,7 @@ import java.sql.Date;
 //	    B_VIEW NUMBER    
 
 public class Recruit {
-	private Double b_n;
+	private int b_n;
 	private String m_id;
 	private int ca_n;
 	private char b_type;
@@ -38,8 +38,8 @@ public class Recruit {
 	private String b_content;
 	private Date b_start;
 	private Date b_end;
-	private Double b_total;
-	private Double b_attend;
+	private int b_total;
+	private int b_attend;
 	private String b_place;
 	private int b_fee;
 	private char b_match;
@@ -54,16 +54,17 @@ public class Recruit {
 	private char b_cloth;
 	private String b_facility;
 	private Date b_timestamp;
-	private Double b_view;
+	private int b_view = 0;
 
 	public Recruit() {
 	}
 
 	// 글 작성
-	public Recruit(double b_n, String m_id, int ca_n, char b_type, String b_title, String b_content, Date b_start,
-			Date b_end, double b_total, double b_attend, String b_place, int b_fee, char b_match, char b_gender,
-			char b_age, char b_equip, int b_minpeople, String b_progress, char b_shower, char b_parking, char b_rental,
-			char b_cloth, String b_facility, Date b_timestamp, double b_view) {
+
+	public Recruit(int b_n, String m_id, int ca_n, char b_type, String b_title, String b_content, Date b_start,
+			Date b_end, int b_total, int b_attend, String b_place, int b_fee, char b_match, char b_gender, char b_age,
+			char b_equip, int b_minpeople, String b_progress, char b_shower, char b_parking, char b_rental,
+			char b_cloth, String b_facility, Date b_timestamp, int b_view) {
 		super();
 		this.b_n = b_n;
 		this.m_id = m_id;
@@ -103,14 +104,15 @@ public class Recruit {
 				+ b_timestamp + ", b_view=" + b_view + "]";
 	}
 
-	public double getB_n() {
+	
+	public int getB_n() {
 		return b_n;
 	}
 
 	/**
 	 * @param b_n the b_n to set
 	 */
-	public void setB_n(double b_n) {
+	public void setB_n(int b_n) {
 		this.b_n = b_n;
 	}
 
@@ -215,28 +217,28 @@ public class Recruit {
 	/**
 	 * @return the b_total
 	 */
-	public double getB_total() {
+	public int getB_total() {
 		return b_total;
 	}
 
 	/**
 	 * @param b_total the b_total to set
 	 */
-	public void setB_total(double b_total) {
+	public void setB_total(int b_total) {
 		this.b_total = b_total;
 	}
 
 	/**
 	 * @return the b_attend
 	 */
-	public double getB_attend() {
+	public int getB_attend() {
 		return b_attend;
 	}
 
 	/**
 	 * @param b_attend the b_attend to set
 	 */
-	public void setB_attend(double b_attend) {
+	public void setB_attend(int b_attend) {
 		this.b_attend = b_attend;
 	}
 
@@ -439,14 +441,14 @@ public class Recruit {
 	/**
 	 * @return the b_view
 	 */
-	public double getB_view() {
+	public int getB_view() {
 		return b_view;
 	}
 
 	/**
 	 * @param b_view the b_view to set
 	 */
-	public void setB_view(double b_view) {
+	public void setB_view(int b_view) {
 		this.b_view = b_view;
 	}
 
