@@ -72,5 +72,30 @@ public class NoticeService {
 		JDBCTemplate.close(con);
 		return no;
 	}
+	
+	public int updateNotice(String bn_title, String bn_content, int bn_n) {
+		int result = -1;
+		Connection con = JDBCTemplate.getConnection();
+		
+		result = new NoticeDao().updateNotice(con, bn_title, bn_content, bn_n);
+		JDBCTemplate.close(con);
+		return result;
+	}
+	
+	public int deleteNotice(int bId) {
+		int result = 0;
+		Connection con = JDBCTemplate.getConnection();
+		NoticeDao bDAO = new NoticeDao();
+		
+		result = bDAO.deleteNotice(con, bId);
+		
+//		if(result > 0) {
+//
+//		} else {
+//
+//		}
+		JDBCTemplate.close(con);
+		return result;
+	}
 
 }

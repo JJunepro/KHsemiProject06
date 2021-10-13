@@ -3,6 +3,7 @@ package tbh.articlesix.board.notice.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import tbh.articlesix.board.notice.vo.Notice;
@@ -156,31 +157,6 @@ public class NoticeDao {
 //		return result;
 //	}
 	
-	
-	//TODO 진행중 글 수정
-	public int updateNotice(Connection con) {
-		int result = -1;
-		String sql = "UPDATE BOARD_NOTICE SET BN_TITLE=?, BN_CONTENT=?, WHERE M_ID=?";
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		try {
-			pstmt = con.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				result = rset.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-		
-	}
-	
 //	 게시글 보기 
 	public Notice getNotice(Connection con, int bn_n) {
 		Notice no = null;
@@ -212,5 +188,50 @@ public class NoticeDao {
 		}
 		return null;
 	}
+	
+	//TODO 진행중 글 수정
+	public int updateNotice(Connection con, String bn_title, String bn_content, int bn_n) {
+		int result = -1;
+		String sql = "UPDATE BOARD_NOTICE SET BN_TITLE=?, BN_CONTENT=?, WHERE BN_N=?";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			pstmt.setString(1, bn_title);
+			pstmt.setString(2, bn_content);
+			pstmt.setInt(3, bn_n);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;	
+	}
+	
+	//게시글 삭제
+		public int deleteNotice(Connection con, int bId) {
+			int result = -1;
+			
+			String sql = "UPDATE BOARD_NOTICE SET BN_DELETE_YN = 'Y'"
+						+ " WHERE BN_N = ? AND BN_DELETE_YN = 'N'";
+			
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, bId);
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(pstmt);
+			}
+			return result;
+		}
 	
 }

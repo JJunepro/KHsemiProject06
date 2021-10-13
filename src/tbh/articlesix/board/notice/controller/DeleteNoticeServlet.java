@@ -7,21 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tbh.articlesix.board.notice.dao.NoticeDao;
 import tbh.articlesix.board.notice.service.NoticeService;
-import tbh.articlesix.board.notice.vo.Notice;
 
 /**
- * Servlet implementation class ModifyNoticeServlet
+ * Servlet implementation class DeleteNoticeServlet
  */
-@WebServlet("/noticemodify")
-public class ModifyNoticeServlet extends HttpServlet {
+@WebServlet("/noticedelete.do")
+public class DeleteNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModifyNoticeServlet() {
+    public DeleteNoticeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +30,13 @@ public class ModifyNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		request.setCharacterEncoding("UTF-8");
-//		Notice no = new NoticeService().updateNotice(bn_title, bn_content, bn_n)
 		
-		String no = request.getParameter("no");
+		int bId = Integer.parseInt(request.getParameter("bId"));
+		int result = new NoticeService().deleteNotice(bId);
 		
-		int bn_n = Integer.parseInt(no);
-		Notice bnn = new NoticeService().getNotice(bn_n);
+//		request.getRequestDispatcher("/WEB-INF/noticecontent.jsp").forward(request, response);
 		
-		request.setAttribute("noticeno", bnn);
-		request.getRequestDispatcher("/WEB-INF/noticemodify.jsp").forward(request, response);
-		//TODO 진행중
+		response.sendRedirect("WEB-INF/noticecontent.jsp");
 	}
 
 	/**
