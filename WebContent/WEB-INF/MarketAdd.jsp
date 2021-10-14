@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,10 +12,10 @@
   </head>
   <body>
      <%@ include file="./Header.jsp" %>
-
+	<!--<c:if test=""></c:if>-->
     <section class="body">
       <div class="formBox">
-         <form action="KHsemiProject06/doAddMarket" method="POST">
+         <form action="doAddMarket" method="GET">
           <h3>중고 물품 등록</h3>
          <table>
            <tr>
@@ -43,7 +44,6 @@
          </form> 
       </div>
     </section>
-
     <%@ include file="./Footer.jsp" %>
 
   </body>

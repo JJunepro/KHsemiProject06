@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import tbh.articlesix.board.notice.dao.NoticeDao;
+import tbh.articlesix.board.notice.service.NoticeService;
+import tbh.articlesix.board.notice.vo.Notice;
+
 /**
  * Servlet implementation class ModifyNoticeServlet
  */
-@WebServlet("/modifynotice")
+@WebServlet("/noticemodify")
 public class ModifyNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -28,8 +32,16 @@ public class ModifyNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+//		Notice no = new NoticeService().updateNotice(bn_title, bn_content, bn_n)
 		
-		request.getRequestDispatcher("/WEB-INF/Modifynotice.jsp").forward(request, response);
+		String no = request.getParameter("no");
+		
+		int bn_n = Integer.parseInt(no);
+		Notice bnn = new NoticeService().getNotice(bn_n);
+		
+		request.setAttribute("noticeno", bnn);
+		request.getRequestDispatcher("/WEB-INF/noticemodify.jsp").forward(request, response);
 		//TODO 진행중
 	}
 

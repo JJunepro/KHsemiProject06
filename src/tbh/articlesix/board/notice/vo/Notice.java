@@ -14,6 +14,13 @@ public class Notice {
 		
 	}
 	
+	public Notice(String bn_title, String bn_content, int bn_n) {
+		super();
+		this.bn_title = bn_title;
+		this.bn_content = bn_content;
+		this.bn_n = bn_n;
+	}
+	
 	public Notice(String bn_title, String m_id, String bn_content) {
 		super();
 		this.bn_title = bn_title;

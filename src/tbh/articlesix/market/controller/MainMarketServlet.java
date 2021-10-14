@@ -37,7 +37,12 @@ public class MainMarketServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		ArrayList<Market> mkList = new MarketService().ListMarket();
+		ArrayList<Market> hotMkList = new MarketService().HotListMarket();
+		
+		
 		request.setAttribute("mkList", mkList);
+		request.setAttribute("hotMkList", hotMkList);
+		
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketMain.jsp");
 		requestDispatcher.forward(request, response);

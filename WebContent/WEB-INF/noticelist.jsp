@@ -4,6 +4,9 @@
 	pageEncoding="UTF-8"%>
 <%
 ArrayList<Notice> nolist = (ArrayList<Notice>)request.getAttribute("noticenolist");
+int startPage = (int) request.getAttribute("startPage");
+int endPage = (int) request.getAttribute("endPage");
+int pageCount = (int) request.getAttribute("pageCount");
 %>
 <!DOCTYPE html>
 <html>
@@ -208,8 +211,7 @@ section.notice {
 </style>
 </head>
 <body>
-	<%@ include file="./header.jsp"%>
-	
+	<%@ include file="./Header.jsp"%>
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
@@ -262,15 +264,35 @@ section.notice {
                     %>
 				</tbody>
 				</table>
-				<br>
+				<%
+		if (startPage > 1){
+	%>
+		이전
+	<%
+		}
+		for (int i = startPage; i <= endPage; i++) {
+	%>
+		<button>
+		<a href="./noticelist?pagenum=<%=i%>"><%=i%></a>
+		</button>
+	<%
+		if (i != endPage) {
+	%>
+	<%
+		}
+	}
+	if (endPage < pageCount) {
+	%>
+		다음
+	<%
+	}
+	%>
+	<br>
 				<button class="btn towrite">
 				<a href='noticewrite.do'>글쓰기</a>
 				</button>
 			</div>
 		</div>
 	</section>
-	
-
-
 </body>
 </html>

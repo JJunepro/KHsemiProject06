@@ -1,6 +1,7 @@
+<%@page import="tbh.articlesix.board.notice.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String bn_n = request.getParameter("bn_n");%>
+<% Notice bnn = (Notice)request.getAttribute("noticeno"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +17,13 @@
 	position : relative;
 	}
 </style>
-<title>공지사항 글 등록</title>
+<title>공지사항 글 수정</title>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
 	<div class="container">
 		<div class="row">
-			<form method="post" action="noticewrite.do">
+			<form method="post" action="noticemodify">
 				<table class="table table-striped" style="text-align:center; border:1px solid #dddddd;">
 					<thead>
 						<tr>
@@ -31,13 +32,13 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="bn_title" maxlength="50"></td>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="bn_title" maxlength="50" value="<%= bnn.getBn_title()%>"></td>
 						</tr>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="작성자" name="m_id" maxlength="50"></td>
+							<td><input type="text" class="form-control" placeholder="작성자" name="m_id" maxlength="50" value="<%= bnn.getM_id()%>"></td>
 						</tr>
 						<tr>
-							<td><textarea cols="50" rows="10" name="bn_content" id="editor4" placeholder="글 내용" maxlength="2048"></textarea></td>
+							<td><textarea cols="50" rows="10" name="bn_content" id="editor4" placeholder="글 내용" maxlength="2048"><%= bnn.getBn_content()%></textarea></td>
 							<script>CKEDITOR.replace('editor4');</script>
 						</tr>
 					</tbody>
