@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="/WebContent/css/login.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -29,9 +30,9 @@
                 </div>
             </fieldset>
                 <div id="url">
-                    <a href="/WebContent/WEB-INF/src/member/findId.html">아이디 찾기</a>
-                    <a href="/WebContent/WEB-INF/src/member/findPw.html">비밀번호 찾기</a>
-                    <a href="/WebContent/WEB-INF/src/member/joinMember.html">회원가입</a>
+                    <a href="findId">아이디 찾기</a>
+                    <a href="findPw">비밀번호 찾기</a>
+                    <a href="join">회원가입</a>
                 </div>
         </div>
     </form>
@@ -69,8 +70,7 @@
                 if(data.result == "ok"){
                     console.log(data.result);
                     alert("로그인 성공.");
-                    // TODO questio 질문하기
-                    window.location.replace("/KHsemiProject06/");
+                    location.href="main";
                 }else{
                     console.log(data.result)
                     alert("아이디와 비밀번호를 확인해주세요.");

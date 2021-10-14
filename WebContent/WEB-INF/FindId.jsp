@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link href="/WebContent/css/findIdPw.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/findIdPw.css" />
 </head>
 <body>
-    <form action="#" id="frm">
+    <form action="findId.do" id="frm">
         <fieldset>
             <div id="title">
                 <h1>ID/PW찾기</h1>
@@ -19,7 +19,7 @@
 
             <div id="selectBtn">
                 <input type="button" id="findIdBtn" class="selectBtn" value="아이디" style="background-color: navy; color: oldlace;">
-                <input type="button" id="findPwBtn" class="selectBtn" value="비밀번호" onclick="location.href='findPw.html'"><br>
+                <input type="button" id="findPwBtn" class="selectBtn" value="비밀번호" onclick="location.href='findPw'"><br>
             </div>
 
             <div id="all">
@@ -29,11 +29,11 @@
                 </div>
 
                 <div id="cellNumBox">
-                    <label>휴대폰 인증</label><br>
-                    <input type="email" id="uEmail" placeholder=" 회원가입시 번호를 입력하세요.">
-                    <input type="button" id="send" value="전송"><br>
+                    <label>이메일</label><br>
+                    <input type="email" id="uEmail" placeholder=" 회원가입시 이메일을 입력하세요.">
+                    <!--<input type="button" id="send" value="전송"><br>
                     <input type="text" id="authentication" placeholder=" 인증코드를 입력하세요.">
-                    <input type="button" id="check" value="확인"><br>
+                    <input type="button" id="check" value="확인"><br> -->
                 </div>
             </div>
             <div id="findBtn">

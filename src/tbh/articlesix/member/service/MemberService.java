@@ -76,6 +76,33 @@ public class MemberService {
 		int result = new MemberDao().duplicationId(conn, m_id);
 		return result;
 	}
+	public int duplicationNick(String m_nick) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().duplicationNick(conn, m_nick);
+		return result;
+	}
+	public int duplicationPhone(String m_phone) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().duplicationPhone(conn, m_phone);
+		return result;
+	}
+	public int duplicationEmail(String m_email) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().duplicationEmail(conn, m_email);
+		return result;
+	}
+	
+	public int findId(String m_name, String m_email) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MemberDao().findId(conn, m_name, m_email);
+		return result;
+	}
+	
+	public String findPw(String m_id, String m_email) {
+		Connection conn = JDBCTemplate.getConnection();
+		String result = new MemberDao().findPw(conn, m_id, m_email);
+		return result;
+	}
 	
 
 }

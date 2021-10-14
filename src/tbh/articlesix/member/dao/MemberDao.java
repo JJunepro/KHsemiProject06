@@ -74,9 +74,6 @@ public class MemberDao {
 				result.setM_degree(rset.getDouble("m_degree"));
 				result.setM_createDate(rset.getString("m_createdate"));
 				result.setM_deleteDate("m_deletedate");
-				
-				
-				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,6 +138,109 @@ public class MemberDao {
 		}finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);;
+		}
+		return result;
+	}
+	
+	public int duplicationNick(Connection conn, String m_nick) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "select count(*) from member where m_nick=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_nick);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);;
+		}
+		return result;
+	}
+	public int duplicationPhone(Connection conn, String m_phone) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "select count(*) from member where m_phone=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_phone);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);;
+		}
+		return result;
+	}
+	public int duplicationEmail(Connection conn, String m_email) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = "select count(*) from member where m_email=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_email);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);;
+		}
+		return result;
+	}
+	public int findId(Connection conn, String m_name, String m_email) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet  rset = null;
+		String sql = "select m_id from member where m_name=? and m_email=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_name);
+			pstmt.setString(2, m_email);
+			rset = pstmt.executeQuery();
+//			if (rset.next()) {
+//				result = rset.getInt(1);
+//			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public String findPw(Connection conn, String m_id, String m_email) {
+		String result = "";
+		PreparedStatement pstmt = null;
+		ResultSet  rset = null;
+		String sql = "select m_pw from member where m_id=? and m_email=?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			pstmt.setString(2, m_email);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				result = rset.getString(1);
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		return result;
 	}
