@@ -36,8 +36,8 @@ public class Recruit {
 	private char b_type;
 	private String b_title;
 	private String b_content;
-	private Date b_start;
-	private Date b_end;
+	private String b_start;
+	private String b_end;
 	private int b_total;
 	private int b_attend;
 	private String b_place;
@@ -53,18 +53,18 @@ public class Recruit {
 	private char b_rental;
 	private char b_cloth;
 	private String b_facility;
-	private Date b_timestamp;
-	private int b_view = 0;
+	private String b_timestamp;
+	private int b_view;
 
 	public Recruit() {
 	}
 
 	// 글 작성
-
-	public Recruit(int b_n, String m_id, int ca_n, char b_type, String b_title, String b_content, Date b_start,
-			Date b_end, int b_total, int b_attend, String b_place, int b_fee, char b_match, char b_gender, char b_age,
+	
+	 public Recruit(int b_n, String m_id, int ca_n, char b_type, String b_title, String b_content, String b_start,
+			String b_end, int b_total, int b_attend, String b_place, int b_fee, char b_match, char b_gender, char b_age,
 			char b_equip, int b_minpeople, String b_progress, char b_shower, char b_parking, char b_rental,
-			char b_cloth, String b_facility, Date b_timestamp, int b_view) {
+			char b_cloth, String b_facility, String b_timestamp, int b_view) {
 		super();
 		this.b_n = b_n;
 		this.m_id = m_id;
@@ -104,7 +104,6 @@ public class Recruit {
 				+ b_timestamp + ", b_view=" + b_view + "]";
 	}
 
-	
 	public int getB_n() {
 		return b_n;
 	}
@@ -189,28 +188,28 @@ public class Recruit {
 	/**
 	 * @return the b_start
 	 */
-	public Date getB_start() {
+	public String getB_start() {
 		return b_start;
 	}
 
 	/**
 	 * @param b_start the b_start to set
 	 */
-	public void setB_start(Date b_start) {
+	public void setB_start(String b_start) {
 		this.b_start = b_start;
 	}
 
 	/**
 	 * @return the b_end
 	 */
-	public Date getB_end() {
+	public String getB_end() {
 		return b_end;
 	}
 
 	/**
 	 * @param b_end the b_end to set
 	 */
-	public void setB_end(Date b_end) {
+	public void setB_end(String b_end) {
 		this.b_end = b_end;
 	}
 
@@ -427,14 +426,14 @@ public class Recruit {
 	/**
 	 * @return the b_timestamp
 	 */
-	public Date getB_timestamp() {
+	public String getB_timestamp() {
 		return b_timestamp;
 	}
 
 	/**
 	 * @param b_timestamp the b_timestamp to set
 	 */
-	public void setB_timestamp(Date b_timestamp) {
+	public void setB_timestamp(String b_timestamp) {
 		this.b_timestamp = b_timestamp;
 	}
 
@@ -451,5 +450,6 @@ public class Recruit {
 	public void setB_view(int b_view) {
 		this.b_view = b_view;
 	}
+
 
 }

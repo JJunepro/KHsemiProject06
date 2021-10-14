@@ -16,17 +16,18 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet("/RecruitList")
-public class RecruitListServlet extends HttpServlet {
+@WebServlet("/RecruitAdminList")
+public class RecruitAdmintListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-    public RecruitListServlet() {
+    public RecruitAdmintListServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+
 		PrintWriter out = response.getWriter();
 
 		final int PAGE_SIZE = 10; // 한 페이지 당 글수
@@ -76,7 +77,7 @@ public class RecruitListServlet extends HttpServlet {
 			request.setAttribute("pageCount", pageCount);
 			request.setAttribute("currentPage", currentPage);
 			// Page 이동하면서 Data도 전달함.
-			request.getRequestDispatcher("/RecruitShortList.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/RecruitAdminList.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

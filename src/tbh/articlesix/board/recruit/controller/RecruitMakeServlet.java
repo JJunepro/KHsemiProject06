@@ -2,74 +2,73 @@ package tbh.articlesix.board.recruit.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import tbh.articlesix.board.recruit.model.dao.RecruitDao;
+
+import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-/**
- * Servlet implementation class RecruitWriteServlet
- */
 @WebServlet("/RecruitMake")
 public class RecruitMakeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public RecruitMakeServlet() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response, Object m_id, Object recruitDao) throws ServletException, IOException {
-		response.setCharacterEncoding("UTF-8");
+	public RecruitMakeServlet() {
+		super();
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
-//		Recruit recruit = new Recruit;
-		
-		PrintWriter out = response.getWriter();
-				// 세션 상태를 체크
-//				String userID = null;
-//				if(session.getAttribute("userID") != null){
-//					userID = (String)getsession().getAttribute("userID");
-//				}
-//				// 로그인을 한 사용자 모집방 생성
-//				if(userID == null){
-//					out.println("<script>");
-//					out.println("alert('로그인을 하세요')");
-//					out.println("location.href='login.jsp'");
-//					out.println("</script>");
-//				}else{
-//					// 입력이 안 된 부분이 있는지 체크한다
-//					if(recruitMake.getb_Title() == null || bbs.getBbsContent() == null){
-//						out.println("<script>");
-//						out.println("alert('입력이 안 된 사항이 있습니다')");
-//						out.println("history.back()");
-//						out.println("</script>");
-//					}else{
-//						// 정상적으로 입력이 되었다면 글쓰기 로직을 수행한다
-//						BbsDAO bbsDAO = new BbsDAO();
-//						int result = bbsDAO.write(bbs.getBbsTitle(), userID, bbs.getBbsContent());
-//						// 데이터베이스 오류인 경우
-//						if(result == -1){
-//							out.println("<script>");
-//							out.println("alert('글쓰기에 실패했습니다')");
-//							out.println("history.back()");
-//							out.println("</script>");
-//						// 글쓰기가 정상적으로 실행되면 알림창을 띄우고 게시판 메인으로 이동한다
-//						}else {
-//							out.println("<script>");
-//							out.println("alert('글쓰기 성공')");
-//							out.println("location.href='MainPage.jsp'");
-//							out.println("</script>");
-//						}
-//					}
-//				}
-			
-		
-	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+		request.setCharacterEncoding("UTF-8");
 
+		PrintWriter out = response.getWriter();
+
+		int b_n = Integer.parseInt(request.getParameter("b_n"));
+		String m_id = (String) request.getSession().getAttribute("memberLoginInfo");
+//		if (id == null) {
+//			id = "user01"; // TODO: 임시 user 설정
+//		}
+		int ca_n = Integer.parseInt(request.getParameter("ca_n"));
+		char b_type = request.getParameter("b_type").charAt(0);
+		String b_title = request.getParameter("b_title");
+		String b_content = request.getParameter("b_content");
+		String b_start = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		String b_end = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		int b_total = Integer.parseInt(request.getParameter("b_total"));
+		int b_attend = Integer.parseInt(request.getParameter("b_attend"));
+		String b_place = request.getParameter("b_place");
+		int b_fee = Integer.parseInt(request.getParameter("b_fee"));
+		char b_match = request.getParameter("b_match").charAt(0);
+		char b_gender = request.getParameter("b_gender").charAt(0);
+		char b_age = request.getParameter("b_age").charAt(0);
+		char b_equip = request.getParameter("b_equip").charAt(0);
+		int b_minpeople = Integer.parseInt(request.getParameter("b_minpeople"));
+		String b_progress = request.getParameter("b_progress");
+		char b_shower = request.getParameter("b_shower").charAt(0);
+		char b_parking = request.getParameter("b_parking").charAt(0);
+		char b_rental = request.getParameter("b_rental").charAt(0);
+		char b_cloth = request.getParameter("b_cloth").charAt(0);
+		String b_facility = request.getParameter("b_facility");
+		String b_timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+		int b_view = Integer.parseInt(request.getParameter("b_view"));
+
+		Recruit rc = new Recruit(b_n, m_id, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_attend,
+				b_place, b_fee, b_match, b_gender, b_age, b_equip, b_minpeople, b_progress, b_shower, b_parking,
+				b_rental, b_cloth, b_facility, b_timestamp, b_view);
+
+		int result = new RecruitService().recruitMake(rc);
+
+		if (result == 0) {
+			out.println("<br>게시글 되지 않았습니다.<br>다시 작성해 주세요.");
+		} else {
+			out.println("<br>게시글 입력되었습니다.");
+		}
+		response.sendRedirect("/WEB-INF/RecruitList.jsp");
+	}
 }

@@ -1,18 +1,23 @@
 package tbh.articlesix.board.recruit.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tbh.articlesix.board.recruit.model.dao.RecruitDao;
+import tbh.articlesix.board.recruit.model.service.RecruitService;
+import tbh.articlesix.member.service.MemberService;
 
 /**
  * Servlet implementation class RecruitDeleteServlet
  */
-@WebServlet("/RecruitDeleteServlet")
+@WebServlet("/RecruitDelete")
 public class RecruitDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,34 +33,16 @@ public class RecruitDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		  int num = Integer.parseInt(request.getParameter("num"));
-	        String password = request.getParameter("password");
-	        String pass = request.getParameter("pass");
-	        
-	        // TODO 데이터 삭제 후 리스트화면 넘어가는 기능
-	        // 패스워드가 같을 경우에는 데이터를 삭제하고 리스트화면을 보여준다.
-//	        if (password.equals(pass)) {
-//	 
-//	            RecruitDao recruitDao = new RecruitDao();
-//	            recruitDao.delete(num);
-//	 
-//	            RequestDispatcher dis = request.getRequestDispatcher("BoardListCon.do");
-//	            dis.forward(request, response);
-//	 
-//	        } else {
-//	 
-//	            request.setAttribute("msg", 2);
-//	            RequestDispatcher dis = request.getRequestDispatcher("BoardListcon.do");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		RecruitService rcs = new RecruitService();
+//		int result = rcs.delete(request.getParameter("b_n"));
+//		if(result > 0) {
+//			HttpSession session = request.getSession(false);
+//			session.invalidate();
+//		}
+		response.sendRedirect("/WEB-INF/RecruitAdminList.jsp");
 	}
 
 }
