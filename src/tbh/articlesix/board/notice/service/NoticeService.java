@@ -34,17 +34,17 @@ public class NoticeService {
 	
 	public int getNoticeCount() {
 		int result = 0;
-		Connection con = JDBCTemplate.getConnection();
-		result = new NoticeDao().getNoticeCount(con);
-		JDBCTemplate.close(con);
+		Connection conn = JDBCTemplate.getConnection();
+		result = new NoticeDao().getNoticeCount(conn);
+		JDBCTemplate.close(conn);
 		return result;
 	}
 	
 	public String getDate() {
 		String result = "";
-		Connection con = JDBCTemplate.getConnection();
-		result = new NoticeDao().getDate(con);
-		JDBCTemplate.close(con);
+		Connection conn = JDBCTemplate.getConnection();
+		result = new NoticeDao().getDate(conn);
+		JDBCTemplate.close(conn);
 		return result;
 	}
 	
@@ -57,44 +57,60 @@ public class NoticeService {
 	
 	public int insertNotice(Notice no) {
 		int result = -1;
-		Connection con = JDBCTemplate.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		
-		result = new NoticeDao().insertNotice(con, no);
+		result = new NoticeDao().insertNotice(conn, no);
 		
-		JDBCTemplate.close(con);
+		JDBCTemplate.close(conn);
 		return result;
 	}
 	
 	public Notice getNotice(int bn_n) {
 		Notice no = null;
-		Connection con = JDBCTemplate.getConnection();
-		no = new NoticeDao().getNotice(con, bn_n);
-		JDBCTemplate.close(con);
+		Connection conn = JDBCTemplate.getConnection();
+		no = new NoticeDao().getNotice(conn, bn_n);
+		JDBCTemplate.close(conn);
 		return no;
 	}
 	
 	public int updateNotice(String bn_title, String bn_content, int bn_n) {
 		int result = -1;
-		Connection con = JDBCTemplate.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		
-		result = new NoticeDao().updateNotice(con, bn_title, bn_content, bn_n);
-		JDBCTemplate.close(con);
+		result = new NoticeDao().updateNotice(conn, bn_title, bn_content, bn_n);
+		JDBCTemplate.close(conn);
 		return result;
 	}
 	
-	public int deleteNotice(int bId) {
+//	public int deleteNotice(int bId) {
+//		int result = 0;
+//		Connection conn = JDBCTemplate.getConnection();
+//		NoticeDao bDAO = new NoticeDao();
+//		
+//		result = bDAO.deleteNotice(conn, bId);
+//		
+//		if(result > 0) {
+//
+//		} else {
+//
+//		}
+//		JDBCTemplate.close(conn);
+//		return result;
+//	}
+	
+	public int deleteNotice(int bn_n) {
 		int result = 0;
-		Connection con = JDBCTemplate.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		NoticeDao bDAO = new NoticeDao();
 		
-		result = bDAO.deleteNotice(con, bId);
+		result = bDAO.deleteNotice(conn, bn_n);
 		
 //		if(result > 0) {
 //
 //		} else {
 //
 //		}
-		JDBCTemplate.close(con);
+		JDBCTemplate.close(conn);
 		return result;
 	}
 

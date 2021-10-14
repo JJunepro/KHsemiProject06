@@ -16,7 +16,7 @@ public class NoticeDao {
 	}
 	
 	//공지사항 테이블 출력
-	public ArrayList<Notice> selectNoticeList(Connection con) {
+	public ArrayList<Notice> selectNoticeList(Connection conn) {
 		ArrayList<Notice> nolist = null;
 		
 		String sql = "SELECT * FROM BOARD_NOTICE ORDER BY BN_N DESC";
@@ -25,7 +25,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
 			nolist = new ArrayList<Notice>();
@@ -52,13 +52,13 @@ public class NoticeDao {
 	}
 	
 	// 게시글 번호 가져오기
-	public int getNoticeCount(Connection con) {
+	public int getNoticeCount(Connection conn) {
 		int result = 0;
 		String sql = "select count(bn_n) from BOARD_NOTICE";
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
 			if (rset.next()) {
@@ -74,13 +74,13 @@ public class NoticeDao {
 	}
 	
 	// 현재 시간 불러오기
-	public String getDate(Connection con) {
+	public String getDate(Connection conn) {
 		int result = 0;
 		String sql = "SELECT TO_DATE(SYSDATE, 'YYYYMMDD') FROM DUAL";
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				return rset.getString(1);
@@ -95,7 +95,7 @@ public class NoticeDao {
 	}
 	
 	//글 등록 
-	public int insertNotice(Connection con, Notice no) {
+	public int insertNotice(Connection conn, Notice no) {
 		int result = -1;
 		int nextVal = 0;
 		int bnv = 0;
@@ -107,7 +107,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		try {
-			pstmt = con.prepareStatement(sqlSeqNextVal);
+			pstmt = conn.prepareStatement(sqlSeqNextVal);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				nextVal = rset.getInt(1);
@@ -115,7 +115,7 @@ public class NoticeDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 			
-			pstmt = con.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, nextVal);
 			pstmt.setString(2, no.getM_id());
 			pstmt.setString(3, no.getBn_title());
@@ -158,7 +158,7 @@ public class NoticeDao {
 //	}
 	
 //	 게시글 보기 
-	public Notice getNotice(Connection con, int bn_n) {
+	public Notice getNotice(Connection conn, int bn_n) {
 		Notice no = null;
 		
 		String sql = "SELECT * FROM BOARD_NOTICE WHERE BN_N = ?";
@@ -166,7 +166,7 @@ public class NoticeDao {
 		ResultSet rset = null;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bn_n);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
@@ -190,39 +190,60 @@ public class NoticeDao {
 	}
 	
 	//TODO 진행중 글 수정
-	public int updateNotice(Connection con, String bn_title, String bn_content, int bn_n) {
+	public int updateNotice(Connection conn, String bn_title, String bn_content, int bn_n) {
 		int result = -1;
-		String sql = "UPDATE BOARD_NOTICE SET BN_TITLE=?, BN_CONTENT=?, WHERE BN_N=?";
+		String sql = "UPDATE BOARD_NOTICE SET BN_TITLE=?, BN_CONTENT=? WHERE BN_N=?";
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 		
 		try {
-			pstmt = con.prepareStatement(sql);
-			rset = pstmt.executeQuery();
+			pstmt = conn.prepareStatement(sql);
+			
 			pstmt.setString(1, bn_title);
 			pstmt.setString(2, bn_content);
 			pstmt.setInt(3, bn_n);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		return result;	
 	}
 	
 	//게시글 삭제
-		public int deleteNotice(Connection con, int bId) {
+//		public int deleteNotice(Connection con, int bId) {
+//			int result = -1;
+//			
+//			String sql = "UPDATE BOARD_NOTICE SET BN_DELETE_YN = 'Y'"
+//						+ " WHERE BN_N = ? AND BN_DELETE_YN = 'N'";
+//			
+//			PreparedStatement pstmt = null;
+//			try {
+//				pstmt = con.prepareStatement(sql);
+//				pstmt.setInt(1, bId);
+//				result = pstmt.executeUpdate();
+//			} catch (SQLException e) {
+//				e.printStackTrace();
+//			}
+//			catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				JDBCTemplate.close(pstmt);
+//			}
+//			return result;
+//		}
+		
+		public int deleteNotice(Connection conn, int bn_n) {
 			int result = -1;
-			
-			String sql = "UPDATE BOARD_NOTICE SET BN_DELETE_YN = 'Y'"
-						+ " WHERE BN_N = ? AND BN_DELETE_YN = 'N'";
+			String sql = "DELETE * FROM BOARD_NOTICE WHERE BN_N=?";
 			
 			PreparedStatement pstmt = null;
 			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, bId);
-				result = pstmt.executeUpdate();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, bn_n);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -233,5 +254,6 @@ public class NoticeDao {
 			}
 			return result;
 		}
+
 	
 }

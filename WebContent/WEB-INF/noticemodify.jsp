@@ -16,6 +16,7 @@
 	.container {
 	position : relative;
 	}
+	
 </style>
 <title>공지사항 글 수정</title>
 </head>
@@ -24,27 +25,33 @@
 	<div class="container">
 		<div class="row">
 			<form method="post" action="noticemodify">
+				<input type="hidden" name="no" value="<%=bnn.getBn_n() %>">
 				<table class="table table-striped" style="text-align:center; border:1px solid #dddddd;">
 					<thead>
 						<tr>
-							<th colspan="2" style="background-color : #eeeeee; text-align : center;">게시판 글쓰기 양식</th>
+							<th colspan="2" style="background-color : #eeeeee; text-align : center;">글 수정</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
+							<td>제목</td>
 							<td><input type="text" class="form-control" placeholder="글 제목" name="bn_title" maxlength="50" value="<%= bnn.getBn_title()%>"></td>
 						</tr>
 						<tr>
+							<td>작성자</td>
 							<td><input type="text" class="form-control" placeholder="작성자" name="m_id" maxlength="50" value="<%= bnn.getM_id()%>"></td>
 						</tr>
 						<tr>
-							<td><textarea cols="50" rows="10" name="bn_content" id="editor4" placeholder="글 내용" maxlength="2048"><%= bnn.getBn_content()%></textarea></td>
+							<td colspan="3"><textarea cols="50" rows="10" name="bn_content" id="editor4" placeholder="글 내용" maxlength="2048"><%= bnn.getBn_content()%></textarea></td>
 							<script>CKEDITOR.replace('editor4');</script>
 						</tr>
 					</tbody>
 				</table>
+				<button onclick="back()">취소</button>
 				<input type="submit" class="btn btn-primary pull-right" value="등록">
 			</form>
+
+
 			<!-- TODO : CK에디터 사용 할 것인지 -->
 		</div>
 	</div>

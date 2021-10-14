@@ -31,6 +31,7 @@
 	<div class="article">
         <div class="articleTitle">
         	<form method="get" action="" id="modify" name="form">
+        	<input type="hidden" name="no" value="<%=bnn.getBn_n() %>">
         		<h1><%= bnn.getBn_title()%></h1>
 				<pre>
 				<span>작성자 : <%= bnn.getM_id()%></span>
@@ -53,7 +54,7 @@
 	        </button>
 	        
 	        <button id="deletebtn">
-	        <a href="noticelist">삭제
+	        <a href="noticedelete?no=<%=bnn.getBn_n()%>">삭제
 	        </button>
     </div>
     
@@ -68,8 +69,9 @@
     	
     	$("#deletebtn").click(function(){
     		if(confirm("이 글을 삭제하시겠습니까?")) {
-    			alert("삭제 되었습니다.");
-    			window.location.href = "noticelist";
+    			$("#modify").submit();
+    			/* alert("삭제 되었습니다.");
+    			window.location.href = "noticelist"; */
     		} else {
     			return false;
     		}
