@@ -15,57 +15,14 @@
 
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
-		<url-pattern>.js</url-pattern>
-		<url-pattern>.css</url-pattern>
-		<url-pattern>.jpg</url-pattern>
-		<url-pattern>.png</url-pattern>
-		<url-pattern>.ico</url-pattern>
-		<url-pattern>.swf</url-pattern>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>*.jpg</url-pattern>
+		<url-pattern>*.png</url-pattern>
+		<url-pattern>*.ico</url-pattern>
+		<url-pattern>*.swf</url-pattern>
 		<url-pattern>*.gif</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>RecruitAdminList</servlet-name>
-		<servlet-class>servlet.RecruitAdminListServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RecruitAdminList</servlet-name>
-		<url-pattern>/RecruitAdminList</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>RecruitList</servlet-name>
-		<servlet-class>servlet.RecruitListServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RecruitList</servlet-name>
-		<url-pattern>/RecruitList</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>RecruitMake</servlet-name>
-		<servlet-class>servlet.RecruitMakeServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RecruitMake</servlet-name>
-		<url-pattern>//RecruitMake</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>RecruitModify</servlet-name>
-		<servlet-class>servlet.RecruitModifyServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RecruitModify</servlet-name>
-		<url-pattern>//RecruitModify</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<servlet-name>RecruitDelete</servlet-name>
-		<servlet-class>servlet.RecruitDeleteServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>RecruitDelete</servlet-name>
-		<url-pattern>//RecruitDelete</url-pattern>
-	</servlet-mapping>
+	
 </web-app>
