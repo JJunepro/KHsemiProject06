@@ -1,5 +1,6 @@
 package tbh.articlesix.market.dao;
 
+import java.lang.reflect.Array;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +16,16 @@ public class MarketDao {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ArrayList<Market> ListMarket(Connection conn) {
+	public ArrayList<Market> ListMarket(Connection conn,int startRnum, int endRnum) {
 		ArrayList<Market> mkList = null;
-		String sql = "select * from BOARD_MARKET2";
+		String sql = "select * from (select Rownum r, t1.* from (select * from BOARD_MARKET2 order by bm_timestamp desc) t1) t2 join image t3 on t2.bm_n=t3.img_n\r\n" + 
+				"where r between ? and ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRnum);
+			pstmt.setInt(2, endRnum);
 			rs = pstmt.executeQuery();
 			mkList = new ArrayList<Market>();
 			while (rs.next()) {
@@ -35,6 +39,7 @@ public class MarketDao {
 				mk.setBmContent(rs.getString("bm_content"));
 				mk.setBmTimeStamp(rs.getDate("bm_timestamp"));
 				mk.setBmView(rs.getInt("bm_view"));
+				mk.setImgScr(rs.getString("img_scr"));
 				mkList.add(mk);
 				
 			}
@@ -52,7 +57,8 @@ public class MarketDao {
 
 	public ArrayList<Market> HotListMarket(Connection conn) {
 		ArrayList<Market> mkList = null;
-		String sql = "select * from BOARD_MARKET2 order by bm_view desc";
+		String sql = "select * from BOARD_MARKET2 t1 join image t2 on t1.bm_n=t2.img_n\r\n" + 
+				"order by bm_view desc";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -70,6 +76,7 @@ public class MarketDao {
 				mk.setBmContent(rs.getString("bm_content"));
 				mk.setBmTimeStamp(rs.getDate("bm_timestamp"));
 				mk.setBmView(rs.getInt("bm_view"));
+				mk.setImgScr(rs.getString("img_scr"));
 				mkList.add(mk);
 				
 			}
@@ -86,7 +93,7 @@ public class MarketDao {
 
 	public ArrayList<Market> SearchMarket(String title, Connection conn) {
 		ArrayList<Market> mkList = null;
-		String sql = "select * from BOARD_MARKET2 where bm_title=? order by bm_timestamp desc";
+		String sql = "select * from BOARD_MARKET2 t1 join image t2 on t1.bm_n=t2.img_n where t1.bm_title=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -105,6 +112,7 @@ public class MarketDao {
 				mk.setBmContent(rs.getString("bm_content"));
 				mk.setBmTimeStamp(rs.getDate("bm_timestamp"));
 				mk.setBmView(rs.getInt("bm_view"));
+				mk.setImgScr(rs.getString("img_scr"));
 				mkList.add(mk);
 			}
 		} catch (Exception e) {
@@ -120,7 +128,7 @@ public class MarketDao {
 
 	public ArrayList<Market> DetailMarket(Connection conn, int bmN) {
 		ArrayList<Market> mkList = null;
-		String sql = "select * from BOARD_MARKET2 where bm_n=?";
+		String sql = "select * from BOARD_MARKET2 t1 join image t2 on t1.bm_n=t2.img_n where t1.bm_n=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -139,6 +147,7 @@ public class MarketDao {
 				mk.setBmContent(rs.getString("bm_content"));
 				mk.setBmTimeStamp(rs.getDate("bm_timestamp"));
 				mk.setBmView(rs.getInt("bm_view"));
+				mk.setImgScr(rs.getString("img_scr"));
 				mkList.add(mk);
 			}
 		} catch (Exception e) {
@@ -152,7 +161,7 @@ public class MarketDao {
 		return mkList;
 	}
 	
-	public int CountList(Connection conn) {
+	public int TotalCount(Connection conn) {
 		int count = 0;;
 		String sql = "select count(bm_n) from BOARD_MARKET2";
 		PreparedStatement pstmt = null;
@@ -172,8 +181,50 @@ public class MarketDao {
 		}
 		return count;
 	}
+	
+	public int CountList(Connection conn) {
+		int count = 0;;
+		String sql = "select max(bm_n) from BOARD_MARKET2";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(conn);
+		}
+		return count;
+	}
+	
+	public int CountImg(Connection conn) {
+		int count = 0;;
+		String sql = "select max(img_p) from image";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(conn);
+		}
+		return count;
+	}
 
-	public int AddMarket(Market mk, Connection conn, int countList) {
+	public int AddMarket(Market mk, Connection conn) {
 		int result = -1;
 		
 		String sqlAdd = "insert into BOARD_MARKET2(bm_n,m_id,ca_n,img_n,c_n,bm_title,bm_content,bm_timestamp,bm_view) "
@@ -183,7 +234,7 @@ public class MarketDao {
 		try {
 			Date date = new Date();
 			pstmt = conn.prepareStatement(sqlAdd);
-			pstmt.setInt(1, countList);
+			pstmt.setInt(1, mk.getBmN());
 			pstmt.setString(2, mk.getBmTitle());
 			pstmt.setString(3, mk.getcContent());
 			result = pstmt.executeUpdate();
@@ -201,7 +252,7 @@ public class MarketDao {
 	public int UpdateMarket(Market mk, Connection conn) {
 		int result = -1;
 
-		String sqlUpdate = "update from BOARD_MARKET2(img_n,bm_title,bm_content) set(1,?,?) where bm_n=?"; // 시퀀스 필요
+		String sqlUpdate = "update BOARD_MARKET2 set img_n=1,bm_title=?,bm_content=? where bm_n=?"; // 시퀀스 필요
 
 		PreparedStatement pstmt = null;
 		try {
@@ -222,7 +273,7 @@ public class MarketDao {
 		return result;
 	}
 
-	public int DeleteMarket(Market mk, Connection conn) {
+	public int DeleteMarket(int bmN, Connection conn) {
 		int result = -1;
 
 		String sqlDelete = "delete from BOARD_MARKET2 where bm_n=?"; // 시퀀스 필요
@@ -230,7 +281,7 @@ public class MarketDao {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sqlDelete);
-			pstmt.setInt(1, mk.getBmN());
+			pstmt.setInt(1, bmN);
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -241,6 +292,31 @@ public class MarketDao {
 		if(result ==1) {
 			JDBCTemplate.commit(conn);
 		}
+		return result;
+	}
+	
+	public int AddImg(Connection conn, Market mk, int i){
+		int result = -1;
+		
+		
+		String sql = "insert into image(img_p,img_n,img_scr) values(?,?,?)";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,i);
+			pstmt.setInt(2, mk.getBmN());
+			pstmt.setString(3, mk.getImgScr()); 
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+
+		if(result ==1) {
+			JDBCTemplate.commit(conn);
+		}
+		
 		return result;
 	}
 }

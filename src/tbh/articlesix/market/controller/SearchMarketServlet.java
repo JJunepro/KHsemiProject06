@@ -14,16 +14,16 @@ import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
 
 /**
- * Servlet implementation class marketModifyServlet
+ * Servlet implementation class SearchMarketServlet
  */
-@WebServlet("/marketModify")
-public class ModifyMarketServlet extends HttpServlet {
+@WebServlet("/searchMarket")
+public class SearchMarketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModifyMarketServlet() {
+    public SearchMarketServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +32,14 @@ public class ModifyMarketServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String no = request.getParameter("no");
-		int bmN = Integer.parseInt(no);
-		
-		ArrayList<Market> mkList = new MarketService().DetailMarket(bmN);
-		request.setAttribute("mkList",mkList);
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketDetailModify.jsp");
-    	requestDispatcher.forward(request, response);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		String title = request.getParameter("searchTitle");
+		ArrayList<Market> searchMkList = new MarketService().SearchMarket(title);
+
+		request.setAttribute("searchMkList", searchMkList);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketSearch.jsp");
+		requestDispatcher.forward(request, response);
 	}
 
 	/**

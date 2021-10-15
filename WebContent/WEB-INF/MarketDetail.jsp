@@ -1,9 +1,11 @@
+<%@page import="tbh.articlesix.market.service.MarketService"%>
 <%@page import="tbh.articlesix.market.vo.Market"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	ArrayList<Market> mkList = (ArrayList<Market>) request.getAttribute("mkList");
+	ArrayList<Market> searchList = (ArrayList<Market>) request.getAttribute("searchList");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,12 +25,20 @@
 			<div class="slideBox">
 				<div id="slideShow">
 					<ul class="slides">
-						<li><img src="./img/flower.jpg" alt="" /></li>
-						<li><img src="./img/fox.jpg" alt="" /></li>
+					<%
+			if (mkList != null) {
+				for (Market mk : mkList) {
+			%>
+						<li><img src="<%=mk.getImgScr() %>" alt="test" /></li>
+					  	<!--<li><img src="./img/fox.jpg" alt="" /></li>
 						<li><img src="./img/lightning.jpg" alt="" /></li>
 						<li><img src="./img/moon.jpg" alt="" /></li>
 						<li><img src="./img/nature.jpg" alt="" /></li>
-						<li><img src="./img/space.jpg" alt="" /></li>
+						<li><img src="./img/space.jpg" alt="" /></li>-->
+						<%
+			}
+			}
+		%>
 					</ul>
 					<p class="controller">
 						<span class="prev">&lang;</span> <span class="next">&rang;</span>
@@ -41,7 +51,7 @@
 			%>
 			<div class="content">
 				<div class="expContent">
-					<h4><%=mk.getBmContent() %></h4>
+					<h4><%=mk.getBmTitle() %></h4>
 					<div>
 						<p>작성자:<%=mk.getmId() %></p>
 						<p>가격:<%=mk.getPrice() %></p>
@@ -53,38 +63,31 @@
 				</div>
 			</div>
 			<div class="btnBox">
-			<form action="marketModify" method="GET">
-				<input type="submit" value="수정" name="mk"/>
-			</form>
-				
+			<a href="marketModify?no=<%=mk.getBmN()%>"><button>수정</button></a>
+			<a href="marketDelete?no=<%=mk.getBmN()%>"><button>삭제</button></a>
 			</div>
 			<%
 			}
 			}
 		%>
-
+			
 			<div class="relatedContent">
 				<h4>관련 상품</h4>
 				<div class="relatedSlideShow">
 					<ul class="relatedSlides">
-						<li><img src="./img/flower.jpg" alt="" /></li>
-						<li><img src="./img/fox.jpg" alt="" /></li>
-						<li><img src="./img/lightning.jpg" alt="" /></li>
-						<li><img src="./img/moon.jpg" alt="" /></li>
-						<li><img src="./img/nature.jpg" alt="" /></li>
-						<li><img src="./img/space.jpg" alt="" /></li>
-						<li><img src="./img/flower.jpg" alt="" /></li>
-						<li><img src="./img/fox.jpg" alt="" /></li>
-						<li><img src="./img/lightning.jpg" alt="" /></li>
-						<li><img src="./img/moon.jpg" alt="" /></li>
-						<li><img src="./img/nature.jpg" alt="" /></li>
-						<li><img src="./img/space.jpg" alt="" /></li>
-						<li><img src="./img/flower.jpg" alt="" /></li>
-						<li><img src="./img/fox.jpg" alt="" /></li>
-						<li><img src="./img/lightning.jpg" alt="" /></li>
-						<li><img src="./img/moon.jpg" alt="" /></li>
-						<li><img src="./img/nature.jpg" alt="" /></li>
-						<li><img src="./img/space.jpg" alt="" /></li>
+					<%
+			if (searchList != null) {
+				for (Market mk : searchList) {
+			%><a href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
+						<li>
+							<img src="<%=mk.getImgScr() %>" alt="img" />
+							<p><%=mk.getBmTitle() %></p>
+						</li>
+						</a>
+						<%
+			}
+			}
+		%>
 					</ul>
 				</div>
 				<p class="relatedController">

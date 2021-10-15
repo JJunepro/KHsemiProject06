@@ -36,9 +36,13 @@ public class DetailMarketServlet extends HttpServlet {
 		
 		String no =request.getParameter("no");
 		int bmN = Integer.parseInt(no);
-		
+
+		String title = request.getParameter("title"); // 파라미터 받아와야 함
 		ArrayList<Market> mkList = new MarketService().DetailMarket(bmN);
+		ArrayList<Market> searchList = new MarketService().SearchMarket(title);
+
 		request.setAttribute("mkList", mkList);
+		request.setAttribute("searchList", searchList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketDetail.jsp");
     	requestDispatcher.forward(request, response);
 	}

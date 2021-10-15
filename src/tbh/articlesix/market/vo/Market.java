@@ -22,13 +22,20 @@ public class Market {
 	String imgScr;
 	String cContent;
 	Date cTimeStamp;
-	
+
 	public Market() {
-		
+
 	}
 
-	public Market(String bmTitle, String imgScr, int price, String cContent) {
+	public Market(int bmN, String imgScr) {
 		super();
+		this.bmN = bmN;
+		this.imgScr = imgScr;
+	}
+
+	public Market(int bmN, String bmTitle, String imgScr, int price, String cContent) {
+		super();
+		this.bmN = bmN;
 		this.bmTitle = bmTitle;
 		this.imgScr = imgScr;
 		this.price = price;
