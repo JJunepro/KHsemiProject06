@@ -20,6 +20,27 @@ public class MarketService {
 		mkList = new MarketDao().ListMarket(conn, startRnum, endRnum);
 		return mkList;
 	}
+	
+	public ArrayList<Market> ListOne(int startRnum, int endRnum) {
+		ArrayList<Market> mkList = null;
+		Connection conn = JDBCTemplate.getConnection();
+		mkList = new MarketDao().ListOne(conn,startRnum,endRnum);
+		return mkList;
+	}
+	
+	public ArrayList<Market> DetailListOne(int bmN) {
+		ArrayList<Market> mkList = null;
+		Connection conn = JDBCTemplate.getConnection();
+		mkList = new MarketDao().DetailListOne(conn, bmN);
+		return mkList;
+	}
+	
+	public ArrayList<Market> ImgListMarket(Market mk) {
+		ArrayList<Market> mkList = null;
+		Connection conn = JDBCTemplate.getConnection();
+		mkList = new MarketDao().ImgListMarket(conn, mk);
+		return mkList;
+	}
 
 	public ArrayList<Market> HotListMarket() {
 		ArrayList<Market> mkList = null;
@@ -28,10 +49,10 @@ public class MarketService {
 		return mkList;
 	}
 
-	public ArrayList<Market> SearchMarket(String title) {
+	public ArrayList<Market> SearchMarket(String title,int startRnum, int endRnum) {
 		ArrayList<Market> mkList = null;
 		Connection conn = JDBCTemplate.getConnection();
-		mkList = new MarketDao().SearchMarket(title, conn);
+		mkList = new MarketDao().SearchMarket(title, conn,startRnum,endRnum);
 		return mkList;
 	}
 
@@ -81,6 +102,17 @@ public class MarketService {
 	public int AddImg(Market mk, int i) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new MarketDao().AddImg(conn, mk, i);
+		return result;
+	}
+	
+	public int ViewCount(int bm_n) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MarketDao().ViewCount(conn,bm_n);
+		return result;
+	}
+	public int ViewAddCount(int viewCount,int bm_n) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MarketDao().ViewAddCount(conn,viewCount,bm_n);
 		return result;
 	}
 

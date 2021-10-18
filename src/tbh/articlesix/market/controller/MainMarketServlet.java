@@ -1,6 +1,7 @@
 package tbh.articlesix.market.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -68,13 +69,14 @@ public class MainMarketServlet extends HttpServlet {
 		if(endPage > pageCount) endPage=pageCount;
 		
 		
-		
+		ArrayList<Market> listOne = new MarketService().ListOne(startRnum,endRnum);
 		ArrayList<Market> mkList = new MarketService().ListMarket(startRnum,endRnum);
 		ArrayList<Market> hotMkList = new MarketService().HotListMarket();
 		
 		
 		request.setAttribute("mkList", mkList);
 		request.setAttribute("hotMkList", hotMkList);
+		request.setAttribute("listOne", listOne);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);

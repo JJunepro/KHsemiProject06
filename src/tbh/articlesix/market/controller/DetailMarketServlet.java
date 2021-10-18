@@ -36,12 +36,20 @@ public class DetailMarketServlet extends HttpServlet {
 		
 		String no =request.getParameter("no");
 		int bmN = Integer.parseInt(no);
+		
+		int startRnum=1;
+		int endRnum=50;
 
 		String title = request.getParameter("title"); // 파라미터 받아와야 함
 		ArrayList<Market> mkList = new MarketService().DetailMarket(bmN);
-		ArrayList<Market> searchList = new MarketService().SearchMarket(title);
-
+		ArrayList<Market> searchList = new MarketService().SearchMarket(title,startRnum,endRnum);
+		ArrayList<Market> detailListOne = new MarketService().DetailListOne(bmN);
+		int viewCount = new MarketService().ViewCount(bmN);
+		viewCount++;
+		int view = new MarketService().ViewAddCount(viewCount, bmN);
+		
 		request.setAttribute("mkList", mkList);
+		request.setAttribute("detailListOne", detailListOne);
 		request.setAttribute("searchList", searchList);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketDetail.jsp");
     	requestDispatcher.forward(request, response);

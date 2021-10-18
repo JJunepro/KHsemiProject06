@@ -55,6 +55,7 @@ public class DoAddMarketServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		int countList = new MarketService().CountList();
+		countList++;
 		int countImg = new MarketService().CountImg();
 
 		// 파일 저장 경로 (web 경로 밑에 해당 폴더를 생성해 주어야 한다)
@@ -77,30 +78,33 @@ public class DoAddMarketServlet extends HttpServlet {
 			Enumeration files = multi.getFileNames();
 			while (files.hasMoreElements()) {
 				countImg++;
-				countList++;
+				
 				// 업로드 된 파일 이름 얻어오기
 				String file = (String) files.nextElement();
 				String fileName = multi.getFilesystemName(file);
-				
-				String title = multi.getParameter("title");
-				String imgPath = fileSavePath+"/"+fileName;
-				String content = multi.getParameter("content");
-				String price = multi.getParameter("price");
-				
-				System.out.println(title);
-				System.out.println(imgPath);
-				System.out.println(content);
-				System.out.println(price);
-				
-				int priceInt = Integer.parseInt(price);
-				Market mk = new Market(countList, title, imgPath, priceInt, content);
-				int result = new MarketService().AddMarket(mk);
-				int imgResult = new MarketService().AddImg(mk,countImg);
-				if (result == 0) {
-					System.out.println("success");
-				} else {
-					System.out.println("fail");
-				}}
+				if(fileName == null) {
+					continue;
+				}else {
+					String title = multi.getParameter("title");
+					String imgPath = fileSavePath+"/"+fileName;
+					String content = multi.getParameter("content");
+					String price = multi.getParameter("price");
+					
+					System.out.println(title);
+					System.out.println(imgPath);
+					System.out.println(content);
+					System.out.println(price);
+					
+					int priceInt = Integer.parseInt(price);
+					Market mk = new Market(countList, title, imgPath, priceInt, content);
+					int result = new MarketService().AddMarket(mk);
+					int imgResult = new MarketService().AddImg(mk,countImg);
+					if (result == 0) {
+						System.out.println("success");
+					} else {
+						System.out.println("fail");
+					}}
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				}

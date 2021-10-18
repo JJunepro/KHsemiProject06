@@ -13,6 +13,7 @@ public class Market {
 	String mId;
 	int caN;
 	int imgN;
+	int imgP;
 	int cN;
 	String bmTitle;
 	String bmContent;
@@ -25,6 +26,12 @@ public class Market {
 
 	public Market() {
 
+	}
+	
+	public Market(int bmN, int bmP) {
+		super();
+		this.imgN = bmN;
+		this.imgP = bmP;
 	}
 
 	public Market(int bmN, String imgScr) {
@@ -41,14 +48,26 @@ public class Market {
 		this.price = price;
 		this.cContent = cContent;
 	}
+	
+	
 
 	@Override
 	public String toString() {
-		return "Market [bmN=" + bmN + ", mId=" + mId + ", caN=" + caN + ", imgN=" + imgN + ", cN=" + cN + ", bmTitle="
-				+ bmTitle + ", bmContent=" + bmContent + ", bmTimeStamp=" + bmTimeStamp + ", bmView=" + bmView
-				+ ", price=" + price + ", imgScr=" + imgScr + ", cContent=" + cContent + ", cTimeStamp=" + cTimeStamp
-				+ "]";
+		return "Market [bmN=" + bmN + ", mId=" + mId + ", caN=" + caN + ", imgN=" + imgN + ", imgP=" + imgP + ", cN="
+				+ cN + ", bmTitle=" + bmTitle + ", bmContent=" + bmContent + ", bmTimeStamp=" + bmTimeStamp
+				+ ", bmView=" + bmView + ", price=" + price + ", imgScr=" + imgScr + ", cContent=" + cContent
+				+ ", cTimeStamp=" + cTimeStamp + "]";
 	}
+
+	public int getImgP() {
+		return imgP;
+	}
+
+	public void setImgP(int imgP) {
+		this.imgP = imgP;
+	}
+
+	
 
 	public int getBmN() {
 		return bmN;
