@@ -1,7 +1,7 @@
-<%@page import="tbh.articlesix.board.notice.vo.Notice"%>
+<%@page import="tbh.articlesix.board.board.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Notice bnn = (Notice)request.getAttribute("noticeno"); %>
+<% Board bno = (Board)request.getAttribute("boardvo"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,30 +31,30 @@
 	<div class="article">
         <div class="articleTitle">
         	<form method="get" action="" id="modify" name="form">
-        	<input type="hidden" name="no" value="<%=bnn.getBn_n() %>">
-        		<h1><%= bnn.getBn_title()%></h1>
+        	<input type="hidden" name="no" value="<%=bno.getBno() %>">
+        		<h1><%= bno.getTitle()%></h1>
 				<pre>
-				<span>작성자 : <%= bnn.getM_id()%></span>
-				<span>조회수 : <%= bnn.getBn_view()%></span>
-				<span>등록일 : <%= bnn.getBn_timestamp()%></span>
+				<span>작성자 : <%= bno.getWriter()%></span>
+				<span>조회수 : <%= bno.getBno()%></span>
+				<span>등록일 : <%= bno.getCreateDate()%></span>
 				</pre>
         </div>
         <div class="articleContent">
         <hr>
-            <textarea>
-            	<%= bnn.getBn_content()%>
-            </textarea>
+            <p>
+            	<%= bno.getContent()%>
+            </p>
         <hr>
           	</form>
         </div>
         <!-- TODO : 수정 필요함 -->
 	        <button onclick="location.href='noticelist'" class="btn">목록</button> 
 	        <button id="modifybtn" class="btn">
-	        <a href="noticemodify?no=<%=bnn.getBn_n()%>">수정
+	        <a href="noticemodify?no=<%=bno.getBno()%>">수정
 	        </button>
 	        
 	        <button id="deletebtn">
-	        <a href="noticedelete?no=<%=bnn.getBn_n()%>">삭제
+	        <a href="noticedelete?no=<%=bno.getBno()%>">삭제
 	        </button>
     </div>
     

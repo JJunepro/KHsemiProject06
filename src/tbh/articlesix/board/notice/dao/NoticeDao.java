@@ -16,6 +16,56 @@ public class NoticeDao {
 	}
 	
 	//공지사항 테이블 출력
+	//TODO 검색 기능 포함 구현중
+//	public ArrayList<Notice> selectNoticeList(Connection conn) {
+//		ArrayList<Notice> nolist = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		StringBuffer sql = new StringBuffer();
+//		String opt = (String)list.get("opt");
+//		try {
+//			if (opt == null) {
+//				sql.append("SELECT * FROM BOARD_NOTICE ORDER BY BN_N DESC");
+//				
+//				sql.delete(start, sql.toString().length());
+//				
+//			} else if(opt.equals("0")) {
+//				sql.append("SELECT * FROM BOARD_NOTICE");
+//				sql.append(" WHERE BN_TITLE like ?");
+//				sql.append(" ORDER BY BN_N DESC");
+//				
+//				pstmt = conn.prepareStatement(sql.toString());
+//				pstmt.setInt(1, "%"+condition+"%");
+//				
+//				sql.delete(start, sql.toString().length());
+//			}
+//			
+//			rset = pstmt.executeQuery();
+//			
+//			nolist = new ArrayList<Notice>();
+//			if (rset.next()) {
+//				do {
+//					Notice no = new Notice();
+//					no.setBn_n(rset.getInt("bn_n"));
+//					no.setM_id(rset.getString("m_id"));
+//					no.setBn_title(rset.getString("bn_title"));
+//					no.setBn_content(rset.getString("bn_content"));
+//					no.setBn_timestamp(rset.getDate("bn_timestamp"));
+//					no.setBn_view(rset.getInt("bn_view"));
+//					nolist.add(no);
+//				} while(rset.next());
+//			}
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rset);
+//			JDBCTemplate.close(pstmt);
+//		}
+//		return nolist;
+//	}
+	
+	//공지사항 테이블 출력
 	public ArrayList<Notice> selectNoticeList(Connection conn) {
 		ArrayList<Notice> nolist = null;
 		
@@ -100,7 +150,7 @@ public class NoticeDao {
 		int nextVal = 0;
 		int bnv = 0;
 		String sql = "INSERT INTO" + " BOARD_NOTICE" + " (BN_N, M_ID, BN_TITLE, BN_CONTENT, BN_TIMESTAMP, BN_VIEW)"
-						+ " VALUES (?, ?, ?, ?, ?, ?)";
+						+ " VALUES (?, ?, ?, ?, sysdate, ?)";
 		
 		String sqlSeqNextVal = "SELECT SEQ_NOTICE.NEXTVAL FROM DUAL";
 				
@@ -120,8 +170,7 @@ public class NoticeDao {
 			pstmt.setString(2, no.getM_id());
 			pstmt.setString(3, no.getBn_title());
 			pstmt.setString(4, no.getBn_content());
-			pstmt.setString(5, "2021-10-12");
-			pstmt.setInt(6, bnv);
+			pstmt.setInt(5, bnv);
 			result = pstmt.executeUpdate();
 			System.out.println(result);
 		} catch (Exception e) {
@@ -189,7 +238,7 @@ public class NoticeDao {
 		return null;
 	}
 	
-	//TODO 진행중 글 수정
+
 	public int updateNotice(Connection conn, String bn_title, String bn_content, int bn_n) {
 		int result = -1;
 		String sql = "UPDATE BOARD_NOTICE SET BN_TITLE=?, BN_CONTENT=? WHERE BN_N=?";

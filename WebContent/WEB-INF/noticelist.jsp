@@ -34,7 +34,7 @@ int pageCount = (int) request.getAttribute("pageCount");
   clear: both;
 }
 .container {
-  width: 1100px;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -81,7 +81,7 @@ section.notice {
 }
 #board-search .search-window .search-wrap input {
   height: 40px;
-  width: 100%;
+  width: 59%;
   font-size: 14px;
   padding: 7px 14px;
   border: 1px solid #ccc;
@@ -99,6 +99,12 @@ section.notice {
   width: 108px;
   padding: 0;
   font-size: 16px;
+}
+
+
+.select { 
+  height: 40px;
+  width : 20%;
 }
 
 .board-table {
@@ -223,6 +229,11 @@ section.notice {
 				<div class="search-window">
 					<form action="">
 						<div class="search-wrap">
+							<select name="type" class="select">
+								<option value="t">제목</option>
+								<option value="c">내용</option>
+								<option value="t_c">제목+내용</option>
+							</select>
 							<label for="search" class="blind">공지사항 내용 검색</label>
 							<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
 							<%//TODO %>
