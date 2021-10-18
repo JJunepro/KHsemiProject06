@@ -8,6 +8,7 @@
 	ArrayList<Market> mkList = (ArrayList<Market>) request.getAttribute("mkList");
 	ArrayList<Market> hotMkList = (ArrayList<Market>) request.getAttribute("hotMkList");
 	ArrayList<Market> searchMkList = (ArrayList<Market>) request.getAttribute("searchMkList");
+	ArrayList<Market> listOne = (ArrayList<Market>) request.getAttribute("listOne");
 	int startPage = Integer.parseInt(request.getAttribute("startPage").toString());
 	int endPage = Integer.parseInt(request.getAttribute("endPage").toString());
 	int pageCount = Integer.parseInt(request.getAttribute("pageCount").toString());
@@ -73,8 +74,8 @@
 
 
 		<%
-			if (mkList != null) {
-				for (Market no : mkList) {
+			if (listOne != null) {
+				for (Market no : listOne) {
 		%>
 		<div class="listBox">
 			<ul class="listContent">

@@ -27,6 +27,11 @@ li {
   width: 2500px;
   transition: left 0.5s ease-out;
 }
+
+.slides li img {
+	width:300px;
+	height:300px;
+}
 .slides li:first-child {
   margin-left: 100px;
 }

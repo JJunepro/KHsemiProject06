@@ -6,6 +6,7 @@
 <%
 	ArrayList<Market> mkList = (ArrayList<Market>) request.getAttribute("mkList");
 	ArrayList<Market> searchList = (ArrayList<Market>) request.getAttribute("searchList");
+	ArrayList<Market> detailListOne = (ArrayList<Market>) request.getAttribute("detailListOne");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,8 +47,8 @@
 				</div>
 			</div>
 			<%
-			if (mkList != null) {
-				for (Market mk : mkList) {
+			if (detailListOne != null) {
+				for (Market mk : detailListOne) {
 			%>
 			<div class="content">
 				<div class="expContent">
@@ -56,6 +57,7 @@
 						<p>작성자:<%=mk.getmId() %></p>
 						<p>가격:<%=mk.getPrice() %></p>
 						<p><%=mk.getBmContent() %></p>
+						<p>조회수:<%=mk.getBmView() %></p>
 					</div>
 				</div>
 				<div class="reserveContent">
