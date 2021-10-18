@@ -92,9 +92,9 @@ public class MemberService {
 		return result;
 	}
 	
-	public int findId(String m_name, String m_email) {
+	public String findId(String m_name, String m_email) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new MemberDao().findId(conn, m_name, m_email);
+		String result = new MemberDao().findId(conn, m_name, m_email);
 		return result;
 	}
 	

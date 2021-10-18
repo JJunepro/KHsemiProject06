@@ -18,50 +18,39 @@ import com.google.gson.GsonBuilder;
 import tbh.articlesix.member.service.MemberService;
 
 /**
- * Servlet implementation class AsdServlet
+ * Servlet implementation class ShowIdServlet
  */
-@WebServlet("/showPw")
-public class ShowPwServlet extends HttpServlet {
+@WebServlet("/showId")
+public class ShowIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ShowIdServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public ShowPwServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
-
+		
 		MemberService mservice = new MemberService();
 		PrintWriter out = response.getWriter();
 		String gobStr = "";
 		Gson gObject = new GsonBuilder().setPrettyPrinting().create();
 		
-//		String m_id = request.getParameter("m_id");
-//		String m_email = request.getParameter("m_email");
-//		String verCode = request.getParameter("verCode");
-//		System.out.println("m_id: " + m_id);
-//		System.out.println("m_email: " + m_email);
-//		System.out.println("verCode: " + verCode);
-
 		HttpSession saveKey = request.getSession();
 		Object auth = saveKey.getAttribute("auth");
 		if(auth == null) {
@@ -69,28 +58,31 @@ public class ShowPwServlet extends HttpServlet {
 			return;
 		}
 		try {
-			String m_id = request.getParameter("m_id");
+			String m_name = request.getParameter("m_name");
 			String m_email = request.getParameter("m_email");
 			String verCode = request.getParameter("verCode");
-			System.out.println("m_id: " + m_id);
+			System.out.println("m_name: " + m_name);
 			System.out.println("m_email: " + m_email);
 			System.out.println("verCode: " + verCode);
 			
 			Map<String, String> map2 = new HashMap<String, String>();
 		
 			if (verCode.equals(auth.toString())) {
-				String findPw = mservice.findPw(m_id, m_email);
-				if (findPw == null) {
+				String findId = mservice.findId(m_name, m_email);
+				if (findId == null) {
 					map2.put("result", "fail");
 					map2.put("msg", "회원정보를 찾을 수 없습니다.");
 					gobStr = gObject.toJson(map2);
 				} else {
 					map2.put("result", "ok");
-					map2.put("m_pw", findPw);
-					map2.put("msg", findPw);
-					System.out.println("찾은 비밀번호 : " + findPw);
-					
+					map2.put("m_id", findId);
+					map2.put("msg", findId);
+					System.out.println("찾은아이디 : " + findId);
 					gobStr = gObject.toJson(map2);
+					//
+					HttpSession foundId = request.getSession();
+			        foundId.setAttribute("id", findId);
+			        //
 				}
 			} else {
 				map2.put("result", "fail");
@@ -107,10 +99,10 @@ public class ShowPwServlet extends HttpServlet {
 
 			gobStr = gObject.toJson(map2);
 		}
+		
 		out.print(gobStr);
 		out.flush();
 		out.close();
 	}
-	
 
 }

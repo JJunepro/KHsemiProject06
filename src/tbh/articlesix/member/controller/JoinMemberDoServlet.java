@@ -42,8 +42,6 @@ public class JoinMemberDoServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("join.do진입");
-		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json;charset=UTF-8");
 
 		String id = request.getParameter("m_id");

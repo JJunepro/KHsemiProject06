@@ -11,32 +11,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="/WebContent/css/login.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <form action="login.do" method="POST" id="frm">
-        <div id="section">
-            <fieldset id="loginBox">
-                <div id="title">
-                    <h1 id="qwe">로그인</h1>
-                </div>
-                <div id="textBox">
-                    <input type="text" id="loginId" name="loginId" placeholder=" 아이디" class="loginField"><br><br>
-                    <input type="password" id="loginPw" name="loginPw" placeholder=" 비밀번호" class="loginField"><br><br>
-                    <input type="button" id="loginBtn" value="로그인"><br>
-                    
-                </div>
-            </fieldset>
-                <div id="url">
-                    <a href="findId">아이디 찾기</a>
-                    <a href="findPw">비밀번호 찾기</a>
-                    <a href="join">회원가입</a>
-                </div>
-        </div>
-    </form>
-    <script>
+ <%@ include file="./Header.jsp" %>
+ 	<section>
+    	<form action="login.do" method="POST" id="frm">
+        	<div id="loginAll">
+            	<fieldset id="loginBox">
+                	<div id="title">
+                    	<h1 id="qwe">로그인</h1>
+                </div>	
+                	<div id="textBox">
+                    	<input type="text" id="loginId" name="loginId" placeholder=" 아이디" class="loginField"><br><br>
+                    	<input type="password" id="loginPw" name="loginPw" placeholder=" 비밀번호" class="loginField"><br><br>
+                    	<input type="button" id="loginBtn" value="로그인"><br>
+	                </div>
+    	        </fieldset>
+        	        <div id="url">
+            	        <a href="findId">아이디 찾기</a>
+                	    <a href="findPw">비밀번호 찾기</a>
+                    	<a href="join">회원가입</a>
+	                </div>
+    	    </div>
+    	</form>
+    </section>
+    <%@ include file="./Footer.jsp" %>
+</body>
+<script>
     window.addEventListener("load", pageLoadedHandler);
     function pageLoadedHandler(){
         document.getElementById("loginBtn").addEventListener("click", btnSubmt);
@@ -86,6 +89,5 @@
         });
         
     } 
-    </script>
-</body>
+</script>
 </html>

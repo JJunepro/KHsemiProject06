@@ -54,8 +54,10 @@ public class DuplicationEmailServlet extends HttpServlet {
 			int result = mservice.duplicationEmail(request.getParameter("m_email"));
 			if (result > 0) {
 				map2.put("result", "fail");
+				System.out.println("정보있음");
 			} else {
 				map2.put("result", "ok");
+				System.out.println("정보없음");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -13,9 +13,8 @@
     <h1>환영합니다!</h1>
     <h2>T.B.H의 멤버가 되신것을</h2>
     <h2>축하드립니다.</h2>
-    <a><% %>님의 아이디는 <% %> %>입니다.</a><br>
-    <input type="button" value="로그인" onclick="location.href='Login.jsp'">
-    <input type="button" value="홈으로"onclick="location.href='MainPage.jsp'">
+    <input type="button" value="로그인" onclick="location.href='login'">
+    <input type="button" value="홈으로"onclick="location.href='main'">
     </div>
 </body>
 </html>

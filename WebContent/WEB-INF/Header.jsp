@@ -12,7 +12,7 @@
       <div class="header">
         <div class="headerLogo">
           <h1><a href="<%=request.getContextPath() %>/main">T.B.H</a></h1>
-          <button class="loginButton">로그인</button>
+          <button class="loginButton" onclick="location.href='login'">로그인</button>
           <button class="JoinButton" onclick="location.href='join';">회원가입</button>
         </div>
         <div class="headerNav">

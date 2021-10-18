@@ -2,9 +2,7 @@ package tbh.articlesix.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,24 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import tbh.articlesix.member.model.vo.Member;
-import tbh.articlesix.member.service.MemberService;
-
 /**
- * Servlet implementation class LoginMemberDoServlet
+ * Servlet implementation class checkEmailServlet
  */
-@WebServlet("/login.do")
-public class LoginMemberDoServlet extends HttpServlet {
+@WebServlet("/checkEmail")
+public class checkEmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginMemberDoServlet() {
+    public checkEmailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -49,42 +43,50 @@ public class LoginMemberDoServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
-		
-		MemberService mservice = new MemberService();
-		String m_id = request.getParameter("m_id");
-		String m_pw = request.getParameter("m_pw");
-		System.out.println("m_id: " + m_id);
-		System.out.println("m_passwd: " + m_pw);
 		PrintWriter out = response.getWriter();
-		
-		Gson gObject = new GsonBuilder().setPrettyPrinting().create();
 		String gobStr = "";
+		Gson gObject = new GsonBuilder().setPrettyPrinting().create();
 		
-		Member m = mservice.loginMember(m_id, m_pw);
-		if(m != null) {
-			System.out.println("로그인 성공");
-			HttpSession seeSession = request.getSession();
-			seeSession.setAttribute("member", m.getM_id());
-			
-			Map<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("result", "ok");
-			map2.put("name", m.getM_name());
-			map2.put("memberInfo", m);
-			gobStr = gObject.toJson(map2);
-			out.print(gobStr);
-			
-		}else {
-			System.out.println("로그인 실패");
-			Map<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("result", "fail");
-			gobStr = gObject.toJson(map2);
-			out.print(gobStr);
+		HttpSession saveKey = request.getSession();
+		Object auth = saveKey.getAttribute("auth");
+		
+		if(auth == null) {
+			System.out.println("인증코드 미입력");
+			return;
 		}
-		System.out.println("gobStr : " + gobStr);
+		try {
+			String m_email = request.getParameter("m_email");
+			String verCode = request.getParameter("verCode");
+			System.out.println("m_email: " + m_email);
+			System.out.println("verCode: " + verCode);
+			
+			Map<String, String> map2 = new HashMap<String, String>();
+			if (verCode.equals(auth.toString())) {
+				map2.put("result", "ok");
+				//map2.put("msg", "인증성공");
+				System.out.println("인증 성공");
+				gobStr = gObject.toJson(map2);
+				
+			} else {
+				map2.put("result", "fail");
+				//map2.put("msg", "인증코드가 일치하지 않습니다.");
+				System.out.println("인증코드 불일치");
+				
+				gobStr = gObject.toJson(map2);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+			Map<String, String> map2 = new HashMap<String, String>();
+
+			map2.put("result", "fail");
+			map2.put("msg", "서버오류");
+
+			gobStr = gObject.toJson(map2);
+		}
+		
+		out.print(gobStr);
 		out.flush();
 		out.close();
-		
 	}
-		
 
 }

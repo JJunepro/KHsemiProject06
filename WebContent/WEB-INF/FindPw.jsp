@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="<%=request.getContextPath() %>/css/findIdPw.css" />
 </head>
     <body>
+    <%@ include file="./Header.jsp" %>
         <form action="findPw.do" id="frm">
             <fieldset>
                 <div id="title">
@@ -19,7 +20,7 @@
     
                 <div id="selectBtn">
                     <input type="button" id="findIdBtn" class="selectBtn" value="아이디" onclick="location.href='findId'">
-                    <input type="button" id="findPwBtn" class="selectBtn" value="비밀번호" style="background-color: navy; color: oldlace;"><br>
+                    <input type="button" id="findPwBtn" class="selectBtn" value="비밀번호" style="background-color: #95c2b7; color: oldlace;"><br>
                 </div>
     
                 <div id="all">
@@ -40,6 +41,8 @@
                 </div>
             </fieldset>
         </form>
+        <%@ include file="./Footer.jsp" %>
+         </body>
         <script>
             $(function(){
                 $("#send").on("click", function(){
@@ -97,14 +100,14 @@
                 		url: "showPw",
                 		data: {
                 			m_id: $("#uId").val(),
-                			m_emai: $("#uEmail").val(),
+                			m_email: $("#uEmail").val(),
                 			verCode: $("#authentication").val()
                 		},
                 		dataType: "json",
                 		success: function(data) {
 							if(data.result == "ok"){
-								console.log(data.pw);
-								alert("고객님의 비밀번호는 "+ data.pw +"입니다.")
+								console.log(data.result);
+								alert(data.msg);
 								location.href="login";
 							}else{
 								console.log(data.msg);
@@ -123,5 +126,5 @@
                 };
             });
         </script>
-    </body>
+   
     </html>

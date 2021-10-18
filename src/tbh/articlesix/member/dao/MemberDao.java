@@ -202,8 +202,8 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public int findId(Connection conn, String m_name, String m_email) {
-		int result = 0;
+	public String findId(Connection conn, String m_name, String m_email) {
+		String result = "";
 		PreparedStatement pstmt = null;
 		ResultSet  rset = null;
 		String sql = "select m_id from member where m_name=? and m_email=?";
@@ -212,9 +212,9 @@ public class MemberDao {
 			pstmt.setString(1, m_name);
 			pstmt.setString(2, m_email);
 			rset = pstmt.executeQuery();
-//			if (rset.next()) {
-//				result = rset.getInt(1);
-//			}
+			if (rset.next()) {
+				result = rset.getString(1);
+			}
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally {
