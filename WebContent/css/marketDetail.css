@@ -32,9 +32,11 @@ li {
 	width:300px;
 	height:300px;
 }
+
 .slides li:first-child {
   margin-left: 100px;
 }
+
 .slides li:not(:last-child) {
   float: left;
   margin-right: 100px;
