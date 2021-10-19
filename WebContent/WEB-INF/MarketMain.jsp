@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/marketMain.css" />
+<link rel="stylesheet" href="css/header.css" />
 <%@page import="tbh.articlesix.market.service.MarketService"%>
 <%@page import="tbh.articlesix.market.vo.Market"%>
 <%@page import="java.util.ArrayList"%>
@@ -24,7 +26,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/marketMain.css" />
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
@@ -85,7 +86,7 @@
 						src="<%=no.getImgScr()%>" alt="img" />
 						<div>
 							<p><%=no.getBmTitle()%></p>
-							<p>가격</p>
+							<p><%=no.getPrice()%></p>
 						</div>
 						<p><%=no.getBmContent()%></p></li>
 				</a>

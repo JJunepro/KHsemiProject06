@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="./css/marketModify.css" />
+<link rel="stylesheet" href="css/header.css" />
 <%@page import="tbh.articlesix.market.vo.Market"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
