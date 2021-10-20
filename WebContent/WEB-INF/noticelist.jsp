@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="./css/header.css" />
-<link rel="stylesheet" href="./css/index.css" />
 <%@page import="tbh.articlesix.board.notice.vo.Notice"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -14,7 +12,8 @@ int pageCount = (int) request.getAttribute("pageCount");
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link rel="stylesheet" href="./css/header.css" />
+<link rel="stylesheet" href="./css/index.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
@@ -212,7 +211,6 @@ section.notice {
 	background-color : #eeffdd;
 	color : #fff;
 	border : 1px solid #cceed4;
-	
 }
 
 </style>
@@ -228,15 +226,15 @@ section.notice {
 		<div id="board-search">
 			<div class="container">
 				<div class="search-window">
-					<form action="">
+					<form action="noticelist.do" method="get">
 						<div class="search-wrap">
 							<select name="type" class="select">
-								<option value="t">제목</option>
-								<option value="c">내용</option>
-								<option value="t_c">제목+내용</option>
+								<option value="제목">제목</option>
+								<option value="내용">내용</option>
+								<option value="제목+내용">제목+내용</option>
 							</select>
 							<label for="search" class="blind">공지사항 내용 검색</label>
-							<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+							<input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="">
 							<%//TODO %>
 							<button type="submit" class="btn btn-dark">검색</button>
 						</div>
@@ -284,9 +282,7 @@ section.notice {
 		}
 		for (int i = startPage; i <= endPage; i++) {
 	%>
-		<button>
 		<a href="./noticelist?pagenum=<%=i%>"><%=i%></a>
-		</button>
 	<%
 		if (i != endPage) {
 	%>
