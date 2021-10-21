@@ -48,7 +48,7 @@ public class RecruitListServlet extends HttpServlet {
 			currentPage = Integer.parseInt(pageNum); // 눌려진 페이지
 		}
 		// 총 글수
-		bCount = new RecruitService().getRecruitCount();
+		bCount = new RecruitService().getRecruitCount(); //총 글 수를 가져오는 메소드 필요
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
 		// rownum 조건 계산
@@ -67,10 +67,10 @@ public class RecruitListServlet extends HttpServlet {
 			endPage = pageCount;
 	
 	// DB에서 값 읽어오기
-		ArrayList<Recruit> rclist = new RecruitService().selectRecruitList(startRnum,endRnum);
+		ArrayList<Recruit> rclist = new RecruitService().RecruitList(startRnum,endRnum);
 			
 			// Data 전달을 위해서 request에 set
-			request.setAttribute("boardvolist", rclist);
+			request.setAttribute("rclist", rclist);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("pageCount", pageCount);

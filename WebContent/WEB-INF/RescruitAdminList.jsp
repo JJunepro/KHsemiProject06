@@ -6,7 +6,7 @@
 	ArrayList<Recruit> rclist = (ArrayList<Recruit>) request.getAttribute("rcList");
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,6 +15,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
+
+
 <!-- <link rel="stylesheet" href="css/RecruitAdminList.css" /> -->
 <style>
 * {
@@ -30,15 +32,16 @@
 	display: block;
 	clear: both;
 }
+
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
+
 .th id:adminList {
 	background-color: #eeeeee;
 	text-align: center
 }
-
 </style>
 </head>
 <body>
@@ -126,10 +129,12 @@ table {
 							</tbody>
 						</table>
 						<br>
-					<!-- 만들기, 수정, 삭제  버튼 생성 -->
-					<a href="RecruitMake.jsp" class="btn btn-primary pull-right">방 만들기</a>
-					<a href="RecruitModify.jsp" class="btn btn-primary pull-right">방 수정</a>
-					<a href="RecruitDelete.jsp" class="btn btn-primary pull-right">방 삭제</a>
+						<!-- 만들기, 수정, 삭제  버튼 생성 -->
+						<a href="RecruitMake.jsp" class="btn btn-primary pull-right">방
+							만들기</a> <a href="RecruitModify.jsp"
+							class="btn btn-primary pull-right">방 수정</a> <a
+							href="RecruitDelete.jsp" class="btn btn-primary pull-right">방
+							삭제</a>
 					</div>
 				</div>
 			</div>
@@ -137,6 +142,8 @@ table {
 	</section>
 
 	<!-- 페이징 처리 영역 -->
+	<script src="./js/indexSlides.js"></script>
+	<script src="./js/header.js"></script>
 
 
 </body>
