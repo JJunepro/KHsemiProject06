@@ -62,6 +62,13 @@ public class MarketService {
 		mkList = new MarketDao().DetailMarket(conn, bmN);
 		return mkList;
 	}
+	
+	public ArrayList<Market> ChatMarket(int bmN) {
+		ArrayList<Market> mkList = null;
+		Connection conn = JDBCTemplate.getConnection();
+		mkList = new MarketDao().ChatMarket(conn, bmN);
+		return mkList;
+	}
 
 	public int TotalCount() {
 		Connection conn = JDBCTemplate.getConnection();
@@ -113,6 +120,12 @@ public class MarketService {
 	public int ViewAddCount(int viewCount,int bm_n) {
 		Connection conn = JDBCTemplate.getConnection();
 		int result = new MarketDao().ViewAddCount(conn,viewCount,bm_n);
+		return result;
+	}
+	
+	public int AddChatMarket(Market mk) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MarketDao().AddChatMarket(mk, conn);
 		return result;
 	}
 

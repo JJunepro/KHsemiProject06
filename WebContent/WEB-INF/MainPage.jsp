@@ -144,6 +144,8 @@
 	<%@ include file="./Footer.jsp" %>
     <script src="./js/indexSlides.js"></script>
     <script src="./js/header.js"></script>
-
+	<script>
+		
+	</script>
   </body>
 </html>

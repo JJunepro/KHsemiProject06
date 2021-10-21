@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css" />
 <%@page import="tbh.articlesix.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -11,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/login.css" />
+    
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -37,7 +38,6 @@
     	    </div>
     	</form>
     </section>
-    <%@ include file="./Footer.jsp" %>
 </body>
 <script>
     window.addEventListener("load", pageLoadedHandler);

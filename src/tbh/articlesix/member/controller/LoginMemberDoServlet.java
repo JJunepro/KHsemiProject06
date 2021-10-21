@@ -64,7 +64,8 @@ public class LoginMemberDoServlet extends HttpServlet {
 		if(m != null) {
 			System.out.println("로그인 성공");
 			HttpSession seeSession = request.getSession();
-			seeSession.setAttribute("member", m.getM_id());
+			seeSession.setAttribute("memberId", m.getM_id());
+			seeSession.setAttribute("nickName", m.getM_nick());
 			
 			Map<String, Object> map2 = new HashMap<String, Object>();
 			map2.put("result", "ok");

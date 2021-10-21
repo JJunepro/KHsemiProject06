@@ -130,7 +130,8 @@ public class MarketDao {
 
 	public ArrayList<Market> DetailListOne(Connection conn, int bmN) {
 		ArrayList<Market> mkList = null;
-		String sql = "select * from (select * from BOARD_MARKET t1 join image t2 on t1.bm_n=t2.img_n  where t2.img_p in(select max(img_p) from image group by img_n) and t1.bm_n=?)";
+		String sql = "select * from (select * from BOARD_MARKET t1 join image t2 on t1.bm_n=t2.img_p  \r\n" + 
+				"where t2.img_n in(select max(img_n) from image group by img_p) and t1.bm_n=?)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -274,6 +275,38 @@ public class MarketDao {
 
 		return mkList;
 	}
+	
+	public ArrayList<Market> ChatMarket(Connection conn, int bmN) {
+		ArrayList<Market> mkList = null;
+		String sql = "select * from market_comment where bm_n=?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, bmN);
+			rs = pstmt.executeQuery();
+			mkList = new ArrayList<Market>();
+			while (rs.next()) {
+				Market mk = new Market();
+				mk.setBmN(rs.getInt("bm_n"));
+				mk.setmId(rs.getString("m_id"));
+				mk.setcContent(rs.getString("c_content"));
+				mk.setBref(rs.getInt("bref"));
+				mk.setBreLevel(rs.getInt("bre_level"));
+				mk.setBreStep(rs.getInt("bre_step"));
+				mk.setcTimeStamp(rs.getDate("c_timestamp"));
+				mkList.add(mk);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(conn);
+		}
+
+		return mkList;
+	}
 
 	public int TotalCount(Connection conn) {
 		int count = 0;
@@ -345,16 +378,17 @@ public class MarketDao {
 		int result = -1;
 
 		String sqlAdd = "insert into BOARD_MARKET(bm_n,m_id,ca_n,img_n,c_n,bm_title,bm_content,bm_timestamp,bm_view,bm_price) "
-				+ "values(?,'test01',2,2,2,?,?,'2020-01-01',1,?)"; // 시퀀스 필요, 날짜, memberId받아와야하고 이미지 해결해야함
+				+ "values(?,?,2,2,2,?,?,to_date(sysdate,'yyyy.mm.dd hh24:mi'),1,?)"; // 시퀀스 필요, 날짜, memberId받아와야하고 이미지 해결해야함
 
 		PreparedStatement pstmt = null;
 		try {
 			Date date = new Date();
 			pstmt = conn.prepareStatement(sqlAdd);
 			pstmt.setInt(1, mk.getBmN());
-			pstmt.setString(2, mk.getBmTitle());
-			pstmt.setString(3, mk.getcContent());
-			pstmt.setInt(4, mk.getPrice());
+			pstmt.setString(2, mk.getmId());
+			pstmt.setString(3, mk.getBmTitle());
+			pstmt.setString(4, mk.getcContent());
+			pstmt.setInt(5, mk.getPrice());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -370,7 +404,7 @@ public class MarketDao {
 	public int UpdateMarket(Market mk, Connection conn) {
 		int result = -1;
 
-		String sqlUpdate = "update BOARD_MARKET set img_n=1,bm_title=?,bm_content=? where bm_n=?"; // 시퀀스 필요
+		String sqlUpdate = "update BOARD_MARKET set bm_title=?,bm_content=? where bm_n=?"; // 시퀀스 필요
 
 		PreparedStatement pstmt = null;
 		try {
@@ -476,6 +510,31 @@ public class MarketDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+	
+	public int AddChatMarket(Market mk, Connection conn) {
+		int result = -1;
+
+		String sqlAdd = "insert into market_comment(bm_n,m_id,c_content,bref,bre_level,bre_step) values(?,?,?,?,1,?)";
+
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sqlAdd);
+			pstmt.setInt(1, mk.getBmN());
+			pstmt.setString(2, mk.getmId());
+			pstmt.setInt(3, mk.getBref());
+			pstmt.setInt(4, mk.getBreLevel());
+			pstmt.setInt(5, mk.getBreStep());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		if (result == 1) {
+			JDBCTemplate.commit(conn);
 		}
 		return result;
 	}
