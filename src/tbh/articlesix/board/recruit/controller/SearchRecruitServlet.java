@@ -11,19 +11,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import tbh.articlesix.board.recruit.model.service.RecruitService;
-/**
- * Servlet implementation class RecruitListServlet
- */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet({"/RecruitAdminList", "/RecruitAdmin"})
-public class RecruitAdmintListServlet extends HttpServlet {
+/**
+ * Servlet implementation class SearchRecruitServlet
+ */
+@WebServlet("/SearchRecruit")
+public class SearchRecruitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public RecruitAdmintListServlet() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SearchRecruitServlet() {
         super();
+        // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -67,19 +74,21 @@ public class RecruitAdmintListServlet extends HttpServlet {
 		if (endPage > pageCount)
 			endPage = pageCount;
 		
+		String title = request.getParameter("searchTitle");
 	// DB에서 값 읽어오기
-		ArrayList<Recruit> rclist = new RecruitService().RecruitList(startRnum,endRnum);
+		ArrayList<Recruit> searchRClist = new RecruitService().searchRecruit(title,startRnum,endRnum);
 		
 			// Data 전달을 위해서 request에 set
-			request.setAttribute("rclist", rclist);
+			request.setAttribute("searchRCList", searchRClist);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("pageCount", pageCount);
 			request.setAttribute("currentPage", currentPage);
 			// Page 이동하면서 Data도 전달함.
-			request.getRequestDispatcher("/WEB-INF/RecruitAdminList.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/SearchRecruitList.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
