@@ -1,4 +1,4 @@
-package tbh.articlesix.board.notice.controller;
+package tbh.articlesix.board.question.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tbh.articlesix.board.notice.service.NoticeService;
-import tbh.articlesix.board.notice.vo.Notice;
+import tbh.articlesix.board.question.service.QuestionService;
+import tbh.articlesix.board.question.vo.Question;
 
 /**
- * Servlet implementation class DetailNoticeServlet
+ * Servlet implementation class DetailQuestionServlet
  */
-@WebServlet("/noticecontent")
-public class DetailNoticeServlet extends HttpServlet {
+@WebServlet("/questioncontent")
+public class DetailQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DetailNoticeServlet() {
+    public DetailQuestionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,18 +30,17 @@ public class DetailNoticeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
 		String no = request.getParameter("no");
 		
-		int bn_n = Integer.parseInt(no);
-		Notice bnn = new NoticeService().getNotice(bn_n);
+		int bq_n = Integer.parseInt(no);
+		Question bqn = new QuestionService().getQuestion(bq_n);
 		
-		request.setAttribute("noticeno", bnn);
-		request.getRequestDispatcher("/WEB-INF/noticecontent.jsp").forward(request, response);
+		request.setAttribute("questionno", bqn);
+		request.getRequestDispatcher("/WEB-INF/QuestionContent.jsp").forward(request, response);
 	}
 
 	/**

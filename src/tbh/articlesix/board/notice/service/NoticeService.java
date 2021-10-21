@@ -12,25 +12,23 @@ public class NoticeService {
 	//1. 공지사항 테이블 출력
 	public ArrayList<Notice> selectNoticeList() {
 		ArrayList<Notice> nolist = null;
-		Connection con = JDBCTemplate.getConnection();
+		Connection conn = JDBCTemplate.getConnection();
 		
-		nolist = new NoticeDao().selectNoticeList(con);
+		nolist = new NoticeDao().selectNoticeList(conn);
 		
-		JDBCTemplate.close(con);
+		JDBCTemplate.close(conn);
 		return nolist;
 	}
 	
-	//2. 공지사항 화면에 보여줄 것들만 골라서 출력
-//	public ArrayList<Notice> selectNoticeList(int start, int end) {
-//		ArrayList<Notice> nolist = null;
-//		Connection con = JDBCTemplate.getConnection();
-//		
-//		nolist = new NoticeDao().selectNoticeList(con, start, end);
-//		
-//		JDBCTemplate.close(con);
-//		return nolist;
-//	}
-	
+	public ArrayList<Notice> selectNoticeList(int start, int end) {
+		ArrayList<Notice> nolist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		
+		nolist = new NoticeDao().selectNoticeList(conn, start, end);
+		
+		JDBCTemplate.close(conn);
+		return nolist;
+	}
 	
 	public int getNoticeCount() {
 		int result = 0;
@@ -47,13 +45,6 @@ public class NoticeService {
 		JDBCTemplate.close(conn);
 		return result;
 	}
-	
-//	public int writeNotice(String m_id, String bn_title, String bn_content) {
-//		int result = -1;
-//		Connection con = JDBCTemplate.getConnection();
-//		result = new NoticeDao().writeNotice(con, m_id, bn_title, bn_content);
-//		return result;
-//	}
 	
 	public int insertNotice(Notice no) {
 		int result = -1;
@@ -98,6 +89,7 @@ public class NoticeService {
 //		return result;
 //	}
 	
+	//TODO
 	public int deleteNotice(int bn_n) {
 		int result = 0;
 		Connection conn = JDBCTemplate.getConnection();
