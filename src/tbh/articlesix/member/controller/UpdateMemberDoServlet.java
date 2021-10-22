@@ -42,7 +42,7 @@ public class UpdateMemberDoServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("application/json;charset=UTF-8");
 		HttpSession session = request.getSession(false);
-		String m_id = (String) session.getAttribute("member");
+		String m_id = (String) session.getAttribute("memberId");
 		Gson gObject = new GsonBuilder().setPrettyPrinting().create();
 		String gobStr = "";
 		PrintWriter out = response.getWriter();

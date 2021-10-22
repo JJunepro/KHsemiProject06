@@ -56,7 +56,7 @@ public class DeleteMemberDoServlet extends HttpServlet {
 		MemberService mService = new MemberService();
 		HttpSession session = request.getSession(false);
 		String m_deletedate = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		String m_id = (String) session.getAttribute("member");
+		String m_id = (String) session.getAttribute("memberId");
 		String m_pw = request.getParameter("m_pw");
 		System.out.println(m_id);
 		System.out.println(m_pw);
