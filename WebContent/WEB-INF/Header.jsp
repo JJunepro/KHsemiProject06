@@ -5,6 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/header.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -38,6 +41,22 @@
 	</header>
 	<script src="js/header.js"></script>
 	<script>
+	
+	let mId = null;
+		$.ajax({
+			url:"header",
+			method:"post",
+			data: null,
+			success:function(data){
+				mId = data.mId
+				console.log(mId)
+				if(mId !== null) {
+					$(".loginButtonBox").hide();
+				}
+			}
+		})
+		
+		
 	</script>
 </body>
 </html>

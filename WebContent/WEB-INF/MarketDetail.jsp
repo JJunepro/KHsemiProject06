@@ -11,6 +11,8 @@
 	ArrayList<Market> searchList = (ArrayList<Market>) request.getAttribute("searchList");
 	ArrayList<Market> detailListOne = (ArrayList<Market>) request.getAttribute("detailListOne");
 	ArrayList<Market> chatMarket = (ArrayList<Market>) request.getAttribute("chatMarket");
+	String memberId = (String)request.getAttribute("memberId");
+	int bmN = 0;
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,11 +37,6 @@
 							for (Market mk : mkList) {
 					%>
 					<li><img src="<%=mk.getImgScr()%>" alt="test" /></li>
-					<!--<li><img src="./img/fox.jpg" alt="" /></li>
-						<li><img src="./img/lightning.jpg" alt="" /></li>
-						<li><img src="./img/moon.jpg" alt="" /></li>
-						<li><img src="./img/nature.jpg" alt="" /></li>
-						<li><img src="./img/space.jpg" alt="" /></li>-->
 					<%
 						}
 						}
@@ -87,13 +84,10 @@
 				</div>
 
 				<p><%=rp.getcContent()%></p>
-				<p class="reply2">
-					&crarr;작성자:
-					<%=rp.getcContent()%></p>
 
 
 				<form class="replyInputBox" action="chatMarket" method="post">
-					<input id="comment" type="text" placeholder="댓글을 적어주세요" />
+					<input id="comment2" type="text" placeholder="댓글을 적어주세요" />
 					<button onclick="clickMoveComment()">확인</button>
 				</form>
 			</div>
@@ -103,10 +97,10 @@
 			}
 					}
 		%>
-		<form class="InputBox" action="chatMarket" method="post">
+		<div class="InputBox">
 			<input name="cContent" id="comment" type="text" placeholder="댓글을 적어주세요" />
-			<input type="submit" value="확인" />
-		</form>
+			<button class="replyBtn">확인</button>
+		</div>
 		<div class="btnBox">
 			<a href="marketModify?no=<%=mk.getBmN()%>"><button>수정</button></a> <a
 				href="marketDelete?no=<%=mk.getBmN()%>"><button>삭제</button></a>
@@ -128,7 +122,7 @@
 					<a class="front"
 						href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
 							<img src="<%=mk.getImgScr()%>" alt="img" />
-					</a> 
+					</a>
 					<a class="back"
 						href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
 								<img src="<%=mk.getImgScr()%>" alt="img" />
@@ -167,6 +161,51 @@
 		$(".rewrite").click(function() {
 			$(".replyInputBox").slideToggle();
 		})
+		
+		$(".replyBtn").click(reply);
+		<%
+		if (detailListOne != null) {
+			for (Market mk : detailListOne) {
+				bmN = mk.getBmN();
+	%>
+		
+		
+		function reply(){
+			
+			let bre_level = 1;
+			bre_level++;
+			const bmN = <%=bmN%>
+			const memberId ="<%=memberId%>"
+			const cContent = $("#comment").val();
+			const bref = 1;
+			const breStep = 1;
+			console.log(cContent);
+			
+			if(memberId==null){
+				alert("로그인을 한 후 이용해주세요")
+			}
+			if(cContent==null){
+				alert("댓글을 입력해주세요")
+			}
+			
+			$.ajax({
+				url:'chatMarket',
+				method:'post',
+				data:{
+					bmN : bmN,
+					memberId : memberId,
+					cContent : cContent,
+					bref : bref,
+					breStep : breStep,
+					bre_level : bre_level,
+				},
+				success:function(resp){}
+			})
+		
+		<%
+		}}%>
+		}
+		
 	</script>
 </body>
 </html>

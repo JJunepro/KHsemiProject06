@@ -54,6 +54,15 @@ public class Market {
 		this.cContent = cContent;
 	}
 	
+	public Market(int bmN,String cContent, String mId, int bref, int breStep, int breLevel) {
+		this.bmN=bmN;
+		this.cContent=cContent;
+		this.mId=mId;
+		this.bref=bref;
+		this.breStep=breStep;
+		this.breLevel=breLevel;
+	}
+	
 
 	@Override
 	public String toString() {

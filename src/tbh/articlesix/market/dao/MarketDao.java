@@ -524,8 +524,8 @@ public class MarketDao {
 			pstmt = conn.prepareStatement(sqlAdd);
 			pstmt.setInt(1, mk.getBmN());
 			pstmt.setString(2, mk.getmId());
-			pstmt.setInt(3, mk.getBref());
-			pstmt.setInt(4, mk.getBreLevel());
+			pstmt.setString(3, mk.getcContent());
+			pstmt.setInt(4, mk.getBref());
 			pstmt.setInt(5, mk.getBreStep());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
