@@ -1,9 +1,9 @@
-<%@page import="tbh.articlesix.board.notice.vo.Notice"%>
+<%@page import="tbh.articlesix.board.question.vo.Question"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-ArrayList<Notice> nolist = (ArrayList<Notice>)request.getAttribute("noticenolist");
+ArrayList<Question> volist = (ArrayList<Question>)request.getAttribute("noticenolist");
 int startPage = (int) request.getAttribute("startPage");
 int endPage = (int) request.getAttribute("endPage");
 int pageCount = (int) request.getAttribute("pageCount");
@@ -17,7 +17,7 @@ int pageCount = (int) request.getAttribute("pageCount");
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>TBH 공지사항</title>
+<title>TBH QnA</title>
 <style>
 
 * {
@@ -227,7 +227,7 @@ section.notice {
 	border : 1px solid #cceed4;
 }
 
-.p1 {
+.p2 {
 	background : #ccc;
 }
 </style>
@@ -243,13 +243,13 @@ section.notice {
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
-				<h3>공지사항</h3>
+				<h3>Q n A</h3>
 			</div>
 		</div>
 		<div id="board-search">
 			<div class="container">
 				<div class="search-window">
-					<form action="noticelist.do" method="get">
+					<form action="questionlist.do" method="get">
 						<div class="search-wrap">
 							<select name="type" class="select">
 								<option value="제목">제목</option>
@@ -274,41 +274,38 @@ section.notice {
 							<th scope="col" class="th-title">제목</th>
 							<th scope="col"  class="th-writer">작성자</th>
 							<th scope="col" class="th-date">등록일</th>
-							<th scope="col" class="th-view">조회수</th>
 						</tr>
 				</thead>
-					<%
-                		if (nolist != null) {
-                			for (Notice no : nolist) {
-                	%>
+				<%
+               		if (volist != null) {
+               			for (Question vo : volist) {
+               	%>
 				<tbody>
 					<tr>
-						<td><a href="noticecontent?no=<%=no.getBn_n()%>"><%=no.getBn_n()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_n()%></a>
 						</td>
-						<td><a href="noticecontent?no=<%=no.getBn_n()%>"><%=no.getBn_title()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_title()%></a>
 						</td>
-						<td><a href="noticecontent?no=<%=no.getBn_n()%>"><%=no.getM_id()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getM_id()%></a>
 						</td>
-						<td><a href="noticecontent?no=<%=no.getBn_n()%>"><%=no.getBn_timestamp()%></a>
-						</td>
-						<td><a href="noticecontent?no=<%=no.getBn_n()%>"><%=no.getBn_view()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_timestamp()%></a>
 						</td>
 					</tr>
-					<%
-               				}
-               			}
-                    %>
+				<%
+             			}
+             		}
+                %>
 				</tbody>
 				</table>
 				<%
 					if (startPage > 1){
 				%>
-				<a href="./noticelist?pagenum=<%=startPage%>">이전</a>
+				<a href="./questionlist?pagenum=<%=startPage%>">이전</a>
 				<%
 					}
-						for (int i = startPage; i <= endPage; i++) {
+					for (int i = startPage; i <= endPage; i++) {
 				%>
-				<a href="./noticelist?pagenum=<%=i%>"><%=i%></a>
+				<a href="./questionlist?pagenum=<%=i%>"><%=i%></a>
 				<%
 					if (i != endPage) {
 				%>
@@ -317,13 +314,14 @@ section.notice {
 				}
 				if (endPage < pageCount) {
 				%>
-					<a href="./noticelist?pagenum=<%=endPage%>">다음</a>
+					<a href="./questionlist?pagenum=<%=endPage%>">다음</a>
+					다음
 				<%
 				}
 				%>
 				<br>
 				<button class="btn towrite">
-				<a href='noticewrite.do'>글쓰기</a>
+				<a href='questionwrite.do'>글쓰기</a>
 				</button>
 			</div>
 		</div>

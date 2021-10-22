@@ -1,7 +1,7 @@
-<%@page import="tbh.articlesix.board.notice.vo.Notice"%>
+<%@page import="tbh.articlesix.board.question.vo.Question"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Notice bnn = (Notice)request.getAttribute("noticeno"); %>
+<% Question bqn = (Question)request.getAttribute("questionno"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>공지사항 게시글 보기</title>
+<title>QnA 게시글 보기</title>
 <style>
 * {
     padding: 0;
@@ -37,6 +37,7 @@
   	padding : 1em;
   	border-top : thick double #A7ABC2;
   	border-bottom : 0.5em solid #9DB6C2;
+  	height : 560px;
 	}
  .btncol {
  	position : relative;
@@ -103,29 +104,28 @@
 	<div class="article">
         <div class="articleTitle">
         	<form method="get" action="" id="modify" name="form">
-        	<input type="hidden" name="no" value="<%=bnn.getBn_n() %>">
-        		<h1><%= bnn.getBn_title()%></h1>
+        	<input type="hidden" name="no" value="<%=bqn.getBq_n() %>">
+        		<h1><%= bqn.getBq_title()%></h1>
 				<pre>
 				
-<span>작성자 : <%= bnn.getM_id()%></span>
-<span>조회수 : <%= bnn.getBn_view()%></span>
-<span>등록일 : <%= bnn.getBn_timestamp()%></span>
+<span>작성자 : <%= bqn.getM_id()%></span>
+<span>등록일 : <%= bqn.getBq_timestamp()%></span>
 				</pre>
         </div>
         <div class="articleContent">
-            	<%= bnn.getBn_content()%>
+            	<%= bqn.getBq_content()%>
         </div>
           	</form>
         
         <!-- TODO : 수정 필요함 -->
         <div class="btncol">
 	        <button id="modifybtn" class="btn btn-dark">
-	        	<a href="noticemodify?no=<%=bnn.getBn_n()%>">수정</a>
+	        	<a href="questionmodify?no=<%=bqn.getBq_n()%>">수정</a>
 	        </button>
 
 	        
 	        <button id="deletebtn" class="btn btn-dark">
-	        	<a href="noticedelete?no=<%=bnn.getBn_n()%>">삭제</a>
+	        	<a href="questiondelete?no=<%=bqn.getBq_n()%>">삭제</a>
 	        </button>
 	        
 	        <button onclick="location.href='noticelist'" class="btn btn-dark">목록</button> 

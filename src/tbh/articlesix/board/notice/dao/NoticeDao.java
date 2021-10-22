@@ -13,7 +13,6 @@ import tbh.articlesix.common.JDBCTemplate;
 public class NoticeDao {
 	
 	public NoticeDao() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	//공지사항 테이블 출력
@@ -148,7 +147,7 @@ public class NoticeDao {
 		
 		return result;
 	}
-	
+
 	//공지사항 테이블 출력
 	public ArrayList<Notice> selectNoticeList(Connection conn) {
 		ArrayList<Notice> nolist = null;
@@ -179,6 +178,44 @@ public class NoticeDao {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return nolist;
+	}
+	
+	//공지사항 테이블 출력2 row number 추가 
+	public ArrayList<Notice> selectNoticeList(Connection conn, int start, int end) {
+		ArrayList<Notice> nolist = null;
+
+		String sql = "select * from "
+				+ " (select rownum r, a1.* from "
+				+ " (select * from board_notice order by bn_n desc) a1) a2 "
+				+ " where r between ? and ? order by bn_n desc";
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			rs = pstmt.executeQuery();
+			nolist = new ArrayList<Notice>();
+			if (rs.next()) {
+				do {
+					Notice no = new Notice();
+					no.setBn_n(rs.getInt("bn_n"));
+					no.setM_id(rs.getString("m_id"));
+					no.setBn_title(rs.getString("bn_title"));
+					no.setBn_content(rs.getString("bn_content"));
+					no.setBn_timestamp(rs.getDate("bn_timestamp"));
+					no.setBn_view(rs.getInt("bn_view"));
+					nolist.add(no);
+				} while (rs.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
 		return nolist;
@@ -263,30 +300,6 @@ public class NoticeDao {
 		}
 			return result;
 }
-
-//	public int writeNotice(Connection con, String m_id, String bn_title,String bn_content) {
-//		int result = -1;
-//		String sql = "INSERT INTO BOARD_NOTICE VALUES(?, ?, ?, ?, ?, ?)";
-//		
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		try {
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, getNoticeCount(con));
-//			pstmt.setString(2, m_id);
-//			pstmt.setString(3, bn_title);
-//			pstmt.setString(4, bn_content);
-//			pstmt.setString(5, getDate(con));
-//			pstmt.setInt(6, 1);
-//			rset = pstmt.executeQuery();
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		} finally {
-//			JDBCTemplate.close(rset);
-//			JDBCTemplate.close(pstmt);
-//		}
-//		return result;
-//	}
 	
 //	 게시글 보기 
 	public Notice getNotice(Connection conn, int bn_n) {
@@ -385,6 +398,4 @@ public class NoticeDao {
 			}
 			return result;
 		}
-
-	
 }

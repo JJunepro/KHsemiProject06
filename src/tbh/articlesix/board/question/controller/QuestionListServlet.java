@@ -1,4 +1,4 @@
-package tbh.articlesix.board.notice.controller;
+package tbh.articlesix.board.question.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,45 +10,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tbh.articlesix.board.notice.service.NoticeService;
-import tbh.articlesix.board.notice.vo.Notice;
+import tbh.articlesix.board.question.service.QuestionService;
+import tbh.articlesix.board.question.vo.Question;
 
 /**
- * Servlet implementation class NoticeListServlet
+ * Servlet implementation class QuestionListServlet
  */
-@WebServlet({"/noticelist", "/notice"})
-public class NoticeListServlet extends HttpServlet {
+@WebServlet({"/questionlist", "/question"})
+public class QuestionListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListServlet() {
+    public QuestionListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-//  1. 공지사항 테이블 출력 ==> 완료 테이블 출력 잘됨
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		response.setCharacterEncoding("UTF-8");
-//		response.setContentType("text/html; charset=UTF-8");
-//		
-//		PrintWriter out = response.getWriter();
-//		
-//		ArrayList<Notice> nolist = new NoticeService().selectNoticeList();
-//		if (nolist.size() > 0) {
-//			for (Notice no : nolist) {
-//				out.println("<p>"+no.toString()+"</p>");
-//			}
-//		}
-//	}
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		
@@ -72,7 +55,7 @@ public class NoticeListServlet extends HttpServlet {
 //			currentPage = Integer.valueOf( request.getParameter("page") );
 		}
 		// 총 글수
-		bCount = new NoticeService().getNoticeCount();
+		bCount = new QuestionService().getQuestionCount();
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
@@ -89,14 +72,14 @@ public class NoticeListServlet extends HttpServlet {
 		endPage = startPage + PAGE_BLOCK -1; 
 		if(endPage > pageCount) endPage=pageCount;
 		
-		ArrayList<Notice> nolist = new NoticeService().selectNoticeList(startRnum, endRnum);
+		ArrayList<Question> nolist = new QuestionService().selectQuestionList(startRnum, endRnum);
 		
 		request.setAttribute("noticenolist", nolist);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
-		request.getRequestDispatcher("/WEB-INF/noticelist.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/QuestionList.jsp").forward(request, response);
 	}
 
 	/**
