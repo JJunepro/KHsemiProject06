@@ -9,6 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSeparatorUI;
 
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
@@ -40,10 +42,19 @@ public class DetailMarketServlet extends HttpServlet {
 		int startRnum=1;
 		int endRnum=50;
 
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		String nickName = (String)session.getAttribute("nickName");
+		
+		if(memberId==null) {
+			memberId="null";
+		}
+		
 		String title = request.getParameter("title"); // 파라미터 받아와야 함
 		ArrayList<Market> mkList = new MarketService().DetailMarket(bmN);
 		ArrayList<Market> searchList = new MarketService().SearchMarket(title,startRnum,endRnum);
 		ArrayList<Market> detailListOne = new MarketService().DetailListOne(bmN);
+		ArrayList<Market> chatMarket = new MarketService().ChatMarket(bmN);
 		int viewCount = new MarketService().ViewCount(bmN);
 		viewCount++;
 		int view = new MarketService().ViewAddCount(viewCount, bmN);
@@ -51,6 +62,8 @@ public class DetailMarketServlet extends HttpServlet {
 		request.setAttribute("mkList", mkList);
 		request.setAttribute("detailListOne", detailListOne);
 		request.setAttribute("searchList", searchList);
+		request.setAttribute("chatMarket", chatMarket);
+		request.setAttribute("memberId", memberId);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketDetail.jsp");
     	requestDispatcher.forward(request, response);
 	}

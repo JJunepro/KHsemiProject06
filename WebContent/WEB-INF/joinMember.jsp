@@ -13,7 +13,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-       <%@ include file="./Header.jsp" %>
+    <%@ include file="./Header.jsp" %>
+       
        <section>
         <form action="join.do" method="POST" id="joinfrm">
             <div>

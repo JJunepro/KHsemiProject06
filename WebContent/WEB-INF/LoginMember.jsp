@@ -38,7 +38,6 @@
     	    </div>
     	</form>
     </section>
-    <%@ include file="./Footer.jsp" %>
 </body>
 <script>
     window.addEventListener("load", pageLoadedHandler);

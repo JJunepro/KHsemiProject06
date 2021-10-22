@@ -17,7 +17,7 @@ int pageCount = (int) request.getAttribute("pageCount");
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>T.B.H 공지사항</title>
+<title>TBH 공지사항</title>
 <style>
 
 * {
@@ -34,8 +34,21 @@ int pageCount = (int) request.getAttribute("pageCount");
   clear: both;
 }
 .container {
-  width: 1100px;
+  width: 80%;
   margin: 0 auto;
+}
+
+.nav {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.nav ul li{
+	float : left;
+	border : 1px solid #ccc;
+	text-align : center;
+	padding : 0.5em;
+	width : 5.5em;
 }
 
 .blind {
@@ -53,11 +66,11 @@ table {
 }
 
 section.notice {
-  padding: 80px 0;
+  padding: 60px 0;
 }
 
 .page-title {
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 
 .page-title h3 {
@@ -81,7 +94,7 @@ section.notice {
 }
 #board-search .search-window .search-wrap input {
   height: 40px;
-  width: 100%;
+  width: 59%;
   font-size: 14px;
   padding: 7px 14px;
   border: 1px solid #ccc;
@@ -99,6 +112,13 @@ section.notice {
   width: 108px;
   padding: 0;
   font-size: 16px;
+}
+
+
+.select { 
+  height: 40px;
+  width : 20%;
+  text-align : center;
 }
 
 .board-table {
@@ -205,13 +225,21 @@ section.notice {
 	background-color : #eeffdd;
 	color : #fff;
 	border : 1px solid #cceed4;
-	
 }
 
+.p1 {
+	background : #ccc;
+}
 </style>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
+	<div class="nav">
+		<ul>
+			<li class="p1"><a href='noticelist'>공지사항</a></li>
+			<li class="p2"><a href='questionlist'>QnA</a></li>
+		</ul>
+	</div>
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
@@ -221,10 +249,15 @@ section.notice {
 		<div id="board-search">
 			<div class="container">
 				<div class="search-window">
-					<form action="">
+					<form action="noticelist.do" method="get">
 						<div class="search-wrap">
+							<select name="type" class="select">
+								<option value="제목">제목</option>
+								<option value="내용">내용</option>
+								<option value="제목+내용">제목+내용</option>
+							</select>
 							<label for="search" class="blind">공지사항 내용 검색</label>
-							<input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+							<input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="">
 							<%//TODO %>
 							<button type="submit" class="btn btn-dark">검색</button>
 						</div>
@@ -241,6 +274,7 @@ section.notice {
 							<th scope="col" class="th-title">제목</th>
 							<th scope="col"  class="th-writer">작성자</th>
 							<th scope="col" class="th-date">등록일</th>
+							<th scope="col" class="th-view">조회수</th>
 						</tr>
 				</thead>
 					<%
@@ -257,37 +291,37 @@ section.notice {
 						</td>
 						<td><a href="noticecontent?no=<%=no.getBn_n()%>"><%=no.getBn_timestamp()%></a>
 						</td>
+						<td><a href="noticecontent?no=<%=no.getBn_n()%>"><%=no.getBn_view()%></a>
+						</td>
 					</tr>
 					<%
+               				}
                			}
-               		}
                     %>
 				</tbody>
 				</table>
 				<%
-		if (startPage > 1){
-	%>
-		이전
-	<%
-		}
-		for (int i = startPage; i <= endPage; i++) {
-	%>
-		<button>
-		<a href="./noticelist?pagenum=<%=i%>"><%=i%></a>
-		</button>
-	<%
-		if (i != endPage) {
-	%>
-	<%
-		}
-	}
-	if (endPage < pageCount) {
-	%>
-		다음
-	<%
-	}
-	%>
-	<br>
+					if (startPage > 1){
+				%>
+				<a href="./noticelist?pagenum=<%=startPage%>">이전</a>
+				<%
+					}
+						for (int i = startPage; i <= endPage; i++) {
+				%>
+				<a href="./noticelist?pagenum=<%=i%>"><%=i%></a>
+				<%
+					if (i != endPage) {
+				%>
+				<%
+					}
+				}
+				if (endPage < pageCount) {
+				%>
+					<a href="./noticelist?pagenum=<%=endPage%>">다음</a>
+				<%
+				}
+				%>
+				<br>
 				<button class="btn towrite">
 				<a href='noticewrite.do'>글쓰기</a>
 				</button>

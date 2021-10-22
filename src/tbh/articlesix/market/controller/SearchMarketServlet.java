@@ -70,6 +70,9 @@ public class SearchMarketServlet extends HttpServlet {
 		ArrayList<Market> searchMkList = new MarketService().SearchMarket(title,startRnum,endRnum);
 
 		request.setAttribute("searchMkList", searchMkList);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("pageCount", pageCount);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketSearch.jsp");
 		requestDispatcher.forward(request, response);
 	}

@@ -38,22 +38,8 @@ public class DeleteNoticeServlet extends HttpServlet {
 		int bn_n = Integer.parseInt(no);
 		
 		int result = new NoticeService().deleteNotice(bn_n);
-		
-		if(result > 0) {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('글 수정하기에 실패했습니다')");
-			script.println("history.back()");
-			script.println("</script>");
-			
-		} else {
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('글 수정하기에 성공했습니다')");
-			script.println("location.href='WEB-INF/noticelist.jsp'");
-			script.println("</script>");
-			response.sendRedirect("noticelist");
-		}
+		response.sendRedirect("noticelist");
+
 		
 //		request.getRequestDispatcher("/WEB-INF/noticelist.jsp").forward(request, response);
 		

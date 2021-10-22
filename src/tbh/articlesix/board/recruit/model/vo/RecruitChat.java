@@ -18,11 +18,10 @@ public class RecruitChat {
 
 	}
 
-	public RecruitChat(int b_n, String m_id, Date chat_time, String chat_message) {
+	public RecruitChat(int b_n, String m_id, String chat_message) {
 		super();
 		this.b_n = b_n;
 		this.m_id = m_id;
-		this.chat_time = chat_time;
 		this.chat_message = chat_message;
 	}
 

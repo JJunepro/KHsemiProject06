@@ -18,11 +18,10 @@ public class RecruitChatService {
 		JDBCTemplate.close(conn);
 		return ch;
 	}
-	public ArrayList<RecruitChat> selectRecruitChatList() {
+	public ArrayList<RecruitChat> RecruitChatList() {
 		ArrayList<RecruitChat> chlist = null;
 		Connection conn = JDBCTemplate.getConnection();
-		chlist = new RecruitChatDao().selectRecruitChatList(conn);
-
+		chlist = new RecruitChatDao().RecruitChatList(conn);
 		JDBCTemplate.close(conn);
 		return chlist;
 	}

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
@@ -47,6 +48,11 @@ public class MainMarketServlet extends HttpServlet {
 		int startRnum = 1;   // 화면에 글
 		int endRnum = 1;  // 화면에 글
 		
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		String nickName = (String)session.getAttribute("nickName");
+		
+		
 		String pageNum = request.getParameter("pagenum");
 		if(pageNum != null) {   // 눌려진 페이지가 있음.
 			currentPage = Integer.parseInt(pageNum); // 눌려진 페이지
@@ -80,7 +86,7 @@ public class MainMarketServlet extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
-		
+		request.setAttribute("memberId", memberId);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketMain.jsp");
 		requestDispatcher.forward(request, response);
 		

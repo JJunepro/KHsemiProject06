@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/marketMain.css" />
+<link rel="stylesheet" href="css/header.css" />
 <%@page import="tbh.articlesix.market.service.MarketService"%>
 <%@page import="tbh.articlesix.market.vo.Market"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,6 +7,9 @@
 	pageEncoding="UTF-8"%>
 <%
 	ArrayList<Market> searchMkList = (ArrayList<Market>) request.getAttribute("searchMkList");
+int startPage = Integer.parseInt(request.getAttribute("startPage").toString());
+int endPage = Integer.parseInt(request.getAttribute("endPage").toString());
+int pageCount = Integer.parseInt(request.getAttribute("pageCount").toString());
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -16,7 +21,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/marketMain.css" />
+
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
@@ -52,6 +57,30 @@
 			}
 			}
 		%>
+		<div class="pageBox">
+			<%
+				int currentPage = 1;
+				if (startPage > 1)
+			%><a href="marketMain">이전</a>
+			<%
+				for (int i = startPage; i <= endPage; i++) {
+			%>
+			<a href="marketMain?pagenum=<%=i%>"><%=i%></a>
+			<%
+				currentPage = i;
+					if (i != endPage) {
+			%>
+			<%
+				}
+				}
+
+				if (endPage < pageCount)
+			%><a href="marketMain">다음</a>
+			<%
+				
+			%>
+		</div>
+		
 	</section>
 	<%@ include file="./Footer.jsp"%>
 

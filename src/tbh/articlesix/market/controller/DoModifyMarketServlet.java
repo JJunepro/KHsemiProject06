@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
@@ -45,6 +46,10 @@ public class DoModifyMarketServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		String no = request.getParameter("no");
 		
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		String nickName = (String)session.getAttribute("nickName");
+		
 		String title = request.getParameter("title");
 		String img = request.getParameter("img");
 		String content = request.getParameter("content");
@@ -53,7 +58,7 @@ public class DoModifyMarketServlet extends HttpServlet {
 		int priceInt = Integer.parseInt(price);
 		int bmN = Integer.parseInt(no);
 		
-		Market mk = new Market(bmN, title, img, priceInt, content);
+		Market mk = new Market(memberId,bmN, title, img, priceInt, content);
 		int result = new MarketService().UpdateMarket(mk);
 		
 		response.sendRedirect("marketMain");

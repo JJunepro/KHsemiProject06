@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/marketAdd.css" />
+<link rel="stylesheet" href="css/header.css" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -11,7 +13,7 @@
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
 <title>Document</title>
-<link rel="stylesheet" href="css/marketAdd.css" />
+
 </head>
 <body>
 	<%@ include file="./Header.jsp" %>
@@ -50,5 +52,9 @@
 		</div>
 	</section>
 	<%@ include file="./Footer.jsp"%>
+	
+	<script>
+		
+	</script>
 </body>
 </html>

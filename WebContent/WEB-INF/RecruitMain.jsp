@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./css/reservationMain.css" />
+    <link rel="stylesheet" href="css/reservationMain.css" />
    
     <script>
       const all = (ele) => document.querySelectorAll(ele);
@@ -102,6 +102,6 @@
       </div>
     </section>
       <%@ include file="./Footer.jsp" %>
-    <script src="./js/header.js"></script>
+    <script src="js/header.js"></script>
   </body>
 </html>

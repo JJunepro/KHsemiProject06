@@ -10,6 +10,9 @@ import tbh.articlesix.common.JDBCTemplate;
 
 public class RecruitChatDao {
 	// 채팅 가져오기
+	public RecruitChatDao() {
+	}
+	
 	public RecruitChat getRecruitchat(Connection conn, int b_n) {
 		RecruitChat ch = null;
 		String sql = "select b_n, m_id, chat_time, chat_message" + " from chat where b_n";
@@ -36,7 +39,7 @@ public class RecruitChatDao {
 	}
 
 	// 채팅 조회
-	public ArrayList<RecruitChat> selectRecruitChatList(Connection conn) {
+	public ArrayList<RecruitChat> RecruitChatList(Connection conn) {
 		ArrayList<RecruitChat> chlist = null;
 
 		String sql = "select * from chat";
@@ -64,7 +67,7 @@ public class RecruitChatDao {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		System.out.println("라턴" + chlist);
+		System.out.println("리턴" + chlist);
 		return chlist;
 	}
 

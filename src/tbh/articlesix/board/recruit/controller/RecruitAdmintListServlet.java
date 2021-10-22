@@ -16,7 +16,7 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet("/RecruitAdminList.do")
+@WebServlet({"/RecruitAdminList", "/RecruitAdmin"})
 public class RecruitAdmintListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -66,12 +66,12 @@ public class RecruitAdmintListServlet extends HttpServlet {
 		endPage = startPage + PAGE_BLOCK - 1;
 		if (endPage > pageCount)
 			endPage = pageCount;
-	
+		
 	// DB에서 값 읽어오기
-		ArrayList<Recruit> rclist = new RecruitService().selectRecruitList(startRnum,endRnum);
-			
+		ArrayList<Recruit> rclist = new RecruitService().RecruitList(startRnum,endRnum);
+		
 			// Data 전달을 위해서 request에 set
-			request.setAttribute("boardvolist", rclist);
+			request.setAttribute("rclist", rclist);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("pageCount", pageCount);

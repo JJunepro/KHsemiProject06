@@ -23,7 +23,11 @@ public class Market {
 	String imgScr;
 	String cContent;
 	Date cTimeStamp;
+	int bref;
+	int breLevel;
+	int breStep;
 
+	
 	public Market() {
 
 	}
@@ -40,8 +44,9 @@ public class Market {
 		this.imgScr = imgScr;
 	}
 
-	public Market(int bmN, String bmTitle, String imgScr, int price, String cContent) {
+	public Market(String mId, int bmN, String bmTitle, String imgScr, int price, String cContent) {
 		super();
+		this.mId = mId;
 		this.bmN = bmN;
 		this.bmTitle = bmTitle;
 		this.imgScr = imgScr;
@@ -49,6 +54,14 @@ public class Market {
 		this.cContent = cContent;
 	}
 	
+	public Market(int bmN,String cContent, String mId, int bref, int breStep, int breLevel) {
+		this.bmN=bmN;
+		this.cContent=cContent;
+		this.mId=mId;
+		this.bref=bref;
+		this.breStep=breStep;
+		this.breLevel=breLevel;
+	}
 	
 
 	@Override
@@ -56,7 +69,8 @@ public class Market {
 		return "Market [bmN=" + bmN + ", mId=" + mId + ", caN=" + caN + ", imgN=" + imgN + ", imgP=" + imgP + ", cN="
 				+ cN + ", bmTitle=" + bmTitle + ", bmContent=" + bmContent + ", bmTimeStamp=" + bmTimeStamp
 				+ ", bmView=" + bmView + ", price=" + price + ", imgScr=" + imgScr + ", cContent=" + cContent
-				+ ", cTimeStamp=" + cTimeStamp + "]";
+				+ ", cTimeStamp=" + cTimeStamp + ", bref=" + bref + ", breLevel=" + breLevel + ", breStep=" + breStep
+				+ "]";
 	}
 
 	public int getImgP() {
@@ -68,6 +82,30 @@ public class Market {
 	}
 
 	
+
+	public int getBref() {
+		return bref;
+	}
+
+	public void setBref(int bref) {
+		this.bref = bref;
+	}
+
+	public int getBreLevel() {
+		return breLevel;
+	}
+
+	public void setBreLevel(int breLevel) {
+		this.breLevel = breLevel;
+	}
+
+	public int getBreStep() {
+		return breStep;
+	}
+
+	public void setBreStep(int breStep) {
+		this.breStep = breStep;
+	}
 
 	public int getBmN() {
 		return bmN;

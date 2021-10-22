@@ -60,6 +60,7 @@ public class LoginMemberDoServlet extends HttpServlet {
 		
 		Member m = mservice.loginMember(m_id, m_pw);
 		if(m != null) {
+		
 			Map<String, Object> map2 = new HashMap<String, Object>();
 			if(m.getM_deleteDate() != null){
 				System.out.println(m.getM_deleteDate());
@@ -71,7 +72,8 @@ public class LoginMemberDoServlet extends HttpServlet {
 			} else {
 				System.out.println("로그인 성공");
 				HttpSession seeSession = request.getSession();
-				seeSession.setAttribute("member", m.getM_id());
+				seeSession.setAttribute("memberId", m.getM_id());
+				seeSession.setAttribute("nickName", m.getM_nick());
 				
 				map2.put("result", "ok");
 				map2.put("name", m.getM_name());

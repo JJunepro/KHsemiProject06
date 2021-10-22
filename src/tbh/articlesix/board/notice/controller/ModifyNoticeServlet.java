@@ -35,8 +35,7 @@ public class ModifyNoticeServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-//		Notice no = new NoticeService().updateNotice(bn_title, bn_content, bn_n)
-		
+
 		String no = request.getParameter("no");
 		
 		int bn_n = Integer.parseInt(no);
@@ -44,7 +43,6 @@ public class ModifyNoticeServlet extends HttpServlet {
 		
 		request.setAttribute("noticeno", bnn);
 		request.getRequestDispatcher("/WEB-INF/noticemodify.jsp").forward(request, response);
-		//TODO 진행중
 	}
 
 	/**
@@ -52,39 +50,39 @@ public class ModifyNoticeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-				response.setCharacterEncoding("UTF-8");
-				response.setContentType("text/html; charset=UTF-8");
-				request.setCharacterEncoding("UTF-8");
-				PrintWriter out = response.getWriter();
-				
-				String no = request.getParameter("no");
-				int bn_n = Integer.parseInt(no);
-				
-				String bn_title = request.getParameter("bn_title");
-				String m_id = request.getParameter("m_id");
-				String bn_content = request.getParameter("bn_content");
-				
-				out.println("입력된 title: "+ bn_title);
-				out.println("<br>입력된 content: "+ bn_content);
-				
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		String no = request.getParameter("no");
+		int bn_n = Integer.parseInt(no);
+		
+		String bn_title = request.getParameter("bn_title");
+		String m_id = request.getParameter("m_id");
+		String bn_content = request.getParameter("bn_content");
+		
+		out.println("입력된 title: "+ bn_title);
+		out.println("<br>입력된 content: "+ bn_content);
+		
 //				String m_id = (String)request.getSession().getAttribute("memberLoginInfo");
-				if (m_id == null) {
-					m_id = "Manager";
-				}
-				
-				Notice bnn = new Notice(bn_title, bn_content, bn_n);
-				
-				int result = new NoticeService().updateNotice(bn_title, bn_content, bn_n);
-				
-				if(result > 0) {
-					request.setAttribute("noticeno", bnn);
+		if (m_id == null) {
+			m_id = "Manager";
+		}
+		
+		Notice bnn = new Notice(bn_title, bn_content, bn_n);
+		
+		int result = new NoticeService().updateNotice(bn_title, bn_content, bn_n);
+		
+		if(result > 0) {
+			request.setAttribute("noticeno", bnn);
 //					request.getRequestDispatcher("WEB-INF/BranchModiPage.jsp").forward(request, response);
-					response.sendRedirect("noticelist");
-				} else {
-					System.out.println("오류입니다.");
+			response.sendRedirect("noticelist");
+		} else {
+			System.out.println("오류입니다.");
 //					request.setAttribute("msg", "수정되지 않았습니다");
 //					request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
-				}
+		}
 	}
 
 }

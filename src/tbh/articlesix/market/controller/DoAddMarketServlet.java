@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
@@ -54,6 +55,10 @@ public class DoAddMarketServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		String nickName = (String)session.getAttribute("nickName");
+		
 		int countList = new MarketService().CountList();
 		countList++;
 		int countImg = new MarketService().CountImg();
@@ -90,13 +95,8 @@ public class DoAddMarketServlet extends HttpServlet {
 					String content = multi.getParameter("content");
 					String price = multi.getParameter("price");
 					
-					System.out.println(title);
-					System.out.println(imgPath);
-					System.out.println(content);
-					System.out.println(price);
-					
 					int priceInt = Integer.parseInt(price);
-					Market mk = new Market(countList, title, imgPath, priceInt, content);
+					Market mk = new Market(memberId,countList, title, imgPath, priceInt, content);
 					int result = new MarketService().AddMarket(mk);
 					int imgResult = new MarketService().AddImg(mk,countImg);
 					if (result == 0) {

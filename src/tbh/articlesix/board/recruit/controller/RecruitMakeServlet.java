@@ -21,7 +21,7 @@ public class RecruitMakeServlet extends HttpServlet {
 	public RecruitMakeServlet() {
 		super();
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
@@ -29,10 +29,12 @@ public class RecruitMakeServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		int b_n = Integer.parseInt(request.getParameter("b_n"));
+		int b_n = new RecruitService().recruitCountList();
+		// TODO 로그인 세션 가져오기
+
 		String m_id = (String) request.getSession().getAttribute("memberLoginInfo");
-//		if (id == null) {
-//			id = "user01"; // TODO: 임시 user 설정
+//		if(writer == null) {
+//			writer = "user01";   // TODO: 임시 user 설정
 //		}
 		int ca_n = Integer.parseInt(request.getParameter("ca_n"));
 		char b_type = request.getParameter("b_type").charAt(0);
@@ -56,7 +58,7 @@ public class RecruitMakeServlet extends HttpServlet {
 		char b_cloth = request.getParameter("b_cloth").charAt(0);
 		String b_facility = request.getParameter("b_facility");
 		String b_timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		int b_view = Integer.parseInt(request.getParameter("b_view"));
+		int b_view = 0;
 
 		Recruit rc = new Recruit(b_n, m_id, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_attend,
 				b_place, b_fee, b_match, b_gender, b_age, b_equip, b_minpeople, b_progress, b_shower, b_parking,
@@ -65,10 +67,10 @@ public class RecruitMakeServlet extends HttpServlet {
 		int result = new RecruitService().recruitMake(rc);
 
 		if (result == 0) {
-			out.println("<br>게시글 되지 않았습니다.<br>다시 작성해 주세요.");
+			out.println("<br>내용이 입력되지 않았습니다.<br>다시 작성해 주세요.");
 		} else {
-			out.println("<br>게시글 입력되었습니다.");
+			out.println("<br>모집방이 생성되었습니다.");
 		}
-		response.sendRedirect("/WEB-INF/RecruitList.jsp");
+		response.sendRedirect("/WEB-INF/RecruitMake.jsp");
 	}
 }
