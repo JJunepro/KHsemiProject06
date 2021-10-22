@@ -69,42 +69,44 @@
 						날짜:<%=mk.getBmTimeStamp()%></p>
 				</div>
 			</div>
-			<button class="replyShowBtn">쪽지하기</button>
+			<button class="replyShowBtn">댓글보기</button>
 		</div>
 		<%
 			if (chatMarket != null) {
-				for (Market rp : chatMarket) {
+						for (Market rp : chatMarket) {
 		%>
 		<div class="reserveContent">
 			<div class="showReply">
-			
+
 				<div class="writerInfo">
-					<div class="showContent"><%=rp.getmId() %></div>
+					<div class="showContent"><%=rp.getmId()%></div>
 					<div>
-						<div class="writeTime"><%=rp.getcTimeStamp() %></div>
+						<div class="writeTime"><%=rp.getcTimeStamp()%></div>
 						<button class="rewrite">답글 달기</button>
 					</div>
 				</div>
-				
-				<p><%=rp.getcContent() %></p>
-				<p class="reply2">&crarr;작성자: <%=rp.getcContent() %></p>
-				
-				
-				<div class="replyInputBox">
+
+				<p><%=rp.getcContent()%></p>
+				<p class="reply2">
+					&crarr;작성자:
+					<%=rp.getcContent()%></p>
+
+
+				<form class="replyInputBox" action="chatMarket" method="post">
 					<input id="comment" type="text" placeholder="댓글을 적어주세요" />
 					<button onclick="clickMoveComment()">확인</button>
-				</div>
+				</form>
 			</div>
-			
+
 		</div>
 		<%
 			}
-			}
+					}
 		%>
-		<div class="inputBox">
-				<input id="comment" type="text" placeholder="댓글을 적어주세요" />
-				<button onclick="clickMoveComment()">확인</button>
-			</div>
+		<form class="InputBox" action="chatMarket" method="post">
+			<input name="cContent" id="comment" type="text" placeholder="댓글을 적어주세요" />
+			<input type="submit" value="확인" />
+		</form>
 		<div class="btnBox">
 			<a href="marketModify?no=<%=mk.getBmN()%>"><button>수정</button></a> <a
 				href="marketDelete?no=<%=mk.getBmN()%>"><button>삭제</button></a>
@@ -121,17 +123,21 @@
 					<%
 						if (searchList != null) {
 							for (Market mk : searchList) {
-					%><li><a class="front"
+					%><li>
+					<div>
+					<a class="front"
 						href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
 							<img src="<%=mk.getImgScr()%>" alt="img" />
-					</a> <a class="back"
+					</a> 
+					<a class="back"
 						href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
-							<div>
 								<img src="<%=mk.getImgScr()%>" alt="img" />
-							</div>
-							<p><%=mk.getBmTitle()%></p>
-							<p><%=mk.getPrice()%></p>
-					</a></li>
+								<div class="relatedInfo">
+								<p>가격:<%=mk.getPrice() %></p>
+								</div>
+					</a>
+					</div>
+					</li>
 					<%
 						}
 						}

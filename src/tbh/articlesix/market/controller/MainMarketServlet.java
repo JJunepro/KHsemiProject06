@@ -51,7 +51,6 @@ public class MainMarketServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String memberId = (String)session.getAttribute("memberId");
 		String nickName = (String)session.getAttribute("nickName");
-		System.out.println(nickName);
 		
 		
 		String pageNum = request.getParameter("pagenum");
