@@ -1,0 +1,47 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+section{
+    background-color: rgb(245, 246, 248);
+    height: 800px;
+}
+#asd {
+    text-align: center;
+    position: relative;
+    margin-top: 5%;
+}
+#secCon {
+    font-size: 20px;
+}
+#fstCon {
+    font-size: 50px;
+}
+img {
+    width: auto;
+    height: 300px;
+}
+#img {
+    text-align: center;
+}
+#loginBtn {
+    margin-top: 100px;
+    margin-bottom: 25px;
+    width: 100px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #95c2b7;
+    color: rgb(245, 246, 248);
+    border: solid 1px rgb(217, 218, 220);
+}
+#tbh {
+    font-size: 13px;
+}
+#copy{
+    font-size: 10px;
+}
+#hg{
+    font-size: 10px;
+    font-weight: bold;
+}

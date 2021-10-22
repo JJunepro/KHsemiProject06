@@ -11,6 +11,7 @@ import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
+import javax.mail.SendFailedException;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -60,10 +61,7 @@ public class EmailServlet extends HttpServlet {
 		String m_email = request.getParameter("m_email");
 		
 		Map<String, String> map2 = new HashMap<String, String>();
-		map2.put("result", "fail");
-		map2.put("m_email", m_email);
-		gobStr = gObject.toJson(map2);
-		out.print(gobStr);
+	
 		//메일 서버
 				String host = "smtp.naver.com";
 				String user = "";
@@ -121,14 +119,33 @@ public class EmailServlet extends HttpServlet {
 		            
 		            Transport.send(msg);
 		            System.out.println("이메일 전송");
-		            
+		            HttpSession saveKey = request.getSession();
+			        saveKey.setAttribute("auth", authenticationKey);
+			        
+			        map2.put("result", "ok");
+					map2.put("m_email", m_email);
+					gobStr = gObject.toJson(map2);
+					out.print(gobStr);
 		        }catch(AddressException e) {
 		            e.printStackTrace();
+
+					map2.put("result", "fail");
+					map2.put("msg", "이메일 칸을 입력해주세요.");
+					gobStr = gObject.toJson(map2);
+					out.print(gobStr);
 		        }catch(MessagingException e) {
 		        	e.printStackTrace();
+
+					map2.put("result", "fail");
+					map2.put("msg", "이메일 형식이 잘못되었습니다.");
+					gobStr = gObject.toJson(map2);
+					out.print(gobStr);
+		        }catch(Exception e) {
+		        	map2.put("result", "fail");
+		        	map2.put("msg", "관리자에게 문의하세요");
+		        	gobStr = gObject.toJson(map2);
+					out.print(gobStr);
 		        }
-		        HttpSession saveKey = request.getSession();
-		        saveKey.setAttribute("auth", authenticationKey);
 		        out.flush();
 		        out.close();
 	}

@@ -1,10 +1,8 @@
 section{
-	margin-top: 80px;
+	background-color: rgb(245, 246, 248);
+	height: 1150px;
 }
-body {
-    background-color: rgb(245, 246, 248);
-}
-h1{
+#title{
     margin-left: 130px;
     margin-bottom: 40px;
 }
@@ -14,9 +12,10 @@ label{
 }
 form {
     position: relative;
-    top: 50%;
+    top: 8%;
     left: 50%;
     width: 500px;
+    height: 1000px;
     margin-left: -200px;
     margin-top: auto;
 }
@@ -30,14 +29,14 @@ form {
 }
 select{
     border: solid 1px rgb(217, 218, 220);
-    width: 155px;
+    width: 147px;
     height: 30px;
-    margin-right: 15px;
+    margin-right: 20px;
     margin-top: 6px;
 }
 #dateBox{
     border: solid 1px rgb(217, 218, 220);
-    height: 28px;
+    height: 30px;
     width: 183px;
     margin-top: 6px;
 }
@@ -86,17 +85,17 @@ select{
 .emailBtn{
 	border: solid 1px rgb(217, 218, 220);
     height: 26px;
-    width: 38px;
+    width: 50px;
     font-size: 12px;
     text-align: center;
     vertical-align: bottom;
 }
 #joinEmail{
-    width: 307px;
+    width: 294px;
 }
 #autBox{
     margin-top: 6px;
-    width: 307px;
+    width: 294px;
 }
 #kakaoAddressDetail{
     margin-top: 6px;

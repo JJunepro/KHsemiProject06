@@ -1,0 +1,32 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+section{
+    background-color: rgb(245, 246, 248);
+    height: 700px;
+}
+form{
+    position: relative;
+    top: 30%;
+    /* width: 500px; */
+    /* height: 1000px; */
+    text-align: center;
+}
+#mPw{
+    margin-top: 100px;
+    margin-bottom: 30px;
+    width: 250px;
+    height: 40px;
+    border: solid 1px rgb(217, 218, 220);
+    
+}
+#delBtn{
+    width: 200px;
+    height: 40px;
+    font-size: 15px;
+    background-color: #95c2b7;
+    color: rgb(245, 246, 248);
+    border: solid 1px rgb(217, 218, 220);
+}

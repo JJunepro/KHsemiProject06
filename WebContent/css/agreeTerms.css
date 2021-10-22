@@ -1,0 +1,53 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+section{
+	background-color: rgb(245, 246, 248);
+	height: 800px;
+}
+form {
+    position: relative;
+    top: 8%;
+    left: 50%;
+    width: 1000px;
+    height: auto;
+    margin-left: -400px;
+    margin-top: auto;
+}
+.textBox{
+	width: 800px;
+	height: 200px;
+	/* background-color: #f7f7f7; */
+	color: #888;
+	border: solid 1px rgb(217, 218, 220);
+	resize: none;
+}
+label{
+	font-size: 15px;
+	font-weight: bold;
+}
+h1{
+	margin-bottom: 10px;
+}
+span{
+	font-size: 13px
+}
+#agreeBox1{
+	margin-bottom: 30px;
+}
+#agreeBox2{
+	margin-bottom: 10px;
+}
+#btn{
+	margin-top: 20px;
+	width: 200px;
+    height: 33px;
+    font-size: 15px;
+    background-color: #95c2b7;
+    color: rgb(245, 246, 248);
+    border: solid 1px rgb(217, 218, 220);
+    margin-left: 300px;
+    
+}

@@ -28,7 +28,7 @@ public class LogoutMemberServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if(session != null) session.invalidate(); 
-		 response.sendRedirect("/WEB-INF/MainPage.jsp"); 
+		 response.sendRedirect("main"); 
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

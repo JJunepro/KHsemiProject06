@@ -18,7 +18,7 @@ public class JDBCTemplate {
 			Context initContext = new InitialContext();
 			Context envContext = (Context)initContext.lookup("java:/comp/env");  //Tomcat resource 설정을 찾기. server.xml;, context.xml
 			// TODO
-			DataSource ds = (DataSource)envContext.lookup("jdbc/healthLocal"); //jdbc/healthLocal   //jdbc/healthDclass  
+			DataSource ds = (DataSource)envContext.lookup("jdbc/healthDclass"); //jdbc/healthLocal   //jdbc/healthDclass  
 			conn = ds.getConnection();
 			
 			if(conn!=null) System.out.println("DBCP JNDI 연결성공");

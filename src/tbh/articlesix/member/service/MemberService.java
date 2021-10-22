@@ -14,8 +14,8 @@ public class MemberService {
 
 	public int createMember(Member member) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new MemberDao().createMember(conn, member);
 		JDBCTemplate.setAutoCommit(conn, false);
+		int result = new MemberDao().createMember(conn, member);
 		if(result > 0) {
 			try {
 				JDBCTemplate.commit(conn);
@@ -26,6 +26,7 @@ public class MemberService {
 				JDBCTemplate.close(conn);
 			}
 		}
+		System.out.println(result);
 		return result;
 		
 	}
@@ -54,20 +55,21 @@ public class MemberService {
 		return result;
 	}
 	
-	public int deleteMember(String m_id) {
+	public int deleteMember(String m_id, String m_pw, String m_deletedate) {
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new MemberDao().deleteMember(conn, m_id);
-		JDBCTemplate.setAutoCommit(conn, false);
-		if(result > 0) {
-			try {
-				JDBCTemplate.commit(conn);
-			}catch (Exception e) {
-				e.printStackTrace();
-				JDBCTemplate.rollback(conn);
-			}finally {
-				JDBCTemplate.close(conn);
-			}
-		}
+//		JDBCTemplate.setAutoCommit(conn, false);
+		int result = new MemberDao().deleteMember(conn, m_id, m_pw, m_deletedate);
+		
+//		if(result > 0) {
+//			try {
+//				JDBCTemplate.commit(conn);
+//			}catch (Exception e) {
+//				e.printStackTrace();
+//				JDBCTemplate.rollback(conn);
+//			}finally {
+//				JDBCTemplate.close(conn);
+//			}
+//		}
 		return result;
 	}
 	

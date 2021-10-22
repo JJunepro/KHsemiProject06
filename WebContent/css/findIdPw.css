@@ -1,12 +1,20 @@
-body {
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+section {
     background-color: rgb(245, 246, 248);
+    height: 850px;
 }
+
 form {
     text-align: center;
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 35%;
     left: 50%;
     width: 400px;
+    height: 500px;
     margin-left: -200px;
     margin-top: -150px;
 }
@@ -25,7 +33,7 @@ fieldset{
 .selectBtn{
     width: 95px;
     height: 38px;
-    border: none;
+    border: solid 1px rgb(217, 218, 220);
 }
 #nameBox{
     padding-top: 20px;
@@ -33,12 +41,12 @@ fieldset{
 #uName{
     width: 330px;
     height: 40px;
-    border: none;
+    border: solid 1px rgb(217, 218, 220);
 }
 #uId{
     width: 330px;
     height: 40px;
-    border: none;
+    border: solid 1px rgb(217, 218, 220);
 }
 #cellNumBox{
     padding-top: 20px;
@@ -46,7 +54,7 @@ fieldset{
 #uEmail{
     width: 280px;
     height: 40px;
-    border: none;
+    border: solid 1px rgb(217, 218, 220);
 }
 #nameBox > input{
     margin-top: 12px;
@@ -57,7 +65,7 @@ fieldset{
 #authentication{
     width: 200px;
     height: 30px;
-    border: none;
+    border: solid 1px rgb(217, 218, 220);
 }
 #findBtn{
     padding-top: 20px;
@@ -65,9 +73,9 @@ fieldset{
 #find{
     width: 300px;
     height: 40px;
-    border: none;
     background-color: #95c2b7;
     color: oldlace;
+    border: solid 1px rgb(217, 218, 220);
 }
 label{
     font-weight: bold;
