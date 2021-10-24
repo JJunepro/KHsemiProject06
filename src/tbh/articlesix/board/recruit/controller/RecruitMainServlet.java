@@ -16,11 +16,11 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet("/RecruitList")
-public class RecruitListServlet extends HttpServlet {
+@WebServlet("/RecruitMain")
+public class RecruitMainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-    public RecruitListServlet() {
+    public RecruitMainServlet() {
         super();
     }
 
@@ -76,7 +76,7 @@ public class RecruitListServlet extends HttpServlet {
 			request.setAttribute("pageCount", pageCount);
 			request.setAttribute("currentPage", currentPage);
 			// Page 이동하면서 Data도 전달함.
-			request.getRequestDispatcher("/RecruitShortList.jsp").forward(request, response);
+			request.getRequestDispatcher("/RecruitMain.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

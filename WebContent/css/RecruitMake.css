@@ -685,6 +685,7 @@ pre {
 		font-size: 32px;
 	}
 }
+
 .member-list {
 	position: fixed;
 	bottom: 0;
@@ -704,6 +705,7 @@ pre {
 		right: 0;
 	}
 }
+
 .chat-area {
 	position: fixed;
 	bottom: 0;

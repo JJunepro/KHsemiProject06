@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="./css/header.css" />
-<link rel="stylesheet" href="./css/index.css" />
+<link rel="stylesheet" href="./css/RecruitAdminList.css" />
 
 <%@page import="tbh.articlesix.board.recruit.model.vo.Recruit"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,6 +7,9 @@
 	pageEncoding="UTF-8"%>
 <%
 	ArrayList<Recruit> rclist = (ArrayList<Recruit>) request.getAttribute("rclist");
+int startPage = Integer.parseInt(request.getAttribute("startPage").toString());
+int endPage = Integer.parseInt(request.getAttribute("endPage").toString());
+int pageCount = Integer.parseInt(request.getAttribute("pageCount").toString());
 %>
 <!DOCTYPE html>
 <html>
@@ -88,17 +91,36 @@
 						<button class="btn towrite">
 							<a href="#">방 만들기</a>
 						</button>
-						<!-- 만들기, 수정, 삭제  버튼 생성 -->
-						<a href="#" class="btn btn-primary pull-right">방
-							만들기</a> <a href="#"
-							class="btn btn-primary pull-right">방 수정</a> <a
-							href="#" class="btn btn-primary pull-right">방
-							삭제</a>
+						
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="pageBox">
+			<%
+				int currentPage = 1;
+			if (startPage > 1)
+			%><a href="marketMain">이전</a>
+			<%
+				for (int i = startPage; i <= endPage; i++) {
+			%>
+			<a href="marketMain?pagenum=<%=i%>"><%=i%></a>
+			<%
+				currentPage = i;
+			if (i != endPage) {
+			%>
+			<%
+				}
+			}
+
+			if (endPage < pageCount)
+			%><a href="marketMain">다음</a>
+			<%
+				
+			%>
+		</div>
 	</section>
+	<br>
 	<!-- 페이징 처리 영역 -->
 	<script src="./js/header.js"></script>
 
