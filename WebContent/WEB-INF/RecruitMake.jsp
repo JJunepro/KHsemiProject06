@@ -1,153 +1,225 @@
+<link rel="stylesheet" href="css/RecruitMake.css" />
+<link rel="stylesheet" href="css/header.css" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>모집방 생성</title>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>모집 참가방 생성</title>
 </head>
 <body>
-	<%@ include file="./Header.jsp"%>
-	<h1>모집 참가방 생성 Page</h1>
-	
-	<form action="KHsemiProject06/RecruitMakeServlet" method="POST">
+	<form action="RecruitMakeServlet" method="POST">
 		<div class="container">
-			<div class="container-body-warp">
-				<section class="section-mobile"
-					style="border-bottom: 20px solid rgb(238, 238, 238);"></section>
-				<div class="recruit-match"></div>
-				<nav>
-					<ul>
-						<li>진행 방식</li>
-						<li>남은시간</li>
-						<li>구장시설</li>
-						<li>매치 내용</li>
-					</ul>
-				</nav>
-				<section id="rcRule" class="section">
-					<div class="section title">
-						<h3>매치내용</h3>
+			<div class="content">
+				<div class="content_wrap">
+					<div class="content_head">
+						<%@ include file="./Header.jsp"%>
 					</div>
-					<div class="rcMatch">
-						<ul>
-							<li>
-								<!-- <img src="" alt="몇대몇 매치"> --> 
-								<span class="txt">몇 대 몇 매치</span> <input type="text" name="b_match">
-							</li>
-							<li>성별<input type="text" name="b_gender"></li>
-							<li>필요장비<input type="text" name="b_equip"></li>
-							<li>총 인원<input type="text" name="b_total"></li>
-						</ul>
-					</div>
-					<div class="matchInner">
-						<ul class="matchrule">
-							<li></li>
-						</ul>
-					</div>
-				</section>
-				<!-- TODO 남은시간 계산 code 넣기 -->
-				<section id="rcTime" class="section">
-					<div class="section title">
-						<h3>남은 시간</h3>
-					</div>
-					<div class="matchTime">
-						<h2>일 / 시 / 분 / 초 남음</h2>
-					</div>
-				</section>
+					<div class="content_body" id="matchDetailApp">
+						<div class="content-body_wrap">
+							<section class="section-mobile"
+								style="border-bottom: 20px solid #eee;">
+								<div class="matchTime">
+									<p>2021년 10월 20일 수요일 10:00</p>
+									<input type="text">
+								</div>
+								<div class="matchPlace">
+									<h1 class="txtH w700h">
+										<a href="/stadium/3/matches/">송파 천마 풋살파크 C면</a> <input
+											type="text">
+									</h1>
+									<div class="wtgTool">
+										<p class="txt1">서울 송파구 마천동 68-21</p>
+										<input type="text">
+									</div>
+								</div>
+								<div class="match-info_fee">
+									<div class="matchFee">
+										<span>참가비</span>
+										<p>10,000원</p>
+									</div>
+								</div>
+							</section>
 
-				<section id="rcPlace" class="section">
-					<div class="section title">
-						<h3>운동 시설</h3>
-					</div>
-					<div class="place">
-						<ul>
-							<li><span class="txt">샤워장</span><input type="text" name="b_shower"></li>
-							<li>주차장<input type="text" name="b_parking"></li>
-							<li>장비 대여<input type="text" name="b_rental"></li>
-							<li>운동복 대여<input type="text" name="b_cloth"></li>
-						</ul>
-					</div>
-					<div class="place-detail">
-						<h3>Title</h3>
-						<p>코로나19로 인해 샤워장을 개방하지 않고 있습니다</p>
-					</div>
-					<div class="matchInner">
-						<ul class="matchUnique">
-							<h3>시설 특이사항</h3>
-							<pre class="txt">운동 특이사항 삽입
-							<input type="text" name="b_facility">
-							</pre>
-						</ul>
-					</div>
-				</section>
-				<section id="rcContent" class="section">
-					<div class="section title">
-						<h3>매치내용</h3>
-					</div>
-					<div class="match">
-						<ul>
-							<li><input type="text" name="b_content"></li>
-						</ul>
-					</div>
-					<div class="matchInner">
-						<ul class="matchcontent">
-							<h4>일반</h4>
-							<li>
-								<!-- TODO 안내 내용 코드 -->
-							</li>
-						</ul>
-					</div>
-				</section>
-				<div class="container-body-right-warp">
-					<div class="section-pc">
-						<div class="matchTime">
-							<p><input type="text" name="b_start"><br>
-							<input type="text" name="b_end"></p>
+							<nav class="navigation">
+								<ul class="navigation-items">
+									<li><a href="#rcRule" class="navigation-item">진행 방식</a></li>
+									<li><a href="#rcTime" class="navigation-item">매치 시간</a></li>
+									<li><a href="#rcPlace" class="navigation-item">운동 시설</a></li>
+									<li><a href="#rcMatch" class="navigation-item">매치 안내</a></li>
+								</ul>
+							</nav>
+							<section id="rcRule" class="section">
+								<div class="section-title">
+									<h3>진행방식</h3>
+								</div>
+								<div class="howto">
+									<ul>
+										<li><br>몇대몇 매치<br> <br> <select
+											name="b_match">
+												<option value="0">매치형식 아님</option>
+												<option value="1">2:2</option>
+												<option value="2">3:3</option>
+												<option value="3">4:4</option>
+												<option value="4">5:5</option>
+										</select></li>
+										<li><br>성별<br> <br> <select name="b_match">
+												<option value="1">ALL</option>
+												<option value="2">Man</option>
+												<option value="3">Women</option>
+										</select></li>
+										<li><br>필요장비<br> <br> <select
+											name="b_equip">
+												<option value="none"></option>
+												<option value="0">O</option>
+												<option value="1">X</option>
+										</select></li>
+										<li><br>총 인원<br> <br> <input type="text"
+											class="b_total" style="width: 80px"></li>
+									</ul>
+								</div>
+								<div class="stadInner">
+									<ul class="matchRule">
+										<li>실력과 상관없이 누구나 참여하실 수 있습니다.</li>
+									</ul>
+								</div>
+							</section>
+							<section class="section" id="rcTime">
+								<div class="section-title">
+									<h3>매치</h3>
+									<span class="card2__title-label--beta">BETA</span>
+								</div>
+								<div class="match-levels">
+									<div class="match-levels__countdown">
+										<h2>[[ countdown ]]</h2>
+										<span>경기 시작 시간</span>
+									</div>
+								</div>
+							</section>
+							<section id="rcPlace" class="section">
+								<div class="section-title">
+									<h3>구장 시설</h3>
+								</div>
+								<div class="howto">
+									<ul>
+										<li class=""><br> <span class="txt2">샤워장</span><br>
+											<br> <select name="b_equip">
+												<option value="none"></option>
+												<option value="0">O</option>
+												<option value="1">X</option>
+										</select></li>
+										<li class=""><br> <span class="txt2">무료주차</span>
+											<p style="font-size: 10px;">사전 등록자 무료 주차</p> <br> <select
+											name="b_equip">
+												<option value="none"></option>
+												<option value="0">O</option>
+												<option value="1">X</option>
+										</select></li>
+										<li class=""><br> <span class="txt2">풋살화 대여</span><br>
+											<br> <select name="b_equip">
+												<option value="none"></option>
+												<option value="0">O</option>
+												<option value="1">X</option>
+										</select></li>
+										<li class="noFeature"><br> <span class="txt2">운동복
+												대여</span><br> <br> <select name="b_equip">
+												<option value="none"></option>
+												<option value="0">O</option>
+												<option value="1">X</option>
+										</select></li>
+									</ul>
+								</div>
+								<div class="match-detail__notice corona19-shower">
+									<h3>🚫샤워실 이용 중단</h3>
+									<p>코로나19로 인해 샤워장을 개방하지 않고 있습니다</p>
+								</div>
+								<div class="stadInner" style="">
+									<div class="matchRule">
+										<h4>구장 특이사항</h4>
+										<pre class="txt2">
+											<input type="text">
+										</pre>
+									</div>
+									<!-- <span class="contentAnchor">더 자세한 정보는 <a href="/stadium/3/info/">송파 천마 풋살파크 C면의 시설 정보</a>에서 확인하세요</span> -->
+								</div>
+							</section>
+							<section class="section">
+								<div class="mngProf">
+									<div class="profPhoto">
+										<img src="#">
+									</div>
+									<div class="profID">
+										<span class="txt2">매니저</span>
+										<p class="txt5">박윤산</p>
+									</div>
+								</div>
+							</section>
+
+							<section class="section" id="rcMatch">
+								<div class="section-title">
+									<h3>매치 안내</h3>
+								</div>
+								<div class="stadInner">
+									<ul class="matchRule">
+										<h4>일반</h4>
+										<li><input type="text"></li>
+
+									</ul>
+									<ul class="matchRule">
+										<h4>특수 (우천)</h4>
+										<li><input type="text"></li>
+									</ul>
+								</div>
+							</section>
 						</div>
-						<div class="matchPlace">
-							<h1 class="txtH w700h">
-								<input type="text" name="b_type">
-								<input type="text" name="b_title">
-							</h1>
-							<div class="wtgTool">
-								<p class="txt1">
-									<input type="text" name="b_place">
-								</p>
-								<p id="copy-url" class="txt1 w400h">주소 복사</p>
-								<p class="txt1 w400h" id="toggleMap" onclick="showmap()">지도
-									보기</p>
+
+						<div class="content-right-body_wrap--sticky">
+							<div class="section-pc">
+								<div class="matchTime">
+									<p>방 제목</p>
+									<input type="text">
+								</div>
+								<div class="matchPlace">
+									<h1 class="txtH w700h">
+										<a href="/stadium/3/matches/">구장 이름</a> <input type="text">
+									</h1>
+									<div class="wtgTool">
+										<p class="txt1">상세 위치</p>
+										<input type="text">
+									</div>
+								</div>
+								<div class="match-info__fee">
+									<div class="matchFee">
+										<span>참가비</span>
+										<p>
+											<input type="text">
+										</p>
+									</div>
+								</div>
+
+								<div class="match-apply_wrap">
+									<div class="btnWrap">
+										<a href="#" class="btn-application"
+											style="color: rgb(255, 255, 255);">
+											<p style="width: 310px; text-align: center;">방 생성하기</p>
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="match-info__fee">
-							<div class="matchFee">
-								<span>참가비</span>
-								<p><input type="text" name="b_fee">원</p>
-							</div>
-						</div>
 					</div>
-
-					<div class="match-apply__wrap">
-						<div class="btnWrap">
-							<a href="#" class="btn" style="background-color ': matchStatusBackgroundColor, 'color': matchStatusColor">
-								<!-- TODO 몇 명 남았는지 코드 입력 -->
-								<p>신청하기</p> <span>몇 자리남음</span>
-							</a>
-						</div>
-					</div>
-					<!-- 페이징 처리 영역 -->
-
-					<!-- 만들기, 수정, 삭제  버튼 생성 -->
-					<a href="RecruitMake.jsp" class="btn btn-primary pull-right">방 만들기</a>
-					<a href="RecruitModify.jsp" class="btn btn-primary pull-right">방 수정</a>
-					<a href="RecruitDelete.jsp" class="btn btn-primary pull-right">방 삭제</a>
 				</div>
 			</div>
 		</div>
 	</form>
-
 </body>
+<!-- 부트스트랩 참조 영역 -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 <%@ include file="./Footer.jsp"%>
+
 </body>
 </html>

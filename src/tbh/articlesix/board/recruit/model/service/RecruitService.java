@@ -3,7 +3,6 @@ package tbh.articlesix.board.recruit.model.service;
 import java.sql.Connection;
 import java.util.*;
 
-import tbh.articlesix.board.notice.dao.NoticeDao;
 import tbh.articlesix.board.recruit.model.dao.RecruitDao;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 import tbh.articlesix.common.JDBCTemplate;
@@ -23,11 +22,10 @@ public class RecruitService {
 	public String getDate() {
 		String result = "";
 		Connection conn = JDBCTemplate.getConnection();
-		result = new NoticeDao().getDate(conn);
+		result = new RecruitDao().getDate(conn);
 		JDBCTemplate.close(conn);
 		return result;
 	}
-
 	public ArrayList<Recruit> RecruitList(int startRnum, int endRnum) {
 		ArrayList<Recruit> rclist = null;
 		Connection conn = JDBCTemplate.getConnection();

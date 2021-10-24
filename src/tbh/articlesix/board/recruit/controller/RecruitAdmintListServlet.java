@@ -16,7 +16,7 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet({"/RecruitAdminList", "/RecruitAdmin"})
+@WebServlet({"/RecruitAdminList"})
 public class RecruitAdmintListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -27,8 +27,6 @@ public class RecruitAdmintListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
-		PrintWriter out = response.getWriter();
 
 		final int PAGE_SIZE = 10; // 한 페이지 당 글수
 		final int PAGE_BLOCK = 5; // 한 화면에 나타날 페이지 링크 수
