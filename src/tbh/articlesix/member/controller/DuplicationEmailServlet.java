@@ -16,9 +16,6 @@ import com.google.gson.GsonBuilder;
 
 import tbh.articlesix.member.service.MemberService;
 
-/**
- * Servlet implementation class DuplicationEmailServlet
- */
 @WebServlet("/dupEmail")
 public class DuplicationEmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

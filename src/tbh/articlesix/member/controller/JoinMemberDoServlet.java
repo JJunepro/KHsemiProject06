@@ -23,9 +23,6 @@ import javafx.scene.control.Alert;
 import tbh.articlesix.member.model.vo.Member;
 import tbh.articlesix.member.service.MemberService;
 
-/**
- * Servlet implementation class JoinMemberDoServlet
- */
 @WebServlet("/join.do")
 public class JoinMemberDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

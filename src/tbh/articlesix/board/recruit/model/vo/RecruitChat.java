@@ -4,10 +4,10 @@ import java.sql.Date;
 
 public class RecruitChat {
 
-//	B_N	NUMBER		FK	O
-//	M_ID	VARCHAR2	30	FK	O
-//	CHAT_TIME	DATE			O
-//	CHAT_MESSAGE	VARCHAR2	500		O
+//	B_N	NUMBER		FK	
+//	M_ID	VARCHAR2	30	FK	
+//	CHAT_TIME	DATE			
+//	CHAT_MESSAGE	VARCHAR2	500		
 
 	private int b_n;
 	private String m_id;

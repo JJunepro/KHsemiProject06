@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
-    <title>Document</title>
+    <title>자유게시판 메인</title>
   </head>
   <body>
    <%@ include file="./Header.jsp" %>

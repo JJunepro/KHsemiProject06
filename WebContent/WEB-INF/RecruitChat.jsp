@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>채팅화면</title>
+<title>채팅화면 구현</title>
 </head>
 <body>
 	<div class="chat_screen">

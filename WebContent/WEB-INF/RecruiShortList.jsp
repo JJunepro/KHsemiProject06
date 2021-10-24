@@ -20,7 +20,7 @@
 	<section class="recruitShortLsit">
 		<div class="page-title">
 			<div class="container">
-				<h3>모집방 List page</h3>
+				<h3>모집방 단기</h3>
 				<div id="board-search">
 					<div class="container">
 

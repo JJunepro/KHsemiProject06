@@ -10,14 +10,6 @@ import tbh.articlesix.common.JDBCTemplate;
 public class RecruitService {
 	public RecruitService() {
 	}
-//	
-//	public int getNext() {
-//		int result = -1;
-//		Connection conn = JDBCTemplate.getConnection();
-//		result = new RecruitDao().getNext(conn, result);
-//		JDBCTemplate.close(conn);
-//		return result;
-//	}
 
 	public String getDate() {
 		String result = "";

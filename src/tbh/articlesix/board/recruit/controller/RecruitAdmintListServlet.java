@@ -50,7 +50,7 @@ public class RecruitAdmintListServlet extends HttpServlet {
 		bCount = new RecruitService().getRecruitCount();
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
-		// rownum 조건 계산
+		// rownum 조건 
 		startRnum = (currentPage - 1) * PAGE_SIZE + 1; // 1//6//11/16//21
 		endRnum = startRnum + PAGE_SIZE - 1;
 		if (endRnum > bCount)

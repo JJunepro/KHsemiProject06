@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/header.css" />
 <link rel="stylesheet" href="./css/index.css" />
-<title>모임참가방</title>
+<title>모임참가방 Page</title>
 </head>
 <body>
 	<div class="container">

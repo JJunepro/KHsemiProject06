@@ -1,3 +1,5 @@
+// 마켓 상세
+
 const slides = document.querySelector(".slides");
 const slideImg = document.querySelectorAll(".slides li");
 let currentIdx = 0;

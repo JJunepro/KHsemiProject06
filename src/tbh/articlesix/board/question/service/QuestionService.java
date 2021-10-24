@@ -60,7 +60,6 @@ public class QuestionService {
 		result = bDAO.deleteQuestion(conn, bq_n);
 		
 //		if(result > 0) {
-//
 //		} else {
 //
 //		}

@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.board.service.BoardService;
 import tbh.articlesix.board.board.vo.Board;
 
-/**
- * Servlet implementation class BoardListServlet
- */
+
 @WebServlet({"/boardlist", "/board"})
 public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

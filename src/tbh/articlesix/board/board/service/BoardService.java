@@ -10,7 +10,6 @@ import tbh.articlesix.common.JDBCTemplate;
 public class BoardService {
 
 	public BoardService() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	//Board oVo = new BoardService().getBoard(bno);  

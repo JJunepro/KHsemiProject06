@@ -13,7 +13,7 @@ public class QuestionDao {
 	public QuestionDao() {
 	}
 
-	// QnA 테이블 출력
+	// QnA 테이블출력
 	public ArrayList<Question> selectQuestionList(Connection conn, int start, int end) {
 		ArrayList<Question> volist = null;
 

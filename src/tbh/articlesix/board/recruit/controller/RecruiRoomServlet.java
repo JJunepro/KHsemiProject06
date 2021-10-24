@@ -13,9 +13,7 @@ import tbh.articlesix.board.recruit.model.dao.RecruitDao;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-/**
- * Servlet implementation class RecruitDetailServlet
- */
+
 @WebServlet("/RecruitRoom")
 public class RecruiRoomServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

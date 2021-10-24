@@ -10,6 +10,7 @@ public class Notice {
 	private Date bn_timestamp;
 	private int bn_view;
 	
+	// 공지사항
 	public Notice() {
 		
 	}

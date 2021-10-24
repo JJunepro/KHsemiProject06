@@ -78,7 +78,7 @@
 		background : #ccc;
 	}
 </style>
-<title>QnA 글 등록</title>
+<title>QnA 글 등록 Page</title>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>

@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
 
-/**
- * Servlet implementation class marketAddServlet
- */
 @WebServlet("/marketAdd")
 public class AddMarketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -8,7 +8,7 @@ public class Market {
 //    BM_N NUMBER NOT NULL,
 //    M_ID VARCHAR2(30) NOT NULL,    
 //    C_CONTENT VARCHAR2(1000) NOT NULL,
-//    C_TIMESTAMP DATE NOT NULL
+//    C_TIMESTAMP DATE NOT
 	int bmN;
 	String mId;
 	int caN;

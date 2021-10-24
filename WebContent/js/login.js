@@ -1,4 +1,4 @@
-
+// 로그인
 window.addEventListener("load", pageLoadedHandler);
 function pageLoadedHandler(){
     document.getElementById("loginBtn").addEventListener("click", btnSubmt);

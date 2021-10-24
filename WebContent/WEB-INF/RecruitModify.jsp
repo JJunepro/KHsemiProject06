@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
-	<h1>모집 참가방 수정 Page</h1>
+	<h1>모집방 수정 Page</h1>
 	
 	<form action="KHsemiProject06/RecruitMakeServlet" method="POST">
 		<div class="container">

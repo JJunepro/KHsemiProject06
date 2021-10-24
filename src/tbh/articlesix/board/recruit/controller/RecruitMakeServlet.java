@@ -30,7 +30,7 @@ public class RecruitMakeServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 		int b_n = new RecruitService().recruitCountList();
-		// TODO 로그인 세션 가져오기
+		// TODO 로그인 세션 가져오기 해야함
 
 		String m_id = (String) request.getSession().getAttribute("memberLoginInfo");
 //		if(writer == null) {

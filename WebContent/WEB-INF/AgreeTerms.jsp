@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>회원가입</title>
+    <title>회원가입 page</title>
 </head>
 <body>
 <%@ include file="./Header.jsp" %>

@@ -2,7 +2,6 @@ package tbh.articlesix.board.recruit.model.vo;
 
 import java.sql.Date;
 
-//CREATE TABLE BOARD_RECRUIT(
 //	    B_N NUMBER PRIMARY KEY NOT NULL,
 //	    M_ID VARCHAR2(30) NOT NULL,
 //		CA_N NUMBER NOT NULL,

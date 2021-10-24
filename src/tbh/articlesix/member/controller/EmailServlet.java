@@ -27,9 +27,6 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-/**
- * Servlet implementation class EmailServlet
- */
 @WebServlet("/sendEmail")
 public class EmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

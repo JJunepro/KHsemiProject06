@@ -1,3 +1,4 @@
+// 헤더 
 $(".subReserve").hide();
 
 const reserveBtn = $(".reserveBtn");

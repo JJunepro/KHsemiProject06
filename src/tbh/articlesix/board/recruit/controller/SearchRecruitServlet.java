@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-/**
- * Servlet implementation class SearchRecruitServlet
- */
+
 @WebServlet("/SearchRecruit")
 public class SearchRecruitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

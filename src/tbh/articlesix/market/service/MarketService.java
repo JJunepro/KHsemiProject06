@@ -11,7 +11,6 @@ import tbh.articlesix.member.dao.MemberDao;
 public class MarketService {
 
 	public MarketService() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ArrayList<Market> ListMarket(int startRnum, int endRnum) {

@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import tbh.articlesix.common.JDBCTemplate;
 import tbh.articlesix.member.model.vo.Member;
 
-
-
+// 회원가입
 public class MemberDao {
 
 	public MemberDao() {

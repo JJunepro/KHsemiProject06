@@ -23,7 +23,6 @@ public class LoginMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     public LoginMemberServlet() {
-        // TODO Auto-generated constructor stub
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -9,7 +9,7 @@ import tbh.articlesix.board.recruit.model.vo.RecruitChat;
 import tbh.articlesix.common.JDBCTemplate;
 
 public class RecruitChatDao {
-	// 채팅 가져오기
+	// 채팅 가져오기 기능
 	public RecruitChatDao() {
 	}
 	

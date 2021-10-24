@@ -5,6 +5,8 @@ import javax.servlet.*;
 
 public class EncodingFilter implements Filter {
 	
+	// encodingFilter
+	
 	@Override
 	public void destroy() {
 	}

@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
 
-/**
- * Servlet implementation class DeleteMarketServlet
- */
 @WebServlet("/marketDelete")
 public class DeleteMarketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

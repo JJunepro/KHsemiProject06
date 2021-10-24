@@ -15,9 +15,7 @@ import javax.servlet.http.HttpSession;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-/**
- * Servlet implementation class RecruitModifyServlet
- */
+
 @WebServlet("/RecruitModify")
 public class RecruitModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.notice.service.NoticeService;
 import tbh.articlesix.board.notice.vo.Notice;
 
-/**
- * Servlet implementation class AddNoticeServlet
- */
+
 @WebServlet("/noticewrite.do")
 public class AddNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -29,9 +29,6 @@ import com.google.gson.GsonBuilder;
 import tbh.articlesix.member.model.vo.Member;
 import tbh.articlesix.member.service.MemberService;
 
-/**
- * Servlet implementation class FindIdDoServlet
- */
 @WebServlet("/findId.do")
 public class findIdDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

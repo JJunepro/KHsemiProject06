@@ -57,7 +57,7 @@ public class MemberService {
 	
 	public int deleteMember(String m_id, String m_pw, String m_deletedate) {
 		Connection conn = JDBCTemplate.getConnection();
-//		JDBCTemplate.setAutoCommit(conn, false);
+//		JDBCTemplate.setAutoCommit(conn, false); (오토커밋)
 		int result = new MemberDao().deleteMember(conn, m_id, m_pw, m_deletedate);
 		
 //		if(result > 0) {

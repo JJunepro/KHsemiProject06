@@ -13,7 +13,6 @@ import tbh.articlesix.market.vo.Market;
 public class MarketDao {
 
 	public MarketDao() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ArrayList<Market> ListMarket(Connection conn, int startRnum, int endRnum) {

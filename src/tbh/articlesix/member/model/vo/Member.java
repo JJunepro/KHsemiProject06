@@ -13,7 +13,7 @@ package tbh.articlesix.member.model.vo;
 //10 m_address : String
 //11 m_address_detail : String
 //12 m_createDate : String
-//13 m_deleteDate : String
+// m_deleteDate : String
 
 public class Member {
 	private String m_id;
