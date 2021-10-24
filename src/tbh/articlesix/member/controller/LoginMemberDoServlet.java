@@ -74,6 +74,16 @@ public class LoginMemberDoServlet extends HttpServlet {
 				HttpSession seeSession = request.getSession();
 				seeSession.setAttribute("memberId", m.getM_id());
 				seeSession.setAttribute("nickName", m.getM_nick());
+				seeSession.setAttribute("mName", m.getM_name());
+				seeSession.setAttribute("mAuth", m.getM_auth());
+				seeSession.setAttribute("mBirth", m.getM_birth());
+				seeSession.setAttribute("mGender", m.getM_gender());
+				seeSession.setAttribute("mPhone", m.getM_phone());
+				seeSession.setAttribute("mEmail", m.getM_email());
+				seeSession.setAttribute("mAddress", m.getM_address());
+				seeSession.setAttribute("mAddressDetail", m.getM_address_detail());
+				seeSession.setAttribute("mDegree", m.getM_degree());
+				
 				
 				map2.put("result", "ok");
 				map2.put("name", m.getM_name());
