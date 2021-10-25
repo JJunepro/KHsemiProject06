@@ -11,13 +11,6 @@ public class RecruitService {
 	public RecruitService() {
 	}
 
-	public String getDate() {
-		String result = "";
-		Connection conn = JDBCTemplate.getConnection();
-		result = new RecruitDao().getDate(conn);
-		JDBCTemplate.close(conn);
-		return result;
-	}
 	public ArrayList<Recruit> RecruitList(int startRnum, int endRnum) {
 		ArrayList<Recruit> rclist = null;
 		Connection conn = JDBCTemplate.getConnection();
@@ -26,10 +19,50 @@ public class RecruitService {
 		return rclist;
 	}
 
-	public Recruit detailRecruit(int b_n) {
+	public ArrayList<Recruit> RecruitList() {
+		ArrayList<Recruit> rclist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		rclist = new RecruitDao().RecruitList(conn);
+		JDBCTemplate.close(conn);
+		return rclist;
+	}
+
+	public ArrayList<Recruit> RecruitShortList() {
+		ArrayList<Recruit> rcshortlist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		rcshortlist = new RecruitDao().RecruitList(conn);
+		JDBCTemplate.close(conn);
+		return rcshortlist;
+	}
+
+	public ArrayList<Recruit> RecruitShortList(int startRnum, int endRnum) {
+		ArrayList<Recruit> rcshortlist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		rcshortlist = new RecruitDao().RecruitList(conn, startRnum, endRnum);
+		JDBCTemplate.close(conn);
+		return rcshortlist;
+	}
+
+	public ArrayList<Recruit> RecruitLongList() {
+		ArrayList<Recruit> rcLonglist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		rcLonglist = new RecruitDao().RecruitList(conn);
+		JDBCTemplate.close(conn);
+		return rcLonglist;
+	}
+
+	public ArrayList<Recruit> RecruitLongList(int startRnum, int endRnum) {
+		ArrayList<Recruit> rcLonglist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		rcLonglist = new RecruitDao().RecruitList(conn, startRnum, endRnum);
+		JDBCTemplate.close(conn);
+		return rcLonglist;
+	}
+
+	public Recruit DetailRecruit(int b_n) {
 		Recruit rc = null;
 		Connection conn = JDBCTemplate.getConnection();
-		rc = new RecruitDao().detailRecruit(conn, b_n);
+		rc = new RecruitDao().DetailRecruit(conn, b_n);
 		return rc;
 	}
 
@@ -49,9 +82,11 @@ public class RecruitService {
 		return result;
 	}
 
-	public int recruitCountList() {
+	public String getDate() {
+		String result = "";
 		Connection conn = JDBCTemplate.getConnection();
-		int result = new RecruitDao().recruitCountList(conn);
+		result = new RecruitDao().getDate(conn);
+		JDBCTemplate.close(conn);
 		return result;
 	}
 

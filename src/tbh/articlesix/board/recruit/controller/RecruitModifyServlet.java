@@ -45,7 +45,6 @@ public class RecruitModifyServlet extends HttpServlet {
 //		HttpSession session = request.getSession(false);
 //		Recruit rc = (Recruit)session.getAttribute("rc");
 
-		int b_n = new RecruitService().recruitCountList();
 		String m_id = (String) request.getSession().getAttribute("memberLoginInfo");
 //		if (id == null) {
 //			id = "user01"; // TODO: 임시 user 설정
@@ -74,7 +73,7 @@ public class RecruitModifyServlet extends HttpServlet {
 		String b_timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		int b_view = Integer.parseInt(request.getParameter("b_view"));
 		
-		Recruit rc = new Recruit(b_n, m_id, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_attend,
+		Recruit rc = new Recruit(m_id, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_attend,
 				b_place, b_fee, b_match, b_gender, b_age, b_equip, b_minpeople, b_progress, b_shower, b_parking,
 				b_rental, b_cloth, b_facility, b_timestamp, b_view);
 		

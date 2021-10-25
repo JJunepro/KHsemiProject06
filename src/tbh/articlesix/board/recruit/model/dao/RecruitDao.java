@@ -3,21 +3,15 @@ package tbh.articlesix.board.recruit.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.*;
+import java.util.ArrayList;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 import tbh.articlesix.common.JDBCTemplate;
 
 public class RecruitDao {
 	public RecruitDao() {
 	}
-	
-	public static RecruitDao instance = new RecruitDao();
-	
-	public static RecruitDao getInstance() {
-		return instance;
-	}
 
-	// 작성일자 (자동)
+	// 현재 시간 작성일자 불러오기
 	public String getDate(Connection conn) {
 		String sql = "select now()";
 		PreparedStatement pstmt = null;
@@ -35,11 +29,65 @@ public class RecruitDao {
 	}
 
 	// 모집방 목록
+	public ArrayList<Recruit> RecruitList(Connection conn) {
+		ArrayList<Recruit> rclist = null;
+
+		String sql = "SELECT * FROM BOARD_RECRUIT ORDER BY B_N DESC";
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+
+			rclist = new ArrayList<Recruit>();
+			if (rset.next()) {
+				do {
+					Recruit rc = new Recruit();
+					rc.setB_n(rset.getInt("b_n"));
+					rc.setM_id(rset.getString("m_id"));
+					rc.setCa_n(rset.getInt("ca_n"));
+					rc.setB_type(rset.getString("b_type").charAt(0));
+					rc.setB_title(rset.getString("b_title"));
+					rc.setB_content(rset.getString("b_content"));
+					rc.setB_start(rset.getString("b_start"));
+					rc.setB_end(rset.getString("b_end"));
+					rc.setB_total(rset.getInt("b_total"));
+					rc.setB_attend(rset.getInt("b_attend"));
+					rc.setB_place(rset.getString("b_place"));
+					rc.setB_fee(rset.getInt("b_fee"));
+					rc.setB_match(rset.getString("b_match").charAt(0));
+					rc.setB_gender(rset.getString("b_gender").charAt(0));
+					rc.setB_age(rset.getString("b_age").charAt(0));
+					rc.setB_equip(rset.getString("b_equip").charAt(0));
+					rc.setB_minpeople(rset.getInt("b_minpeople"));
+					rc.setB_progress(rset.getString("b_progress"));
+					rc.setB_shower(rset.getString("b_shower").charAt(0));
+					rc.setB_parking(rset.getString("b_parking").charAt(0));
+					rc.setB_rental(rset.getString("b_rental").charAt(0));
+					rc.setB_cloth(rset.getString("b_cloth").charAt(0));
+					rc.setB_facility(rset.getString("b_facility"));
+					rc.setB_timestamp(rset.getString("b_timestamp"));
+					rc.setB_view(rset.getInt("b_view"));
+					rclist.add(rc);
+				} while (rset.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return rclist;
+	}
+
 	public ArrayList<Recruit> RecruitList(Connection conn, int startRnum, int endRnum) {
 		ArrayList<Recruit> rclist = null;
 
-		String sql = "select * from" + " (select Rownum r, t1."
-				+ "* from (select * from board_recruit order by b_n desc) t1 ) t2" + " where r between ? and ?";
+		String sql = "select * from " + " (select rownum r, a1.* from "
+				+ " (select * from board_recruit order by b_n desc) a1) a2 "
+				+ " where r between ? and ? order by b_n desc";
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -86,13 +134,234 @@ public class RecruitDao {
 		} finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
-			JDBCTemplate.close(conn);
 		}
 		return rclist;
 	}
 
+	// 모집방 단기 목록
+	public ArrayList<Recruit> RecruitShortList(Connection conn) {
+		ArrayList<Recruit> rcshortlist = null;
+
+		String sql = "select * from board_recruit where b_start = b_end order by b_n desc";
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			rcshortlist = new ArrayList<Recruit>();
+			if (rset.next()) {
+				do {
+					Recruit rc = new Recruit();
+					rc.setB_n(rset.getInt("b_n"));
+					rc.setM_id(rset.getString("m_id"));
+					rc.setCa_n(rset.getInt("ca_n"));
+					rc.setB_type(rset.getString("b_type").charAt(0));
+					rc.setB_title(rset.getString("b_title"));
+					rc.setB_content(rset.getString("b_content"));
+					rc.setB_start(rset.getString("b_start"));
+					rc.setB_end(rset.getString("b_end"));
+					rc.setB_total(rset.getInt("b_total"));
+					rc.setB_attend(rset.getInt("b_attend"));
+					rc.setB_place(rset.getString("b_place"));
+					rc.setB_fee(rset.getInt("b_fee"));
+					rc.setB_match(rset.getString("b_match").charAt(0));
+					rc.setB_gender(rset.getString("b_gender").charAt(0));
+					rc.setB_age(rset.getString("b_age").charAt(0));
+					rc.setB_equip(rset.getString("b_equip").charAt(0));
+					rc.setB_minpeople(rset.getInt("b_minpeople"));
+					rc.setB_progress(rset.getString("b_progress"));
+					rc.setB_shower(rset.getString("b_shower").charAt(0));
+					rc.setB_parking(rset.getString("b_parking").charAt(0));
+					rc.setB_rental(rset.getString("b_rental").charAt(0));
+					rc.setB_cloth(rset.getString("b_cloth").charAt(0));
+					rc.setB_facility(rset.getString("b_facility"));
+					rc.setB_timestamp(rset.getString("b_timestamp"));
+					rc.setB_view(rset.getInt("b_view"));
+					rcshortlist.add(rc);
+				} while (rset.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(conn);
+		}
+		return rcshortlist;
+	}
+
+	public ArrayList<Recruit> RecruitShortList(Connection conn, int startRnum, int endRnum) {
+		ArrayList<Recruit> rcshortlist = null;
+
+		String sql = "select * from" + " (select Rownum r, t1."
+				+ "* from (select * from board_recruit where b_start = b_end order by b_n desc) t1 ) t2"
+				+ " where r between ? and ?";
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRnum);
+			pstmt.setInt(2, endRnum);
+			rset = pstmt.executeQuery();
+			rcshortlist = new ArrayList<Recruit>();
+			if (rset.next()) {
+				do {
+					Recruit rc = new Recruit();
+					rc.setB_n(rset.getInt("b_n"));
+					rc.setM_id(rset.getString("m_id"));
+					rc.setCa_n(rset.getInt("ca_n"));
+					rc.setB_type(rset.getString("b_type").charAt(0));
+					rc.setB_title(rset.getString("b_title"));
+					rc.setB_content(rset.getString("b_content"));
+					rc.setB_start(rset.getString("b_start"));
+					rc.setB_end(rset.getString("b_end"));
+					rc.setB_total(rset.getInt("b_total"));
+					rc.setB_attend(rset.getInt("b_attend"));
+					rc.setB_place(rset.getString("b_place"));
+					rc.setB_fee(rset.getInt("b_fee"));
+					rc.setB_match(rset.getString("b_match").charAt(0));
+					rc.setB_gender(rset.getString("b_gender").charAt(0));
+					rc.setB_age(rset.getString("b_age").charAt(0));
+					rc.setB_equip(rset.getString("b_equip").charAt(0));
+					rc.setB_minpeople(rset.getInt("b_minpeople"));
+					rc.setB_progress(rset.getString("b_progress"));
+					rc.setB_shower(rset.getString("b_shower").charAt(0));
+					rc.setB_parking(rset.getString("b_parking").charAt(0));
+					rc.setB_rental(rset.getString("b_rental").charAt(0));
+					rc.setB_cloth(rset.getString("b_cloth").charAt(0));
+					rc.setB_facility(rset.getString("b_facility"));
+					rc.setB_timestamp(rset.getString("b_timestamp"));
+					rc.setB_view(rset.getInt("b_view"));
+					rcshortlist.add(rc);
+				} while (rset.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(conn);
+		}
+		return rcshortlist;
+	}
+
+	// 모집방 장기 목록
+	public ArrayList<Recruit> RecruitLongList(Connection conn) {
+		ArrayList<Recruit> rcLonglist = null;
+
+		String sql = "select * from board_recruit where b_start != b_end order by b_n desc";
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			rcLonglist = new ArrayList<Recruit>();
+			if (rset.next()) {
+				do {
+					Recruit rc = new Recruit();
+					rc.setB_n(rset.getInt("b_n"));
+					rc.setM_id(rset.getString("m_id"));
+					rc.setCa_n(rset.getInt("ca_n"));
+					rc.setB_type(rset.getString("b_type").charAt(0));
+					rc.setB_title(rset.getString("b_title"));
+					rc.setB_content(rset.getString("b_content"));
+					rc.setB_start(rset.getString("b_start"));
+					rc.setB_end(rset.getString("b_end"));
+					rc.setB_total(rset.getInt("b_total"));
+					rc.setB_attend(rset.getInt("b_attend"));
+					rc.setB_place(rset.getString("b_place"));
+					rc.setB_fee(rset.getInt("b_fee"));
+					rc.setB_match(rset.getString("b_match").charAt(0));
+					rc.setB_gender(rset.getString("b_gender").charAt(0));
+					rc.setB_age(rset.getString("b_age").charAt(0));
+					rc.setB_equip(rset.getString("b_equip").charAt(0));
+					rc.setB_minpeople(rset.getInt("b_minpeople"));
+					rc.setB_progress(rset.getString("b_progress"));
+					rc.setB_shower(rset.getString("b_shower").charAt(0));
+					rc.setB_parking(rset.getString("b_parking").charAt(0));
+					rc.setB_rental(rset.getString("b_rental").charAt(0));
+					rc.setB_cloth(rset.getString("b_cloth").charAt(0));
+					rc.setB_facility(rset.getString("b_facility"));
+					rc.setB_timestamp(rset.getString("b_timestamp"));
+					rc.setB_view(rset.getInt("b_view"));
+					rcLonglist.add(rc);
+				} while (rset.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(conn);
+		}
+		return rcLonglist;
+	}
+
+	public ArrayList<Recruit> RecruitLongList(Connection conn, int startRnum, int endRnum) {
+		ArrayList<Recruit> rcLonglist = null;
+
+		String sql = "select * from" + " (select Rownum r, t1."
+				+ "* from (select * from board_recruit where b_start != b_end order by b_n desc) t1 ) t2"
+				+ " where r between ? and ?";
+
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRnum);
+			pstmt.setInt(2, endRnum);
+			rset = pstmt.executeQuery();
+			rcLonglist = new ArrayList<Recruit>();
+			if (rset.next()) {
+				do {
+					Recruit rc = new Recruit();
+					rc.setB_n(rset.getInt("b_n"));
+					rc.setM_id(rset.getString("m_id"));
+					rc.setCa_n(rset.getInt("ca_n"));
+					rc.setB_type(rset.getString("b_type").charAt(0));
+					rc.setB_title(rset.getString("b_title"));
+					rc.setB_content(rset.getString("b_content"));
+					rc.setB_start(rset.getString("b_start"));
+					rc.setB_end(rset.getString("b_end"));
+					rc.setB_total(rset.getInt("b_total"));
+					rc.setB_attend(rset.getInt("b_attend"));
+					rc.setB_place(rset.getString("b_place"));
+					rc.setB_fee(rset.getInt("b_fee"));
+					rc.setB_match(rset.getString("b_match").charAt(0));
+					rc.setB_gender(rset.getString("b_gender").charAt(0));
+					rc.setB_age(rset.getString("b_age").charAt(0));
+					rc.setB_equip(rset.getString("b_equip").charAt(0));
+					rc.setB_minpeople(rset.getInt("b_minpeople"));
+					rc.setB_progress(rset.getString("b_progress"));
+					rc.setB_shower(rset.getString("b_shower").charAt(0));
+					rc.setB_parking(rset.getString("b_parking").charAt(0));
+					rc.setB_rental(rset.getString("b_rental").charAt(0));
+					rc.setB_cloth(rset.getString("b_cloth").charAt(0));
+					rc.setB_facility(rset.getString("b_facility"));
+					rc.setB_timestamp(rset.getString("b_timestamp"));
+					rc.setB_view(rset.getInt("b_view"));
+					rcLonglist.add(rc);
+				} while (rset.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(conn);
+		}
+		return rcLonglist;
+	}
+
 	// 모집방 상세 페이지
-	public Recruit detailRecruit(Connection conn, int b_n) {
+	public Recruit DetailRecruit(Connection conn, int b_n) {
 		Recruit rc = null;
 		String sql = "select * from board_recruit where b_n = ?";
 		PreparedStatement pstmt = null;
@@ -128,6 +397,7 @@ public class RecruitDao {
 				rc.setB_facility(rset.getString("b_facility"));
 				rc.setB_timestamp(rset.getString("b_timestamp"));
 				rc.setB_view(rset.getInt("b_view"));
+				return rc;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -136,7 +406,7 @@ public class RecruitDao {
 			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(conn);
 		}
-		return rc;
+		return null;
 	}
 
 	// 모지방 제목 검색
@@ -193,42 +463,22 @@ public class RecruitDao {
 
 	// 모집방 총 갯수
 	public int getRecruitCount(Connection conn) {
-		int result = 0;
+		int count = 0;
 		String sql = "select count(b_n) from board_recruit";
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				result = rset.getInt(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rset);
-			JDBCTemplate.close(pstmt);
-		}
-		return result;
-	}
-
-	public int recruitCountList(Connection conn) {
-		int count = 0;
-
-		String sql = "select max(b_n) from BOARD_RECRUIT";
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				count = rset.getInt(1);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(pstmt);
-			JDBCTemplate.close(rset);
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(conn);
 		}
 		return count;
 	}

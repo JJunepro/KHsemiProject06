@@ -11,7 +11,7 @@
 <title>모집 참가방 생성 Page</title>
 </head>
 <body>
-	<form action="RecruitMakeServlet" method="POST">
+	<form action="RecruitMake" method="POST">
 		<div class="container">
 			<div class="content">
 				<div class="content_wrap">

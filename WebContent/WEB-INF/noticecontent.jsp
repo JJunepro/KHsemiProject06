@@ -3,7 +3,6 @@
     pageEncoding="UTF-8"%>
 <% Notice bnn = (Notice)request.getAttribute("noticeno"); %>
 <!DOCTYPE html>
-<html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/header.css" />
