@@ -25,7 +25,7 @@
 			<div class="headerNav">
 				<ul class="headerNavList">
 					<li class="reserveBtn">
-						<!-- TODO 경로 수정 --> <a href="#">예약페이지</a>
+						<!-- TODO 경로 수정 --> <a href="<%=request.getContextPath()%>/RecruitAdminList">예약페이지</a>
 					</li>
 					<li><a href="<%=request.getContextPath()%>/marketMain">중고나라</a>
 					</li>
@@ -35,7 +35,7 @@
 				</ul>
 			</div>
 			<div class="subReserve">
-				<span><a href="#">장기</a></span> <span><a href="#">단기</a></span>
+				<span><a href="<%=request.getContextPath()%>/RecruitMainShort">장기</a></span> <span><a href="<%=request.getContextPath()%>/RecruitMainLong">단기</a></span>
 			</div>
 		</div>
 	</header>

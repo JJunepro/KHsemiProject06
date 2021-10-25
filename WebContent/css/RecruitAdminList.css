@@ -1,5 +1,4 @@
 /* 예약 관리자페이지 */
-
 @charset "UTF-8";
 
 * {
@@ -45,7 +44,7 @@ section.recruitAdminList {
 	padding: 60px 0;
 }
 
-table {
+ul {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
@@ -82,7 +81,7 @@ table {
 	width: 200px;
 }
 
-.recruit-table th, .recruit-table td {
+.recruit-table th .recruit-table td {
 	padding: 14px 0;
 }
 
@@ -149,4 +148,8 @@ table {
 
 .p1 {
 	background: #ccc;
+}
+
+.pageBox {
+	padding: 0 45rem;
 }

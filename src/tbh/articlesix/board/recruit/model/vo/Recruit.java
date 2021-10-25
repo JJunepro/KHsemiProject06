@@ -59,13 +59,12 @@ public class Recruit {
 	}
 
 	// 글 작성
-	
-	 public Recruit(int b_n, String m_id, int ca_n, char b_type, String b_title, String b_content, String b_start,
+
+	public Recruit(String m_id, int ca_n, char b_type, String b_title, String b_content, String b_start,
 			String b_end, int b_total, int b_attend, String b_place, int b_fee, char b_match, char b_gender, char b_age,
 			char b_equip, int b_minpeople, String b_progress, char b_shower, char b_parking, char b_rental,
 			char b_cloth, String b_facility, String b_timestamp, int b_view) {
 		super();
-		this.b_n = b_n;
 		this.m_id = m_id;
 		this.ca_n = ca_n;
 		this.b_type = b_type;
@@ -90,6 +89,36 @@ public class Recruit {
 		this.b_facility = b_facility;
 		this.b_timestamp = b_timestamp;
 		this.b_view = b_view;
+	}
+
+	// 글 수정
+	public Recruit(String m_id, int ca_n, char b_type, String b_title, String b_content, String b_start, String b_end,
+			int b_total, String b_place, int b_fee, char b_match, char b_gender, char b_age, char b_equip,
+			int b_minpeople, String b_progress, char b_shower, char b_parking, char b_rental, char b_cloth,
+			String b_facility, String b_timestamp) {
+		super();
+		this.m_id = m_id;
+		this.ca_n = ca_n;
+		this.b_type = b_type;
+		this.b_title = b_title;
+		this.b_content = b_content;
+		this.b_start = b_start;
+		this.b_end = b_end;
+		this.b_total = b_total;
+		this.b_place = b_place;
+		this.b_fee = b_fee;
+		this.b_match = b_match;
+		this.b_gender = b_gender;
+		this.b_age = b_age;
+		this.b_equip = b_equip;
+		this.b_minpeople = b_minpeople;
+		this.b_progress = b_progress;
+		this.b_shower = b_shower;
+		this.b_parking = b_parking;
+		this.b_rental = b_rental;
+		this.b_cloth = b_cloth;
+		this.b_facility = b_facility;
+		this.b_timestamp = b_timestamp;
 	}
 
 	@Override
@@ -449,6 +478,5 @@ public class Recruit {
 	public void setB_view(int b_view) {
 		this.b_view = b_view;
 	}
-
 
 }

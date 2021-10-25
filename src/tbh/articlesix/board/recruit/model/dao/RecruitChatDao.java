@@ -26,7 +26,7 @@ public class RecruitChatDao {
 			if (rset.next()) {
 				ch.setB_n(rset.getInt("b_n"));
 				ch.setM_id(rset.getString("m_id"));
-				ch.setChat_time(rset.getDate("chat_time"));
+				ch.setChat_time(rset.getString("chat_time"));
 				ch.setChat_message(rset.getString("chat_message"));
 			}
 		} catch (Exception e) {
@@ -56,7 +56,7 @@ public class RecruitChatDao {
 					RecruitChat ch = new RecruitChat();
 					ch.setB_n(rset.getInt("b_n"));
 					ch.setM_id(rset.getString("m_id"));
-					ch.setChat_time(rset.getDate("chat_time"));
+					ch.setChat_time(rset.getString("chat_time"));
 					ch.setChat_message(rset.getString("chat_message"));
 					chlist.add(ch);
 				} while (rset.next());
@@ -99,7 +99,7 @@ public class RecruitChatDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, ch.getB_n());
 			pstmt.setString(2, ch.getM_id());
-			pstmt.setDate(3, ch.getChat_time());
+			pstmt.setString(3, ch.getChat_time());
 			pstmt.setString(4, getDate(conn));
 			return pstmt.executeUpdate();
 		} catch (Exception e) {

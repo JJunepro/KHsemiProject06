@@ -16,11 +16,11 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet("/RecruitMain")
-public class RecruitMainServlet extends HttpServlet {
+@WebServlet("/RecruitMainShort")
+public class RecruitMainShortServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-    public RecruitMainServlet() {
+    public RecruitMainShortServlet() {
         super();
     }
 
@@ -67,7 +67,7 @@ public class RecruitMainServlet extends HttpServlet {
 			endPage = pageCount;
 	
 	// DB에서 값 읽어오기
-		ArrayList<Recruit> rclist = new RecruitService().RecruitList(startRnum,endRnum);
+		ArrayList<Recruit> rclist = new RecruitService().RecruitShortList(startRnum,endRnum);
 			
 			// Data 전달을 위해서 request에 set
 			request.setAttribute("rclist", rclist);
@@ -76,7 +76,7 @@ public class RecruitMainServlet extends HttpServlet {
 			request.setAttribute("pageCount", pageCount);
 			request.setAttribute("currentPage", currentPage);
 			// Page 이동하면서 Data도 전달함.
-			request.getRequestDispatcher("/RecruitMain.jsp").forward(request, response);
+			request.getRequestDispatcher("/RecruitMainShort.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

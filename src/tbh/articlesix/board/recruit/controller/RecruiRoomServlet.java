@@ -2,17 +2,17 @@ package tbh.articlesix.board.recruit.controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import tbh.articlesix.board.recruit.model.dao.RecruitDao;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
-
 
 @WebServlet("/RecruitRoom")
 public class RecruiRoomServlet extends HttpServlet {
@@ -24,16 +24,18 @@ public class RecruiRoomServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response, Connection conn)
 			throws ServletException, IOException {
-		int b_n = Integer.parseInt(request.getParameter("b_n"));
-		int b_view = new RecruitService().viewCount(b_n);
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
 
-		RecruitDao rdao = RecruitDao.getInstance();
-		rdao.viewCount(conn, b_n);
-		Recruit rc = new RecruitService().detailRecruit(b_n);
-		rc.setB_view(rc.getB_view() + 1);
+		String no = request.getParameter("no");
+		int b_n = Integer.parseInt(no);
+		
+		Recruit rcdetail = new RecruitService().DetailRecruit(b_n);
 
-		request.setAttribute("rc", rc);
-		request.getRequestDispatcher("/WEB-INF/RecruitRoom.jsp").forward(request, response);
+		request.setAttribute("rcdetail", rcdetail);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/RecruitRoom.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
