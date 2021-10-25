@@ -45,11 +45,14 @@ String memberId = (String)request.getAttribute("memberId");
 		<div class="listBox">
 			<ul class="listContent">
 				<a href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
-					<li><img src="<%=mk.getImgScr()%>" alt="img" />
-						<div>
+					<li>
+					<div class="detailImg">
+					<img src="<%=mk.getImgScr()%>" alt="img" />
+					</div>
+						<div class="listTitle">
 							<p><%=mk.getBmTitle()%></p>
 							<p>가격</p>
-						</div>
+						</div class="listContent">
 						<p><%=mk.getBmContent()%></p></li>
 				</a>
 			</ul>
@@ -66,7 +69,7 @@ String memberId = (String)request.getAttribute("memberId");
 			<%
 				for (int i = startPage; i <= endPage; i++) {
 			%>
-			<a href="marketMain?pagenum=<%=i%>"><%=i%></a>
+			<a class="orderNum" href="marketMain?pagenum=<%=i%>"><%=i%></a>
 			<%
 				currentPage = i;
 					if (i != endPage) {
