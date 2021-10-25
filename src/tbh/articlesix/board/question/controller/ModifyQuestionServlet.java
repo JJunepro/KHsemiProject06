@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.question.service.QuestionService;
 import tbh.articlesix.board.question.vo.Question;
 
-
+/**
+ * Servlet implementation class ModifyQuestionServlet
+ */
 @WebServlet("/questionmodify")
 public class ModifyQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,7 +36,6 @@ public class ModifyQuestionServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 
 		String no = request.getParameter("no");
-		
 		int bq_n = Integer.parseInt(no);
 		Question bqn = new QuestionService().getQuestion(bq_n);
 		
@@ -55,15 +56,15 @@ public class ModifyQuestionServlet extends HttpServlet {
 		int bq_n = Integer.parseInt(no);
 		
 		String bq_title = request.getParameter("bq_title");
-		String m_id = request.getParameter("m_id");
+		String m_nick = request.getParameter("m_nick");
 		String bq_content = request.getParameter("bq_content");
 		
 		out.println("입력된 title: "+ bq_title);
 		out.println("<br>입력된 content: "+ bq_content);
 		
 //		String m_id = (String)request.getSession().getAttribute("memberLoginInfo");
-		if (m_id == null) {
-			m_id = "Manager";
+		if (m_nick == null) {
+			m_nick = "Manager";
 		}
 		
 		Question bqn = new Question(bq_title, bq_content, bq_n);

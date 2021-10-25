@@ -3,6 +3,7 @@
     pageEncoding="UTF-8"%>
 <% Notice bnn = (Notice)request.getAttribute("noticeno"); %>
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./css/header.css" />
@@ -10,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>공지사항 게시글 보기 Page</title>
+<title>공지사항 게시글 보기</title>
 <style>
 * {
     padding: 0;
@@ -36,6 +37,7 @@
   	padding : 1em;
   	border-top : thick double #A7ABC2;
   	border-bottom : 0.5em solid #9DB6C2;
+  	height : 560px;
 	}
  .btncol {
  	position : relative;
@@ -106,8 +108,8 @@
         		<h1><%= bnn.getBn_title()%></h1>
 				<pre>
 				
-<span>작성자 : <%= bnn.getM_id()%></span>
-<span>조회수 : <%= bnn.getBn_view()%></span>
+<span>작성자 : <%= bnn.getM_nick()%></span>
+<span>조회수 : <%= bnn.getBn_view()+1%></span>
 <span>등록일 : <%= bnn.getBn_timestamp()%></span>
 				</pre>
         </div>

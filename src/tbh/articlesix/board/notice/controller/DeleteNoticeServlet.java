@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.notice.service.NoticeService;
 import tbh.articlesix.board.notice.vo.Notice;
 
-
+/**
+ * Servlet implementation class DeleteNoticeServlet
+ */
 @WebServlet("/noticedelete")
 public class DeleteNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +33,7 @@ public class DeleteNoticeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		String no = request.getParameter("no");
 		int bn_n = Integer.parseInt(no);

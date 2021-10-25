@@ -13,7 +13,9 @@ import tbh.articlesix.board.notice.dao.NoticeDao;
 import tbh.articlesix.board.notice.service.NoticeService;
 import tbh.articlesix.board.notice.vo.Notice;
 
-
+/**
+ * Servlet implementation class ModifyNoticeServlet
+ */
 @WebServlet("/noticemodify")
 public class ModifyNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -57,15 +59,15 @@ public class ModifyNoticeServlet extends HttpServlet {
 		int bn_n = Integer.parseInt(no);
 		
 		String bn_title = request.getParameter("bn_title");
-		String m_id = request.getParameter("m_id");
+		String m_nick = request.getParameter("m_nick");
 		String bn_content = request.getParameter("bn_content");
 		
 		out.println("입력된 title: "+ bn_title);
 		out.println("<br>입력된 content: "+ bn_content);
 		
 //				String m_id = (String)request.getSession().getAttribute("memberLoginInfo");
-		if (m_id == null) {
-			m_id = "Manager";
+		if (m_nick == null) {
+			m_nick = "Manager";
 		}
 		
 		Notice bnn = new Notice(bn_title, bn_content, bn_n);

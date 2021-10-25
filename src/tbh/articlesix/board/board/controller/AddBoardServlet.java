@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import tbh.articlesix.board.board.service.BoardService;
 import tbh.articlesix.board.board.vo.Board;
-import tbh.articlesix.board.notice.vo.Notice;
 
+/**
+ * Servlet implementation class AddBoardServlet
+ */
 @WebServlet("/boardwrite.do")
 public class AddBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,38 +45,24 @@ public class AddBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		Board oVo = null;
-		String viewBno = request.getParameter("bno");
-		System.out.println(viewBno);
-		if(viewBno == null || viewBno.equals("")) {   // 기존 읽고 있던 글이 없다면 원본 새글쓰기로 인식
-			oVo= new Board();
-		} else {
-			int bno = Integer.parseInt(viewBno);
-			// 알아와야함. bref, bre_level, bre_step
-			oVo = new BoardService().getBoard(bno);
-		}
-		// 화면입력 전달되어 옴. request - parameter (==변수명) : t, c
-		// http://localhost:8090/myBoard/boardwrite.kh?c=내용부분입력된값이지요&t=뭐라해야할지모를제목
-		String title = request.getParameter("title");  //내용부분입력된값이지요
-		String content = request.getParameter("content");  //뭐라해야할지모를제목
-//		String writer = (String)request.getSession().getAttribute("memberLoginInfo");
-		String writer = request.getParameter("writer");
-		if(writer == null) {
-			writer = "user01";   // TODO: 임시 user 설정
-		}
-//		out.println("입력된 title: "+ title);
-//		out.println("<br>입력된 content: "+ content);
-
-		Board vo = new Board(oVo.getBno(), title, content, writer, oVo.getBref(), oVo.getBreLevel(), oVo.getBreStep());		
+		String bf_title = request.getParameter("bf_title");
+		String m_nick = request.getParameter("m_nick");
+		String bf_content = request.getParameter("bf_content");
+		String bf = request.getParameter("bf_category");
+		int bf_category = Integer.parseInt(bf);
+		System.out.println(bf_category);
 		
-		int result = new BoardService().insertBoard(vo);
-//		if(result == 0) {
-//			out.println("<br>게시글 되지 않았습니다. <br>작성된 글에 비속어가 포함되어 있습니다. <br>다시 작성해 주세요.");
-//		} else {
-//			out.println("<br>게시글 입력되었습니다.");
-//		}
+		out.println("입력된 title: "+ bf_title);
+		out.println("<br>입력된 content: "+ bf_content);
 		
-		//request.getRequestDispatcher("boardlist").forward(request, response);
+//		String m_id = (String)request.getSession().getAttribute("memberLoginInfo");
+		if (m_nick == null) {
+			m_nick = "Manager";
+		}
+		
+		Board no = new Board(bf_title, m_nick, bf_content, bf_category);
+		
+		int result = new BoardService().insertBoard(no);
 		response.sendRedirect("boardlist");
 	}
 

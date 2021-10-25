@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.notice.service.NoticeService;
 import tbh.articlesix.board.notice.vo.Notice;
 
-
+/**
+ * Servlet implementation class AddNoticeServlet
+ */
 @WebServlet("/noticewrite.do")
 public class AddNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -46,18 +48,18 @@ public class AddNoticeServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String bn_title = request.getParameter("bn_title");
-		String m_id = request.getParameter("m_id");
+		String m_nick = request.getParameter("m_nick");
 		String bn_content = request.getParameter("bn_content");
 		
 		out.println("입력된 title: "+ bn_title);
 		out.println("<br>입력된 content: "+ bn_content);
 		
 //		String m_id = (String)request.getSession().getAttribute("memberLoginInfo");
-		if (m_id == null) {
-			m_id = "Manager";
+		if (m_nick == null) {
+			m_nick = "Manager";
 		}
 		
-		Notice no = new Notice(bn_title, m_id, bn_content);
+		Notice no = new Notice(bn_title, m_nick, bn_content);
 		
 		int result = new NoticeService().insertNotice(no);
 		response.sendRedirect("noticelist");

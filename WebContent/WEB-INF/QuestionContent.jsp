@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>QnA 게시글 보기 Page</title>
+<title>QnA 게시글 보기</title>
 <style>
 * {
     padding: 0;
@@ -38,6 +38,7 @@
   	border-top : thick double #A7ABC2;
   	border-bottom : 0.5em solid #9DB6C2;
   	height : 560px;
+  	background : #fff;
 	}
  .btncol {
  	position : relative;
@@ -108,7 +109,7 @@
         		<h1><%= bqn.getBq_title()%></h1>
 				<pre>
 				
-<span>작성자 : <%= bqn.getM_id()%></span>
+<span>작성자 : <%= bqn.getM_nick()%></span>
 <span>등록일 : <%= bqn.getBq_timestamp()%></span>
 				</pre>
         </div>
@@ -119,20 +120,31 @@
         
         <!-- TODO : 수정 필요함 -->
         <div class="btncol">
+        	<button id="replybtn" class="btn btn-dark">
+	        	<a href="questionreply?no=<%=bqn.getBq_n()%>">답글 작성</a>
+	        </button>
+	        
 	        <button id="modifybtn" class="btn btn-dark">
 	        	<a href="questionmodify?no=<%=bqn.getBq_n()%>">수정</a>
 	        </button>
 
-	        
 	        <button id="deletebtn" class="btn btn-dark">
 	        	<a href="questiondelete?no=<%=bqn.getBq_n()%>">삭제</a>
 	        </button>
 	        
-	        <button onclick="location.href='noticelist'" class="btn btn-dark">목록</button> 
+	        <button onclick="location.href='questionlist'" class="btn btn-dark">목록</button> 
 	    </div>
     </div>
     
     <script>
+	    $("#replybtn").click(function(){
+			if(confirm("답글 작성하시겠습니까?")) {
+				$("#modify").submit();
+			} else {
+				return false;
+			}
+		});	
+    
     	$("#modifybtn").click(function(){
     		if(confirm("수정하시겠습니까?")) {
     			$("#modify").submit();

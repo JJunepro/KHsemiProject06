@@ -1,7 +1,7 @@
-<%@page import="tbh.articlesix.board.notice.vo.Notice"%>
+<%@page import="tbh.articlesix.board.board.vo.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Notice bnn = (Notice)request.getAttribute("noticeno"); %>
+<% Board bno = (Board)request.getAttribute("boardvo"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,8 +79,16 @@
 	<%@ include file="./Header.jsp"%>
 	<div class="container">
 		<div class="row">
-			<form method="post" action="noticemodify">
-				<input type="hidden" name="no" value="<%=bnn.getBn_n() %>">
+			<form method="post" action="boardmodify">
+				<select name="bf_category" class="select">
+					<option value="1">전체</option>
+					<option value="2">가입인사</option>
+					<option value="3">이벤트</option>
+					<option value="4">수다</option>
+					<option value="5">운동팁</option>
+					<option value="6">모여라</option>
+				</select>
+				<input type="hidden" name="no" value="<%=bno.getBf_n() %>">
 				<table class="table table-striped" style="text-align:center; border:1px solid #dddddd;">
 					<thead class="title">
 						<tr>
@@ -90,14 +98,14 @@
 					<tbody>
 						<tr>
 							<td colspan="1" class="table_title">제목</td>
-							<td colspan="3"><input type="text" class="form-control" placeholder="글 제목" name="bn_title" maxlength="50" value="<%= bnn.getBn_title()%>"></td>
+							<td colspan="3"><input type="text" class="form-control" placeholder="글 제목" name="bf_title" maxlength="50" value="<%= bno.getBf_title()%>"></td>
 						</tr>
 						<tr>
-							<td colspan="1" class="table_title">닉네임</td>
-							<td colspan="3"><input type="text" class="form-control" placeholder="작성자" name="m_nick" maxlength="50" value="<%= bnn.getM_nick()%>"></td>
+							<td colspan="1" class="table_title">작성자</td>
+							<td colspan="3"><input type="text" class="form-control" placeholder="작성자" name="m_nick" maxlength="50" value="<%= bno.getM_nick()%>"></td>
 						</tr>
 						<tr>
-							<td colspan="4"><textarea cols="100" rows="10" name="bn_content" id="editor" placeholder="글 내용" maxlength="2048"><%= bnn.getBn_content()%></textarea></td>
+							<td colspan="4"><textarea cols="100" rows="10" name="bf_content" id="editor" placeholder="글 내용" maxlength="2048"><%= bno.getBf_content()%></textarea></td>
 							<script>
 								/* CKEDITOR.filebrowserUploadMethod = 'form';
 								CKEDITOR.replace("text_content",{ height:"300" ,filebrowserImageUploadUrl: 'upload'

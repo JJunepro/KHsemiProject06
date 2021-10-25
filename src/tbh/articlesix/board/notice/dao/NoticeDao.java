@@ -39,6 +39,7 @@ public class NoticeDao {
 //				
 //				sql.delete(start, sql.toString().length());
 //			}
+//			
 //			rset = pstmt.executeQuery();
 //			
 //			nolist = new ArrayList<Notice>();
@@ -95,7 +96,7 @@ public class NoticeDao {
 			while(rs.next()) {
 				Notice no = new Notice();
 				no.setBn_n(rs.getInt("bn_n"));
-				no.setM_id(rs.getString("m_id"));
+				no.setM_nick(rs.getString("m_nick"));
 				no.setBn_title(rs.getString("bn_title"));
 				no.setBn_content(rs.getString("bn_content"));
 				no.setBn_timestamp(rs.getDate("bn_timestamp"));
@@ -165,7 +166,7 @@ public class NoticeDao {
 				do {
 					Notice no = new Notice();
 					no.setBn_n(rset.getInt("bn_n"));
-					no.setM_id(rset.getString("m_id"));
+					no.setM_nick(rset.getString("m_nick"));
 					no.setBn_title(rset.getString("bn_title"));
 					no.setBn_content(rset.getString("bn_content"));
 					no.setBn_timestamp(rset.getDate("bn_timestamp"));
@@ -203,7 +204,7 @@ public class NoticeDao {
 				do {
 					Notice no = new Notice();
 					no.setBn_n(rs.getInt("bn_n"));
-					no.setM_id(rs.getString("m_id"));
+					no.setM_nick(rs.getString("m_nick"));
 					no.setBn_title(rs.getString("bn_title"));
 					no.setBn_content(rs.getString("bn_content"));
 					no.setBn_timestamp(rs.getDate("bn_timestamp"));
@@ -244,7 +245,6 @@ public class NoticeDao {
 	
 	// 현재 시간 불러오기
 	public String getDate(Connection conn) {
-		int result = 0;
 		String sql = "SELECT TO_DATE(SYSDATE, 'YYYYMMDD') FROM DUAL";
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -268,7 +268,7 @@ public class NoticeDao {
 		int result = -1;
 		int nextVal = 0;
 		int bnv = 0;
-		String sql = "INSERT INTO" + " BOARD_NOTICE" + " (BN_N, M_ID, BN_TITLE, BN_CONTENT, BN_TIMESTAMP, BN_VIEW)"
+		String sql = "INSERT INTO" + " BOARD_NOTICE" + " (BN_N, M_NICK, BN_TITLE, BN_CONTENT, BN_TIMESTAMP, BN_VIEW)"
 						+ " VALUES (?, ?, ?, ?, sysdate, ?)";
 		
 		String sqlSeqNextVal = "SELECT SEQ_NOTICE.NEXTVAL FROM DUAL";
@@ -286,7 +286,7 @@ public class NoticeDao {
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, nextVal);
-			pstmt.setString(2, no.getM_id());
+			pstmt.setString(2, no.getM_nick());
 			pstmt.setString(3, no.getBn_title());
 			pstmt.setString(4, no.getBn_content());
 			pstmt.setInt(5, bnv);
@@ -303,7 +303,6 @@ public class NoticeDao {
 //	 게시글 보기 
 	public Notice getNotice(Connection conn, int bn_n) {
 		Notice no = null;
-		
 		String sql = "SELECT * FROM BOARD_NOTICE WHERE BN_N = ?";
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -315,11 +314,14 @@ public class NoticeDao {
 			if(rset.next()) {
 				Notice notice = new Notice();
 				notice.setBn_n(rset.getInt(1));
-				notice.setM_id(rset.getString("m_id"));
+				notice.setM_nick(rset.getString("m_nick"));
 				notice.setBn_title(rset.getString("bn_title"));
 				notice.setBn_content(rset.getString("bn_content"));
 				notice.setBn_timestamp(rset.getDate("bn_timestamp"));
-				notice.setBn_view(rset.getInt(6));
+				int bn_view = rset.getInt(6);
+				notice.setBn_view(bn_view);
+				bn_view++;
+				countUpdate(conn, bn_view, bn_n);
 				return notice;
 			}
 		} catch (Exception e) {
@@ -391,6 +393,24 @@ public class NoticeDao {
 				e.printStackTrace();
 			}
 			catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(pstmt);
+			}
+			return result;
+		}
+		
+		public int countUpdate(Connection conn, int bn_view, int bn_n) {
+			int result = -1;
+			String sql = "UPDATE BOARD_NOTICE SET BN_VIEW = ? WHERE BN_N = ?";
+			
+			PreparedStatement pstmt = null;
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, bn_view);
+				pstmt.setInt(2, bn_n);
+				pstmt.executeUpdate();
+			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				JDBCTemplate.close(pstmt);

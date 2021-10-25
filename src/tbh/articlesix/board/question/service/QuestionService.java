@@ -28,9 +28,7 @@ public class QuestionService {
 	public int insertQuestion(Question vo) {
 		int result = -1;
 		Connection conn = JDBCTemplate.getConnection();
-		
 		result = new QuestionDao().insertQuestion(conn, vo);
-		
 		JDBCTemplate.close(conn);
 		return result;
 	}
@@ -60,6 +58,7 @@ public class QuestionService {
 		result = bDAO.deleteQuestion(conn, bq_n);
 		
 //		if(result > 0) {
+//
 //		} else {
 //
 //		}

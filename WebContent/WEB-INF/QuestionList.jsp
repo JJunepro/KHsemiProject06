@@ -7,6 +7,9 @@ ArrayList<Question> volist = (ArrayList<Question>)request.getAttribute("noticeno
 int startPage = (int) request.getAttribute("startPage");
 int endPage = (int) request.getAttribute("endPage");
 int pageCount = (int) request.getAttribute("pageCount");
+int currentPage = (int) request.getAttribute("currentPage");
+int previous = startPage - 1;
+int next = endPage + 1;
 %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +20,7 @@ int pageCount = (int) request.getAttribute("pageCount");
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>TBH QnA List</title>
+<title>TBH QnA</title>
 <style>
 
 * {
@@ -50,6 +53,21 @@ int pageCount = (int) request.getAttribute("pageCount");
 	padding : 0.5em;
 	width : 5.5em;
 }
+.nav ul li:first-child {
+	border-radius: 2em 0 0 2em;
+}
+.nav ul li:last-child {
+	border-radius: 0 2em 2em 0;
+}
+
+.p2 {
+	background : #ccc;
+	font-weight : bold;
+}
+
+.p2 a {
+	color : #4D4D4D;
+}
 
 .blind {
   position: absolute;
@@ -66,11 +84,11 @@ table {
 }
 
 section.notice {
-  padding: 60px 0;
+  padding: 3em 0;
 }
 
 .page-title {
-  margin-bottom: 40px;
+  margin-bottom: 2em;
 }
 
 .page-title h3 {
@@ -114,11 +132,11 @@ section.notice {
   font-size: 16px;
 }
 
-
 .select { 
   height: 40px;
   width : 20%;
   text-align : center;
+  border-color : #ccc;
 }
 
 .board-table {
@@ -217,7 +235,6 @@ section.notice {
  	color: #fff;
  	border : 1px solid #ccc;
  	padding : 10px;
- 	
 }
 
 .towrite:hover, .towrite:focus {
@@ -227,9 +244,36 @@ section.notice {
 	border : 1px solid #cceed4;
 }
 
-.p2 {
-	background : #ccc;
+.pageController {
+	margin : 0 auto;
+	padding-top : 1.5em;
+	text-align : center;
 }
+
+.pageController a {
+	display : block;
+	display : inline-block;
+	margin : 0 3px;
+	border : 1px solid #ccc;
+	width : 28px;
+	height : 28px;
+	line-height : 28px;
+	background-color : #fff;
+	font-size : 13px;
+	color : #999999;
+}
+
+.pageController a:hover {
+	text-weight : bold;
+	background-color : #ccc;
+	color : #555555;
+}
+
+.pageController a:active {
+	text-weight : bold;
+	color : #aaa;
+}
+
 </style>
 </head>
 <body>
@@ -282,11 +326,19 @@ section.notice {
                	%>
 				<tbody>
 					<tr>
-						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_n()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBref()%></a>
 						</td>
-						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_title()%></a>
+						<td>
+						<%
+						for( int i=0; i<vo.getBreLevel(); i++){
+						%>
+							<span style="color : red; font-weight : bold;">&#9977;RE : </span>
+						<%
+							}
+						%>
+						<a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_title()%></a>
 						</td>
-						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getM_id()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getM_nick()%></a>
 						</td>
 						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_timestamp()%></a>
 						</td>
@@ -297,10 +349,11 @@ section.notice {
                 %>
 				</tbody>
 				</table>
+				<div class="pageController">
 				<%
 					if (startPage > 1){
 				%>
-				<a href="./questionlist?pagenum=<%=startPage%>">이전</a>
+				<a href="./questionlist?pagenum=<%=previous%>" class="pc_d">이전</a>
 				<%
 					}
 					for (int i = startPage; i <= endPage; i++) {
@@ -314,12 +367,11 @@ section.notice {
 				}
 				if (endPage < pageCount) {
 				%>
-					<a href="./questionlist?pagenum=<%=endPage%>">다음</a>
-					다음
+					<a href="./questionlist?pagenum=<%=next%>" class="pc_d">다음</a>
 				<%
 				}
 				%>
-				<br>
+				</div>
 				<button class="btn towrite">
 				<a href='questionwrite.do'>글쓰기</a>
 				</button>

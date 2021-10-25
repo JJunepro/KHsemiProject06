@@ -100,6 +100,7 @@ public class NoticeService {
 //		if(result > 0) {
 //
 //		} else {
+//
 //		}
 		JDBCTemplate.close(conn);
 		return result;
