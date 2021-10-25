@@ -1,27 +1,38 @@
-/* 회원삭제 */
-
+/*회원 탈퇴*/
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
+h1{
+    font-size: 35px;
+}
+p{
+    font-size: 20px;
+}
 section{
+	font-family: 'Cafe24SsurroundAir';
     background-color: rgb(245, 246, 248);
     height: 700px;
 }
 form{
     position: relative;
-    top: 30%;
-    /* width: 500px; */
-    /* height: 1000px; */
+    top: 19%;
     text-align: center;
 }
 #mPw{
-    margin-top: 100px;
+    margin-top: 20px;
     margin-bottom: 30px;
     width: 250px;
     height: 40px;
     border: solid 1px rgb(217, 218, 220);
+    font-family: 'Cafe24SsurroundAir';
     
 }
 #delBtn{
@@ -31,4 +42,25 @@ form{
     background-color: #95c2b7;
     color: rgb(245, 246, 248);
     border: solid 1px rgb(217, 218, 220);
+    font-family: 'Cafe24SsurroundAir';
+}
+table{
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+}
+hr{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+}
+td{
+    height: 30px;
+}
+#reasonBox{
+    width: 180px;
+    height: 30px;
+}
+.endP{
+    font-size: 10px;
 }

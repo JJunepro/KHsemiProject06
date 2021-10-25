@@ -2,6 +2,7 @@ package tbh.articlesix.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,7 +81,7 @@ public class LoginMemberDoServlet extends HttpServlet {
 				seeSession.setAttribute("mAddress", m.getM_address());
 				seeSession.setAttribute("mAddressDetail", m.getM_address_detail());
 				seeSession.setAttribute("mDegree", m.getM_degree());
-				
+				seeSession.setAttribute("createDate",m.getM_createDate());
 				
 				map2.put("result", "ok");
 				map2.put("name", m.getM_name());
