@@ -25,6 +25,7 @@ section{
 }
 #fstCon {
     font-size: 50px;
+    font-weight: bold;
 }
 img {
     width: auto;
@@ -34,15 +35,18 @@ img {
     text-align: center;
 }
 #loginBtn {
-    margin-top: 100px;
+    margin-top: 70px;
     margin-bottom: 25px;
-    width: 100px;
-    height: 40px;
-    font-size: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 140px;
+    height: 45px;
+    font-size: 18px;
     background-color: #95c2b7;
     color: rgb(245, 246, 248);
     border: solid 1px rgb(217, 218, 220);
     font-family: 'Cafe24SsurroundAir';
+    font-weight: bold;
 }
 #tbh {
     font-size: 13px;
@@ -53,4 +57,9 @@ img {
 #hg{
     font-size: 10px;
     font-weight: bold;
+}
+hr{
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
 }

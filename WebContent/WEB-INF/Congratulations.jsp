@@ -18,7 +18,8 @@
     	<div id="asd">
     		<p id="fstCon">환영합니다!</p><br><br>
     		<p id="secCon">TBH의 멤버가 되신것을</p>
-    		<p id="secCon">축하드립니다.</p>
+    		<p id="secCon">축하드립니다.</p><br><br>
+    		<hr>
     		<input type="button" value="로그인" id="loginBtn" onclick="location.href='login'">
     		<input type="button" value="메인페이지" id="loginBtn" onclick="location.href='main'">
     		<p id="tbh">Together Be Healthy</p>

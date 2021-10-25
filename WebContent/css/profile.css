@@ -4,6 +4,12 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'SF_IceLemon';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_IceLemon.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
 	padding: 0;
 	margin: 0;
@@ -12,11 +18,11 @@
 }
 section{
     background-color: rgb(245, 246, 248);
-    height: 1000px;
+    height: 1100px;
 }
 form {
     position: relative;
-    top: 10%;
+    top: 7%;
     left: 50%;
     width: 400px;
     height: 500px;
@@ -52,11 +58,19 @@ tr :last-child{
 	margin-left: 10px;
 }
 .subBtn{
-	width: 130px;
-	height: 38px;
+	width: 150px;
+	height: 45px;
 	background-color: #95c2b7;
     color: rgb(245, 246, 248);
     border: solid 1px rgb(217, 218, 220);
     margin-right: 30px;
     font-weight: bold;
+    font-size: 17px;
+}
+#title{
+	font-family: 'SF_IceLemon';
+	text-align: center;
+	font-size: 80px;
+	margin-left: 220px;
+	color: #95c2b7;
 }

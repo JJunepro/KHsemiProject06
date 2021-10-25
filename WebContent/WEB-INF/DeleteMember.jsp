@@ -40,6 +40,7 @@
                     <hr><br>
                 <input type="password" id="mPw" placeholder=" 비밀번호"><br>
                 <input type="button" id="delBtn" value="탈퇴하기"><br><br>
+                <p class="endP">*탈퇴 처리된 ID는 다시 생성할 수 없습니다.</p>
                 <p class="endP">*탈퇴 처리되면 즉시 계정정보가 삭제됩니다.</p>
              </form>
          </section>

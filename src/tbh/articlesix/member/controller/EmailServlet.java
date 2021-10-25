@@ -62,7 +62,7 @@ public class EmailServlet extends HttpServlet {
 		//메일 서버
 				String host = "smtp.naver.com";
 				String user = "khtbh01@naver.com";
-				String password = "Khtbh0123!";
+				String password = "khtbH0123!";
 				
 				//메일받을 주소
 				String to_email = m_email;

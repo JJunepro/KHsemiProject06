@@ -66,6 +66,7 @@ public class UpdateMemberDoServlet extends HttpServlet {
 				if (result == 1) {
 					map2.put("result", "ok");
 					gobStr = gObject.toJson(map2);
+					session.invalidate();
 				} else {
 					map2.put("result", "fail");
 					gobStr = gObject.toJson(map2);
