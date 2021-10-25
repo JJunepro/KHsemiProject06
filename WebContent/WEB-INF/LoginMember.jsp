@@ -2,9 +2,6 @@
 <%@page import="tbh.articlesix.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	Member m = (Member) session.getAttribute("memberId");
-%>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
