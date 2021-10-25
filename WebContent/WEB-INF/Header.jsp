@@ -48,9 +48,9 @@
 			method:"post",
 			data: null,
 			success:function(data){
-				mId = data.mId
+				mId = data.memberId
 				console.log(mId)
-				if(mId !== undefined) {
+				if(mId !== null) {
 					$(".loginButtonBox").hide();
 				}
 			}

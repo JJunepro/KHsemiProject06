@@ -209,6 +209,21 @@
 		}}%>
 		}
 		
+		<%
+		if (detailListOne != null) {
+			for (Market mk : detailListOne) {
+	%>
+		if("<%=memberId%>" == "<%=mk.getmId()%>"){
+			$(".btnBox").show();
+			$(".InputBox").show();
+		}else {
+			$(".btnBox").hide();
+			$(".InputBox").hide();
+		}
+		
+		<%
+			}}%>
+		
 	</script>
 </body>
 </html>
