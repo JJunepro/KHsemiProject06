@@ -78,6 +78,14 @@ li {
 	transform: translateX(-10px);
 }
 
+.replyShowBtn {
+	width:200px;
+	background-color: black;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+}
+
 .next {
 	right: 10px;
 }
@@ -93,6 +101,17 @@ li {
 
 .content .expContent {
 	flex-grow: 2;
+	display: flex;
+	flex-direction: row;
+}
+
+.content .expContent div p {
+	display:block;
+	padding: 0.5rem 0;
+}
+
+.marginContent{
+	padding-right:40rem;
 }
 
 .btnBox {
@@ -101,6 +120,17 @@ li {
 	display: flex;
 	align-items: flex-end;
 	justify-content: flex-end;
+}
+
+.btnBox button,
+.replyBtn {
+	width: 30px;
+  height: 20px;
+  font-size:5px;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
 }
 
 .relatedContent {
