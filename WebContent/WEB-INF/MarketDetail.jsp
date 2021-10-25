@@ -54,18 +54,20 @@
 		%>
 		<div class="content">
 			<div class="expContent">
+				<div class="marginContent">
 				<h4><%=mk.getBmTitle()%></h4>
+					<p>
+						작성자: <%=mk.getmId()%></p>
+					<p>
+						가격: <%=mk.getPrice()%></p>
+					<p><%=mk.getBmContent()%></p>
+				</div>
 				<div>
 					<p>
-						작성자:<%=mk.getmId()%></p>
+						조회수: <%=mk.getBmView()%></p>
 					<p>
-						가격:<%=mk.getPrice()%></p>
-					<p><%=mk.getBmContent()%></p>
-					<p>
-						조회수:<%=mk.getBmView()%></p>
-					<p>
-						날짜:<%=mk.getBmTimeStamp()%></p>
-				</div>
+						날짜: <%=mk.getBmTimeStamp()%></p>
+					</div>
 			</div>
 			<button class="replyShowBtn">댓글보기</button>
 		</div>

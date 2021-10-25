@@ -112,15 +112,51 @@ li{
   display: flex;
   margin: 0.3em 0;
   flex-direction: row;
-  justify-content: space-between;
+  
 }
 
-.listContent li img{
+.listContent li .detailImg{
+	flex-grow:1;
   width: 150px;
   height: 150px;
+  margin-right: 50px;
+}
+
+.detailImg img {
+	  width: 150px;
+  height: 150px;
+}
+
+.listTitle {
+	flex-grow:3;
+	margin-right: 400px;
+}
+
+.listContent {
+	flex-grow:3;
+	margin:0;
+	padding:0;
 }
 
 .pageBox {
 	padding: 0 45rem;
+	display: flex;
 }
+
+.orderNum {
+	display:inline-block;
+	color:#999999;
+	width:30px;
+	height:30px;
+	border: 1px solid #ccc;
+	padding: 0 10px;
+	margin-right:10px;
+	text-align:center;
+}
+
+.orderNum:hover {
+	color:#999999;
+	background: #ddd;
+	border:1px solid #ccc;
+} 
 

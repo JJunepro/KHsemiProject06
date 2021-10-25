@@ -83,12 +83,15 @@
 			<ul class="listContent">
 				<a
 					href="marketDetail?no=<%=no.getBmN()%>&title=<%=no.getBmTitle()%>">
-					<li><img
+					<li>
+					<div class="detailImg">
+					<img
 						src="<%=no.getImgScr()%>" alt="img" />
-						<div>
+						</div>
+						<div class="listTitle">
 							<p><%=no.getBmTitle()%></p>
 							<p><%=no.getPrice()%></p>
-						</div>
+						</div class="listContent">
 						<p><%=no.getBmContent()%></p></li>
 				</a>
 			</ul>
@@ -105,7 +108,7 @@
 			<%
 				for (int i = startPage; i <= endPage; i++) {
 			%>
-			<a href="marketMain?pagenum=<%=i%>"><%=i%></a>
+			<a class="orderNum" href="marketMain?pagenum=<%=i%>"><%=i%></a>
 			<%
 				currentPage = i;
 					if (i != endPage) {
