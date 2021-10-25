@@ -127,7 +127,7 @@
 								window.parent.CKEDITOR.tools.callFunction(1, "${url}", "전송완료"); */
 								ClassicEditor
 								.create( document.querySelector( '#editor' ), {
-									ckfinder : { uploadUrl : 'imageUpload' }
+									ckfinder : { uploadUrl : 'imageUpload3' }
 								} )
 								.then( editor => {
 									window.editor = editor

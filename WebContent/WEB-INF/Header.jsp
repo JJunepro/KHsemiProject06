@@ -33,9 +33,9 @@
 					</li>
 					<li><a href="<%=request.getContextPath()%>/marketMain">중고나라</a>
 					</li>
-					<li><a href="<%=request.getContextPath()%>/noticelist">게시판</a>
+					<li><a href="<%=request.getContextPath()%>/boardlist">게시판</a>
 					</li>
-					<li><a href="#">공지사항&QnA</a></li>
+					<li><a href="<%=request.getContextPath()%>/noticelist">공지사항&QnA</a></li>
 				</ul>
 			</div>
 			<div class="subReserve">

@@ -127,10 +127,10 @@ public class BoardService {
 		return result;
 	}
 	
-	public Board getBoard(int bno) {
+	public Board getBoard(int bf_n) {
 		Board vo = null;
 		Connection conn = JDBCTemplate.getConnection();
-		vo = new BoardDao().getBoard(conn, bno);
+		vo = new BoardDao().getBoard(conn, bf_n);
 		JDBCTemplate.close(conn);
 		return vo;
 	}
