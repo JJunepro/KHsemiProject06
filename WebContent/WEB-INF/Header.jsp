@@ -23,7 +23,7 @@
 				</div>
 				<div class="logoutButtonBox">
 					<button class="logoutButton" onclick="location.href='logout'">로그아웃</button>
-					<button class="mypageButton" onclick="location.href='mypage'">마이페이지</button>
+					<button class="mypageButton" onclick="location.href='profile'">마이페이지</button>
 				</div>
 			</div>
 			<div class="headerNav">
