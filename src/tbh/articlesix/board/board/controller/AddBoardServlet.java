@@ -13,9 +13,6 @@ import tbh.articlesix.board.board.service.BoardService;
 import tbh.articlesix.board.board.vo.Board;
 import tbh.articlesix.board.notice.vo.Notice;
 
-/**
- * Servlet implementation class AddBoardServlet
- */
 @WebServlet("/boardwrite.do")
 public class AddBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

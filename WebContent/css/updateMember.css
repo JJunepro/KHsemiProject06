@@ -1,0 +1,55 @@
+/* 회원수정 */
+
+section{
+    background-color: rgb(245, 246, 248);
+    height: 900px;
+}
+#title{
+    margin-left: 100px;
+    margin-bottom: 40px;
+}
+label{
+    font-size: 15px;
+    font-weight: bold;
+    /* text-decoration: solid; */
+}
+form {
+    position: relative;
+    top: 10%;
+    left: 50%;
+    width: 500px;
+    height: 1000px;
+    margin-left: -200px;
+    margin-top: auto;
+}
+.textBox{
+    width: 350px;
+    height: 40px;
+    border: solid 1px rgb(217, 218, 220);
+    font-size: 12px;
+    margin-top: 6px;
+}
+.btnTextBox{
+    width: 294px;
+    height: 40px;
+    border: solid 1px rgb(217, 218, 220);
+    font-size: 12px;
+    margin-top: 6px;
+}
+.btnCheck{
+    border: solid 1px rgb(217, 218, 220);
+    height: 26px;
+    width: 50px;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: bottom;
+}
+#upBrn{
+    border: solid 1px rgb(217, 218, 220);
+    width: 200px;
+    height: 33px;
+    font-size: 15px;
+    color: rgb(245, 246, 248);
+    background-color: #95c2b7;
+    margin-left: 78px;
+}

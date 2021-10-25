@@ -17,7 +17,7 @@ public class RecruitDao {
 		return instance;
 	}
 
-	// 작성일자
+	// 작성일자 (자동)
 	public String getDate(Connection conn) {
 		String sql = "select now()";
 		PreparedStatement pstmt = null;

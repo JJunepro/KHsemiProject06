@@ -16,9 +16,7 @@ import tbh.articlesix.board.recruit.model.service.RecruitChatService;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.RecruitChat;
 
-/**
- * Servlet implementation class RecruitChat
- */
+
 @WebServlet("/RecruitChatInsert")
 public class RecruitChatInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

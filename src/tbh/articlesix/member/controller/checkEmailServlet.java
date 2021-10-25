@@ -15,9 +15,6 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-/**
- * Servlet implementation class checkEmailServlet
- */
 @WebServlet("/checkEmail")
 public class checkEmailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

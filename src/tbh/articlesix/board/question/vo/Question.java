@@ -8,7 +8,8 @@ public class Question {
 	private String bq_title;
 	private String bq_content;
 	private Date bq_timestamp;
-
+	
+	// 질문
 	public Question() {
 		
 	}

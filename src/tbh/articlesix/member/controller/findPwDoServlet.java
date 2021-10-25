@@ -28,9 +28,6 @@ import com.google.gson.GsonBuilder;
 
 import tbh.articlesix.member.service.MemberService;
 
-/**
- * Servlet implementation class FindPwServlet
- */
 @WebServlet("/findPw.do")
 public class findPwDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

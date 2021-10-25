@@ -17,7 +17,7 @@ int pageCount = (int) request.getAttribute("pageCount");
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>T.B.H 자유게시판</title>
+<title>T.B.H 자유게시판 Page</title>
 <style>
 * {
 	list-style: none;

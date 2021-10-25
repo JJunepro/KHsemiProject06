@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/findIdPw.css" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,12 +7,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ID/PW찾기 Page</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="<%=request.getContextPath() %>/css/findIdPw.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 	<body>
 	<%@ include file="./Header.jsp" %>
+		<section>
     	<form action="findId.do" id="frm">
         	<fieldset>
             	<div id="title">
@@ -39,18 +41,19 @@
             
         </fieldset>
     </form>
+    </section>
     <%@ include file="./Footer.jsp" %>
 	</body>
 	<script>
             $(function(){
                 $("#send").on("click", function(){
                 	if($("#uName").val()==""){
-                        alert("이름을 입력해 주세요.");
+                        swal("", "이름을 입력해 주세요.", "error");
                         $("#uName").focus;
                         return false;
                     }
                 	if($("#uEmail").val()==""){
-                        alert("이메일을 입력해 주세요.");
+                        swal("", "이메일을 입력해 주세요.", "error");
                         $("#uEmail").focus;
                         return false;
                     }
@@ -68,10 +71,10 @@
                         success: function(data) {
                             if(data.result == "ok"){
                                 console.log(data.result);
-                                alert("인증메일이 발송되었습니다.")
+                                swal("", "인증메일이 발송되었습니다.", "success")
                             }else{
                                 console.log(data.result);
-                                alert("회원정보가 맞지않습니다.")
+                                swal("", "회원정보가 맞지않습니다.", "error")
                             }
                         },
                         error : function(request, status, error){
@@ -86,7 +89,7 @@
             $(function(){
                 $("#find").on("click", function(){
                 	if($("#authentication").val()==""){
-                        alert("인증코드를 입력해주세요.");
+                        swal("", "인증코드를 입력해주세요.", "error");
                         $("#authentication").focus;
                         return false;
                     }
@@ -105,11 +108,12 @@
                 		success: function(data) {
 							if(data.result == "ok"){
 								console.log(data.result);
-								alert(data.msg);
+								swal("회원님의 아이디는", data.msg+" 입니다", "success").then(function(){
 								location.href="login";
+								});
 							}else{
 								console.log(data.msg);
-								alert(data.msg);
+								swal("", data.msg, "error");
 								
 							}
 						},
@@ -117,7 +121,7 @@
 							 	console.log(request)
 	                            console.log(status)
 	                            console.log(error)
-	                            alert("오류가 발생하였습니다.");
+	                            swal("", "오류가 발생하였습니다.", "error");
 	                            
 						 }
                 	});

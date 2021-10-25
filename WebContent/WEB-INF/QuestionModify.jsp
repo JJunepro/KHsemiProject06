@@ -73,7 +73,7 @@
 		padding : 8px;
 	}
 </style>
-<title>QnA 글 수정</title>
+<title>QnA 글 수정 Page</title>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>

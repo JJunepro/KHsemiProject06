@@ -19,9 +19,7 @@ import com.google.gson.GsonBuilder;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-/**
- * Servlet implementation class ImageUpload
- */
+
 @WebServlet("/imageUpload")
 public class ImageUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

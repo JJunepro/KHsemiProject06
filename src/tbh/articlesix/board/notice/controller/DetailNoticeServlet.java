@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.notice.service.NoticeService;
 import tbh.articlesix.board.notice.vo.Notice;
 
-/**
- * Servlet implementation class DetailNoticeServlet
- */
+
 @WebServlet("/noticecontent")
 public class DetailNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

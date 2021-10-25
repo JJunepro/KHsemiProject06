@@ -15,9 +15,6 @@ import javax.swing.plaf.synth.SynthSeparatorUI;
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
 
-/**
- * Servlet implementation class marketDetailServlet
- */
 @WebServlet("/marketDetail")
 public class DetailMarketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

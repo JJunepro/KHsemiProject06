@@ -1,3 +1,5 @@
+// index
+
 $(".subReserve").hide();
 
 const reserveBtn = $(".reserveBtn");

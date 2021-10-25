@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import com.google.gson.GsonBuilder;
 
 import tbh.articlesix.common.JDBCTemplate;
 import tbh.articlesix.member.model.vo.Member;
 
-
-
+// 회원가입
 public class MemberDao {
 
 	public MemberDao() {
@@ -73,7 +71,7 @@ public class MemberDao {
 				result.setM_address_detail(rset.getString("m_address_detail"));
 				result.setM_degree(rset.getDouble("m_degree"));
 				result.setM_createDate(rset.getString("m_createdate"));
-				result.setM_deleteDate("m_deletedate");
+				result.setM_deleteDate(rset.getString("m_deletedate"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,7 +85,7 @@ public class MemberDao {
 	public int updateMember(Connection conn, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = "insert member set m_pw=?, m_nick=?, m_phone=?, m_email=?, m_address=?, m_address=?";
+		String sql = "update member set m_pw=?, m_nick=?, m_phone=?, m_email=?, m_address=?, m_address_detail=? where m_id=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getM_pw());
@@ -96,6 +94,7 @@ public class MemberDao {
 			pstmt.setString(4, member.getM_email());
 			pstmt.setString(5, member.getM_address());
 			pstmt.setString(6, member.getM_address_detail());
+			pstmt.setString(7, member.getM_id());
 			result = pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -105,13 +104,15 @@ public class MemberDao {
 		return result;
 	}
 	
-	public int deleteMember(Connection conn, String m_id) {
-		int result = 0;
+	public int deleteMember(Connection conn, String m_id, String m_pw, String m_deletedate) {
+		int result = -1;
 		PreparedStatement pstmt = null;
-		String sql = "delete from member where m_id=?";
+		String sql = "update member set M_DELETEDATE=TO_DATE(?,'yyyy/mm/dd') where m_id=? and m_pw=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_id);
+			pstmt.setString(1, m_deletedate);
+			pstmt.setString(2, m_id);
+			pstmt.setString(3, m_pw);
 			result = pstmt.executeUpdate();
 		}catch (Exception e) {
 			e.printStackTrace();

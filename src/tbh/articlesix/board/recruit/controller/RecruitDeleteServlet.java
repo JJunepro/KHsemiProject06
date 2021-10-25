@@ -14,9 +14,7 @@ import tbh.articlesix.board.recruit.model.dao.RecruitDao;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.member.service.MemberService;
 
-/**
- * Servlet implementation class RecruitDeleteServlet
- */
+
 @WebServlet("/RecruitDelete")
 public class RecruitDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

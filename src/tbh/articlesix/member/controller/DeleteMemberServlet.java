@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class deleteMemberServlet
- */
 @WebServlet("/delete")
 public class DeleteMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +23,7 @@ public class DeleteMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/deleteMember.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/DeleteMember.jsp").forward(request, response);
 	}
 
 	/**

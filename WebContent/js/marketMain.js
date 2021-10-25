@@ -1,3 +1,5 @@
+// 마켓 메인
+
 "use strict";
 
 let hotSlides = document.querySelector(".hotSlides");

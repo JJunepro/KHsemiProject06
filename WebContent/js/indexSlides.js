@@ -1,3 +1,5 @@
+//index slider
+
 "use strict";
 const slideWidth = 2500;
 const slideMargin = 500;

@@ -13,9 +13,7 @@ import tbh.articlesix.board.notice.dao.NoticeDao;
 import tbh.articlesix.board.notice.service.NoticeService;
 import tbh.articlesix.board.notice.vo.Notice;
 
-/**
- * Servlet implementation class ModifyNoticeServlet
- */
+
 @WebServlet("/noticemodify")
 public class ModifyNoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -16,7 +16,7 @@
 	position : relative;
 	}
 </style>
-<title>공지사항 글 등록</title>
+<title>공지사항 글 등록 Page</title>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>

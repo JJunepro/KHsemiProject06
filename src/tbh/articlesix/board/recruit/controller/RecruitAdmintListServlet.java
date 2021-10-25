@@ -16,7 +16,7 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet({"/RecruitAdminList", "/RecruitAdmin"})
+@WebServlet({"/RecruitAdminList"})
 public class RecruitAdmintListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -27,8 +27,6 @@ public class RecruitAdmintListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-
-		PrintWriter out = response.getWriter();
 
 		final int PAGE_SIZE = 10; // 한 페이지 당 글수
 		final int PAGE_BLOCK = 5; // 한 화면에 나타날 페이지 링크 수
@@ -52,7 +50,7 @@ public class RecruitAdmintListServlet extends HttpServlet {
 		bCount = new RecruitService().getRecruitCount();
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
-		// rownum 조건 계산
+		// rownum 조건 
 		startRnum = (currentPage - 1) * PAGE_SIZE + 1; // 1//6//11/16//21
 		endRnum = startRnum + PAGE_SIZE - 1;
 		if (endRnum > bCount)

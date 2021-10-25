@@ -16,7 +16,7 @@ public class JDBCTemplate {
 		Connection conn = null;
 		try {
 			Context initContext = new InitialContext();
-			Context envContext = (Context)initContext.lookup("java:/comp/env");  //Tomcat resource 설정을 찾기. server.xml;, context.xml
+			Context envContext = (Context)initContext.lookup("java:/comp/env");  //Tomcat resource 설정을 찾기. server.xml;, context.xml -> 설정값 넣기
 			// TODO
 			DataSource ds = (DataSource)envContext.lookup("jdbc/healthDclass"); //jdbc/healthLocal   //jdbc/healthDclass  
 			conn = ds.getConnection();

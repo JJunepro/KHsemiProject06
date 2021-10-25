@@ -1,5 +1,4 @@
- <link rel="stylesheet" href="css/joinMember.css" />
- <link rel="stylesheet" href="css/Header.css" />
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/joinMember.css" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,8 +7,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>회원가입 Page</title>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
     <%@ include file="./Header.jsp" %>
@@ -17,8 +18,8 @@
        <section>
         <form action="join.do" method="POST" id="joinfrm">
             <div>
-                <div id="title">
-                    <h1>회원가입</h1>
+                <div>
+                    <h1 id="title">회원가입</h1>
                 </div>
             <div>
                 <label>아이디</label><br>
@@ -27,7 +28,7 @@
                 <label>비밀번호</label><br>
                 <input type="password" class="textBox" id="joinPw" name="joinPw" placeholder=" 8자이상  12이하"><br><br>
                 <label>비밀번호 확인</label><br>
-                <input type="password" class="textBox" id="joinPwRe" placeholder=" 알파벳과 특수문자가 각각1개이상 필요합니다"><br><br>
+                <input type="password" class="textBox" id="joinPwRe" placeholder=" 알파벳과 특수문자가 각각 1개 이상 필요합니다."><br><br>
                 <label>닉네임</label><br>
                 <input type="text" class="textBox" id="joinNick" name="joinNick" placeholder=" 사용하실 닉네임을 입력해 주세요.">
                 <input type="button" id="dupNick" class="checkBtn" value="중복확인"><br><br>
@@ -50,7 +51,7 @@
                     </div>
                     
                     <label>전화번호</label><br>
-                    <input type="text" class="textBox" id="joinPhone" name="joinPhone" placeholder=" '-'은 제외하고 입력해주세요"><br><br>
+                    <input type="text" class="textBox" id="joinPhone" name="joinPhone" placeholder=" ' - '은 제외하고 입력해주세요."><br><br>
                     <label>이메일</label><br>
                     <input type="email" class="textBox" id="joinEmail" name="joinEmail" placeholder=" 등록하실 이메일을 입력해 주세요.">
                     <input type="button" id="sendEmail" class="emailBtn" value="인증"><br>
@@ -58,7 +59,7 @@
                     <input type="button" id="checkAut" class="emailBtn"  value="확인"><br><br>
                     
                     <label>주소</label><br>
-                    <input type="text" class="textBox" placeholder=" 주소 (클릭하면 검색창이 열립니다.)" id="kakaoAddress"><br>
+                    <input type="text" class="textBox" placeholder=" 주소 (클릭하면 검색창이 열립니다)" id="kakaoAddress"><br>
                     <input type="text" class="textBox" placeholder=" 상세주소"id="kakaoAddressDetail"><br><br><!-- 카카오맵 api -->
              </div>
                   <input type="button" value="회원가입" class="checkBtn" id="joinMemberBtn">
@@ -67,7 +68,6 @@
         </section>
         <%@ include file="./Footer.jsp" %>
     </body>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         window.onload = function(){
             document.getElementById("kakaoAddress").addEventListener("click", function(){ //주소입력칸을 클릭
@@ -88,12 +88,12 @@
 	    	$("#dupId").on("click", function(){
                  var idCheck = RegExp(/^[a-zA-Z0-9]{4,12}$/);
                  if($("#joinId").val()==""){
-                     alert("아이디를 입력해 주세요.");
+                     swal("", "아이디를 입력해 주세요.", "error");
                      $("#joinId").focus;
                      return false;
                  }
                  if(!idCheck.test($("#joinId").val())){
-                     alert("아이디는 알파벳과 숫자만 입력 가능합니다. (최소 4자, 최대 12자)")
+                     swal("", "아이디는 알파벳과 숫자만 입력 가능합니다. (최소 4자, 최대 12자)", "error");
                      $("#joinId").val(""); 
                      $("#joinId").focus(); 
                      return false;
@@ -111,16 +111,16 @@
 	    			dataType: "json",
 	    			success: function(data) {
 	    				if(data.result == "ok"){
-	    					alert("사용가능한 아이디입니다.");     
+	    					swal("", "사용가능한 아이디입니다.", "success");     
 	    				}else{
-	    					alert("이미 가입되어있는 아이디입니다.");
+	    					swal("", "이미 가입되어있는 아이디입니다.", "error");
 	    				}
 	    			},
 	    			error: function(request, status, error){
 	                    console.log(request)
 	                    console.log(status)
 	                    console.log(error)
-	                    alert("err")
+	                    swal("err")
 	    			}
 	    		});    	
 	    	};
@@ -130,12 +130,12 @@
 	    	$("#dupNick").on("click", function(){
                 var nickCheck = RegExp(/^[a-zA-Z0-9가-힣]{2,12}$/);
                 if($("#joinNick").val()==""){
-                    alert("닉네임을 입력해 주세요.");
+                    swal("", "닉네임을 입력해 주세요.", "error");
                     $("#joinNick").focus;
                     return false;
                 }
                 if(!nickCheck.test($("#joinNick").val())){
-                    alert("닉네임은 한글, 알파벳, 숫자만 입력 가능합니다. (최소 2자, 최대 12자)")
+                    swal("", "닉네임은 한글, 알파벳, 숫자만 입력 가능합니다. (최소 2자, 최대 12자)", "error")
                     $("#joinNick").val(""); 
                     $("#joinNick").focus(); 
                     return false;
@@ -153,16 +153,16 @@
 	    			dataType: "json",
 	    			success: function(data) {
 	    				if(data.result == "ok"){
-	    					alert("사용가능한 닉네임입니다.");     
+	    					swal("", "사용가능한 닉네임입니다.", "success");     
 	    				}else{
-	    					alert("이미 가입되어있는 닉네임입니다.");
+	    					swal("", "이미 가입되어있는 닉네임입니다.", "error");
 	    				}
 	    			},
 	    			error: function(request, status, error){
 	                    console.log(request)
 	                    console.log(status)
 	                    console.log(error)
-	                    alert("err")
+	                    swal("err")
 	    			}
 	    		});    	
 	    	};
@@ -180,14 +180,14 @@
 	    					if(data.result == "ok"){    
 	    						sendEmail()
 	    					}else{
-	    						alert("이미 가입되어있는 이메일입니다.");
+	    						swal("", "이미 가입되어있는 이메일입니다.", "error");
 	    					}
 	    				},
 	    				error: function(request, status, error){
 	                    	console.log(request)
 	                    	console.log(status)
 	                    	console.log(error)
-	                    	alert("err")
+	                    	swal("err")
 	    				}
 	    			});
 	    			
@@ -202,23 +202,24 @@
 	    				dataType: "json",
 	    				success: function(data) {
 	    					if(data.result == "ok"){   
-	    						alert("인증메일이 발송되었습니다.")
+	    						swal("", "인증메일이 발송되었습니다.", "success")
 	    					}else{
-	    						alert("인증메일이 발송되었습니다.");
+	    						console.log(data.result);
+	    						swal("", data.msg, "error")
 	    					}
 	    				},
 	    				error: function(request, status, error){
 	                    	console.log(request)
 	                    	console.log(status)
 	                    	console.log(error)
-	                    	alert("err")
+	                    	swal("err")
 	    				}
 	    			});
 	    		};
 	    		//인증코드 확인
 	    		$("#checkAut").on("click", function(){
                 	if($("#autBox").val()==""){
-                        alert("인증코드를 입력해주세요.");
+                        swal("", "인증코드를 입력해주세요.", "error");
                         $("#autBox").focus;
                         return false;
                     }
@@ -229,17 +230,18 @@
                 		type: "post",
                 		url: "checkEmail",
                 		data: {
-                			m_email: $("#uEmail").val(),
+                			<!--m_email: $("#uEmail").val(),-->
+                			m_email: $("#joinEmail").val(),
                 			verCode: $("#autBox").val()
                 		},
                 		dataType: "json",
                 		success: function(data) {
 							if(data.result == "ok"){
 								console.log(data.result);
-								alert("이메일 인증이 완료되었습니다.")
+								swal("", "이메일 인증이 완료되었습니다.", "success")
 							}else{
 								console.log(data.msg);
-								alert("인증코드가 일치하지 않습니다.")
+								swal("", "인증코드가 일치하지 않습니다.", "error")
 								
 							}
 						},
@@ -247,7 +249,7 @@
 							 	console.log(request)
 	                            console.log(status)
 	                            console.log(error)
-	                            alert("오류가 발생하였습니다.");
+	                            swal("", "오류가 발생하였습니다.", "error");
 	                            
 						 }
                 	});
@@ -275,10 +277,11 @@
                     dataType: "json",
                     success: function(data) {
                         if(data.result == "ok"){
-                            alert("회원가입이 완료되었습니다.");
-                            location.href="Congratulations";
+                        	swal("", "회원가입이 완료되었습니다.", "success").then(function() {
+                                location.href="congratulations";
+                            });
                         }else{
-                            //alert("회원가입실패!")
+                            swal("", "회원가입실패!", "error");
                         }
                     },
                     error: function(request, status, error){
@@ -294,31 +297,31 @@
                     var nameCheck = RegExp(/^[가-힣]{2,8}$/);
                    
                     if($("#joinId").val()==""){
-                        alert("아이디를 입력해 주세요.");
+                        swal("", "아이디를 입력해 주세요.", "error");
                         $("#joinId").focus;
                         return false;
                     }
 
                     //비밀번호
                     if($("#joinPw").val()==""){
-                        alert("비밀번호를 입력해 주세요.")
+                        swal("", "비밀번호를 입력해 주세요.", "error")
                         $("#joinPw").focus;
                         return false;
                     }
                     if($("#joinPwRe").val()==""){
-                        alert("비밀번호 확인란을 입력해 주세요.")
+                        swal("", "비밀번호 확인란을 입력해 주세요.", "error")
                         $("#joinPwRe").focus;
                         return false;
                     }
                     if($("#joinPw").val() != $("#joinPwRe").val()){ 
-                        alert("비밀번호가 같지않습니다.");
+                        swal("", "비밀번호가 같지않습니다.", "error");
                         $("#joinPw").val("");
                         $("#joinPwRe").val("");
                         $("#joinPw").focus();
                         return false;
                         }
                         if(!pwCheck.test($("#joinPw").val())){
-                        alert("알파벳, 숫자, 특수문자를 각각 1자 이상 사용해야 합니다. (최소 8자, 최대 16자)")
+                        swal("", "알파벳, 숫자, 특수문자를 각각 1자 이상 사용해야 합니다. (최소 8자, 최대 16자)", "error")
                         $("#joinPw").val(""); 
                         $("#joinPw").focus(); 
                         return false;
@@ -326,41 +329,41 @@
                     
                     //이름
                     if($("#joinName").val()==""){
-                        alert("이름을 입력해 주세요.")
+                        swal("", "이름을 입력해 주세요.", "error")
                         $("#joinName").focus;
                         return false;
                     }
                     //성별
                     if($("#selGender").val()==""){
-                        alert("성별을 선택해 주세요.")
+                        swal("", "성별을 선택해 주세요.", "error")
                         $("#selGender").focus;
                         return false;
                     }
                     //생년월일
                     if($("#dateBox").val()==""){
-                        alert("생년월일을 선택해 주세요.")
+                        swal("", "생년월일을 선택해 주세요.", "error")
                         $("#dateBox").focus;
                         return false;
                     }
                     //전화번호
                     if($("#joinPhone").val()==""){
-                        alert("전화번호를 입력해 주세요.")
+                        swal("", "전화번호를 입력해 주세요.", "error")
                         $("#joinPhone").focus;
                         return false;
                     }
                     //이메일
                     if($("#joinEmail").val()==""){
-                        alert("이메일을 입력해 주세요.")
+                        swal("", "이메일을 입력해 주세요.", "error")
                         $("#joinEmail").focus;
                         return false;
                     }//주소
                     if($("#kakaoAddress").val()==""){
-                        alert("주소를 입력해 주세요.")
+                        swal("", "주소를 입력해 주세요.", "error")
                         $("#kakaoAddress").focus;
                         return false;
                     }
                     if($("#kakaoAddressDetail").val()==""){
-                        alert("상세주소를 입력해 주세요.")
+                        swal("", "상세주소를 입력해 주세요.", "error")
                         $("#kakaoAddressDetail").focus;
                         return false;
                     }
@@ -378,14 +381,14 @@
 	    			success: function(data) {
 	    				if(data.result == "ok"){     
 	    				}else{
-	    					alert("이미 가입되어있는 전화번호입니다.");
+	    					swal("", "이미 가입되어있는 전화번호입니다.", "error");
 	    				}
 	    			},
 	    			error: function(request, status, error){
 	                    console.log(request)
 	                    console.log(status)
 	                    console.log(error)
-	                    alert("err")
+	                    swal("err")
 	    			}
 	    		});    	
 	    	};

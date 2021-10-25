@@ -12,7 +12,6 @@ import tbh.articlesix.common.JDBCTemplate;
 public class BoardDao {
 
 	public BoardDao() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Board getBoard(Connection conn, int bno) {

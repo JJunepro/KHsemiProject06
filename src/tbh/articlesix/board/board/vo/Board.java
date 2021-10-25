@@ -15,7 +15,6 @@ import java.sql.Date;
 //	    FOREIGN KEY (WRITER) REFERENCES MEMBER(MEMBER_ID),
 //	    CHECK(DELETE_YN IN('Y','N'))
 //	);
-//
 //	-- BOARD 테이블의 PK로 사용될 시퀀스
 //	CREATE SEQUENCE SEQ_BOARD;
 public class Board {

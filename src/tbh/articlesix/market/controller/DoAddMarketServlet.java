@@ -21,9 +21,6 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
 
-/**
- * Servlet implementation class DoAddMarketServlet
- */
 @WebServlet("/doAddMarket")
 public class DoAddMarketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

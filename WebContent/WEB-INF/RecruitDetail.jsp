@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./css/reservationDetail.css" />
-    <title>Document</title>
+    <title>모집 상세방</title>
   </head>
   <body>
      <%@ include file="./Header.jsp" %>

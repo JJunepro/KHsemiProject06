@@ -39,7 +39,6 @@ public class NoticeDao {
 //				
 //				sql.delete(start, sql.toString().length());
 //			}
-//			
 //			rset = pstmt.executeQuery();
 //			
 //			nolist = new ArrayList<Notice>();

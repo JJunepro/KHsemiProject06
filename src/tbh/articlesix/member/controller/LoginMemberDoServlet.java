@@ -2,9 +2,7 @@ package tbh.articlesix.member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -21,9 +19,6 @@ import com.google.gson.GsonBuilder;
 import tbh.articlesix.member.model.vo.Member;
 import tbh.articlesix.member.service.MemberService;
 
-/**
- * Servlet implementation class LoginMemberDoServlet
- */
 @WebServlet("/login.do")
 public class LoginMemberDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -62,22 +57,45 @@ public class LoginMemberDoServlet extends HttpServlet {
 		
 		Member m = mservice.loginMember(m_id, m_pw);
 		if(m != null) {
-			System.out.println("로그인 성공");
-			HttpSession seeSession = request.getSession();
-			seeSession.setAttribute("memberId", m.getM_id());
-			seeSession.setAttribute("nickName", m.getM_nick());
-			
+		
 			Map<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("result", "ok");
-			map2.put("name", m.getM_name());
-			map2.put("memberInfo", m);
-			gobStr = gObject.toJson(map2);
-			out.print(gobStr);
+			if(m.getM_deleteDate() != null){
+				System.out.println(m.getM_deleteDate());
+				System.out.println("탈퇴 회원");
+				map2.put("result", "fail");
+				map2.put("msg", "탈퇴된 회원입니다.");
+				gobStr = gObject.toJson(map2);
+				out.print(gobStr);
+			} else {
+				System.out.println("로그인 성공");
+				HttpSession seeSession = request.getSession();
+				seeSession.setAttribute("memberId", m.getM_id());
+				seeSession.setAttribute("nickName", m.getM_nick());
+				seeSession.setAttribute("mName", m.getM_name());
+				seeSession.setAttribute("mAuth", m.getM_auth());
+				seeSession.setAttribute("mBirth", m.getM_birth());
+				seeSession.setAttribute("mGender", m.getM_gender());
+				seeSession.setAttribute("mPhone", m.getM_phone());
+				seeSession.setAttribute("mEmail", m.getM_email());
+				seeSession.setAttribute("mAddress", m.getM_address());
+				seeSession.setAttribute("mAddressDetail", m.getM_address_detail());
+				seeSession.setAttribute("mDegree", m.getM_degree());
+				
+				
+				map2.put("result", "ok");
+				map2.put("name", m.getM_name());
+				map2.put("memberInfo", m);
+				map2.put("msg", "로그인에 성공했습니다.");
+				gobStr = gObject.toJson(map2);
+				out.print(gobStr);
+			}
+			
 			
 		}else {
 			System.out.println("로그인 실패");
 			Map<String, Object> map2 = new HashMap<String, Object>();
 			map2.put("result", "fail");
+			map2.put("msg", "회원정보가 맞지 않습니다.");
 			gobStr = gObject.toJson(map2);
 			out.print(gobStr);
 		}

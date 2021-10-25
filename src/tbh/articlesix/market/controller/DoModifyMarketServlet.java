@@ -14,9 +14,6 @@ import javax.servlet.http.HttpSession;
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
 
-/**
- * Servlet implementation class DoModifyMarketServlet
- */
 @WebServlet("/doMarketModify")
 public class DoModifyMarketServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

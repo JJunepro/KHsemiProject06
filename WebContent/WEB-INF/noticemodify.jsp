@@ -73,7 +73,7 @@
 		padding : 8px;
 	}
 </style>
-<title>공지사항 글 수정</title>
+<title>공지사항 글 수정 Page</title>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>

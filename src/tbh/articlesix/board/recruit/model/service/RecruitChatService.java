@@ -10,7 +10,7 @@ import tbh.articlesix.common.JDBCTemplate;
 public class RecruitChatService {
 	public RecruitChatService() {	
 	}
-	
+	// 채팅 가져오기
 	public RecruitChat getRecruitChat(int b_n) {
 		RecruitChat ch = null;
 		Connection conn = JDBCTemplate.getConnection();
