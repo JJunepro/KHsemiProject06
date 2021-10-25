@@ -1,15 +1,12 @@
 $(".subReserve").hide();
-
-const reserveBtn = $(".reserveBtn");
-reserveBtn.hover(function(){
-    $(".subReserve").slideToggle();
+$(".reserveBtn").hover(function(){
+    $(".subReserve ").slideDown();
    
 },function(){
-    $(".subReserve").slideToggle();
+	
 })
-
 $(".subReserve").hover(function(){
-    $(".subReserve").show();
+	
 },function(){
-    $(".subReserve").hide();
+	 $(".subReserve").slideUp();
 })

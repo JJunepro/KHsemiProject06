@@ -50,7 +50,7 @@
 			success:function(data){
 				mId = data.mId
 				console.log(mId)
-				if(mId !== null) {
+				if(mId !== undefined) {
 					$(".loginButtonBox").hide();
 				}
 			}

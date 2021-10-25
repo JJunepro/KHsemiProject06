@@ -129,7 +129,7 @@
 	<script src="js/marketMain.js"></script>
 	<script src="js/header.js"></script>
 	<script>
-		if(<%=memberId%> == null){
+		if("<%=memberId%>" == null){
 			$(".addBtn").hide();
 			$(".loginButtonBox").show();
 		}else{
