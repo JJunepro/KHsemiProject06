@@ -73,7 +73,7 @@
 		padding : 8px;
 	}
 </style>
-<title>QnA 글 수정 Page</title>
+<title>QnA 글 수정</title>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
@@ -90,14 +90,14 @@
 					<tbody>
 						<tr>
 							<td colspan="1" class="table_title">제목</td>
-							<td colspan="3"><input type="text" class="form-control" placeholder="글 제목" name="bn_title" maxlength="50" value="<%= bqn.getBq_title()%>"></td>
+							<td colspan="3"><input type="text" class="form-control" placeholder="글 제목" name="bq_title" maxlength="50" value="<%= bqn.getBq_title()%>"></td>
 						</tr>
 						<tr>
 							<td colspan="1" class="table_title">작성자</td>
-							<td colspan="3"><input type="text" class="form-control" placeholder="작성자" name="m_id" maxlength="50" value="<%= bqn.getM_id()%>"></td>
+							<td colspan="3"><input type="text" class="form-control" placeholder="작성자" name="m_nick" maxlength="50" value="<%= bqn.getM_nick()%>"></td>
 						</tr>
 						<tr>
-							<td colspan="4"><textarea cols="100" rows="10" name="bn_content" id="editor" placeholder="글 내용" maxlength="2048"><%= bqn.getBq_content()%></textarea></td>
+							<td colspan="4"><textarea cols="100" rows="10" name="bq_content" id="editor" placeholder="글 내용" maxlength="2048"><%= bqn.getBq_content()%></textarea></td>
 							<script>
 								/* CKEDITOR.filebrowserUploadMethod = 'form';
 								CKEDITOR.replace("text_content",{ height:"300" ,filebrowserImageUploadUrl: 'upload'

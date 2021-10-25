@@ -13,15 +13,15 @@ public class QuestionDao {
 	public QuestionDao() {
 	}
 
-	// QnA 테이블출력
+	// QnA 테이블 출력
 	public ArrayList<Question> selectQuestionList(Connection conn, int start, int end) {
 		ArrayList<Question> volist = null;
 
 		String sql = "select * from "
 				+ " (select rownum r, a1.* from "
-				+ " (select * from board_question order by bq_n desc) a1) a2 "
-				+ " where r between ? and ? order by bq_n desc";
-
+				+ " (select * from board_question order by bref desc, bre_step asc) a1) a2 "
+				+ " where r between ? and ?";
+		System.out.println(sql);
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -34,10 +34,13 @@ public class QuestionDao {
 				do {
 					Question vo = new Question();
 					vo.setBq_n(rs.getInt("bq_n"));
-					vo.setM_id(rs.getString("m_id"));
+					vo.setM_nick(rs.getString("m_nick"));
 					vo.setBq_title(rs.getString("bq_title"));
 					vo.setBq_content(rs.getString("bq_content"));
 					vo.setBq_timestamp(rs.getDate("bq_timestamp"));
+					vo.setBref(rs.getInt("bref"));
+					vo.setBreLevel(rs.getInt("bre_Level"));
+					vo.setBreStep(rs.getInt("bre_Step"));
 					volist.add(vo);
 				} while (rs.next());
 			}
@@ -76,34 +79,62 @@ public class QuestionDao {
 	public int insertQuestion(Connection conn, Question vo) {
 		int result = -1;
 		int nextVal = 0;
-		String sql = "INSERT INTO" + " BOARD_QUESTION" + " (BQ_N, M_ID, BQ_TITLE, BQ_CONTENT, BQ_TIMESTAMP)"
-						+ " VALUES (?, ?, ?, ?, sysdate)";
+		String sqlUpdate = "UPDATE BOARD_QUESTION set bre_step=bre_step+1  where bref=? and bre_step>?";
+		String sql = "INSERT INTO" + " BOARD_QUESTION" + " (BQ_N, M_NICK, BQ_TITLE, BQ_CONTENT, BQ_TIMESTAMP, BREF, BRE_LEVEL, BRE_STEP)"
+					+ " VALUES (?, ?, ?, ?, sysdate, ?, ?, ?)";
 		
 		String sqlSeqNextVal = "SELECT SEQ_QUESTION.NEXTVAL FROM DUAL";
-				
+		
+		int bref = 0;
+		int bre_level = 0;
+		int bre_step = 1;
+		
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(sqlSeqNextVal);
-			rset = pstmt.executeQuery();
-			if (rset.next()) {
-				nextVal = rset.getInt(1);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				nextVal = rs.getInt(1);
 			}
-			JDBCTemplate.close(rset);
+			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 			
+			if(vo.getBq_n() != 0) {
+				bref = vo.getBref();
+				bre_step = vo.getBreStep();
+				pstmt = conn.prepareStatement(sqlUpdate); // UPDATE
+				pstmt.setInt(1, bref);
+				pstmt.setInt(2, bre_step);
+				result = pstmt.executeUpdate();
+				JDBCTemplate.close(pstmt);
+				
+				bre_level = vo.getBreLevel() + 1;
+				bre_step++; 
+			}
+			
 			pstmt = conn.prepareStatement(sql);
+			if (vo.getBq_n() != 0) {
+				pstmt.setInt(5, bref);
+			} else {
+				pstmt.setInt(5, nextVal);
+			}
+			pstmt.setInt(6, bre_level);
+			pstmt.setInt(7, bre_step);
 			pstmt.setInt(1, nextVal);
-			pstmt.setString(2, vo.getM_id());
+			pstmt.setString(2, vo.getM_nick());
 			pstmt.setString(3, vo.getBq_title());
 			pstmt.setString(4, vo.getBq_content());
 			result = pstmt.executeUpdate();
-			System.out.println(result);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
 		}
+		System.out.println(result);
+		System.out.println(sql);
 		return result;
 	}
 	
@@ -111,7 +142,11 @@ public class QuestionDao {
 	public Question getQuestion(Connection conn, int bq_n) {
 		Question vo = null;
 		
-		String sql = "SELECT * FROM BOARD_QUESTION WHERE BQ_N = ?";
+		String sql = "SELECT BQ_N, BREF, BRE_LEVEL, BRE_STEP, "
+				+ " M_NICK, BQ_TITLE, BQ_CONTENT, BQ_TIMESTAMP "
+				+ " FROM BOARD_QUESTION WHERE BQ_N = ?";
+		
+//		String sql = "SELECT * FROM BOARD_QUESTION WHERE BQ_N =?";	
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -122,10 +157,14 @@ public class QuestionDao {
 			if(rs.next()) {
 				Question question = new Question();
 				question.setBq_n(rs.getInt(1));
-				question.setM_id(rs.getString("m_id"));
+				question.setBref(rs.getInt(2));
+				question.setBreLevel(rs.getInt(3));
+				question.setBreStep(rs.getInt(4));
+				question.setM_nick(rs.getString("m_nick"));
 				question.setBq_title(rs.getString("bq_title"));
 				question.setBq_content(rs.getString("bq_content"));
 				question.setBq_timestamp(rs.getDate("bq_timestamp"));
+				
 				return question;
 			}
 		} catch (Exception e) {

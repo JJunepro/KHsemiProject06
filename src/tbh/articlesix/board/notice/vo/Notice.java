@@ -4,13 +4,12 @@ import java.sql.Date;
 
 public class Notice {
 	private int bn_n;
-	private String m_id;
+	private String m_nick;
 	private String bn_title;
 	private String bn_content;
 	private Date bn_timestamp;
 	private int bn_view;
 	
-	// 공지사항
 	public Notice() {
 		
 	}
@@ -22,16 +21,16 @@ public class Notice {
 		this.bn_n = bn_n;
 	}
 	
-	public Notice(String bn_title, String m_id, String bn_content) {
+	public Notice(String bn_title, String m_nick, String bn_content) {
 		super();
 		this.bn_title = bn_title;
-		this.m_id = m_id;
+		this.m_nick = m_nick;
 		this.bn_content = bn_content;
 	}
 	
 	@Override
 	public String toString() {
-		return "Notice [bn_n=" + bn_n + ", m_id=" + m_id + ", bn_title=" + bn_title + ", bn_content=" + bn_content
+		return "Notice [bn_n=" + bn_n + ", m_nick=" + m_nick + ", bn_title=" + bn_title + ", bn_content=" + bn_content
 				+ ", bn_timestamp=" + bn_timestamp + ", bn_view=" + bn_view + "]";
 	}
 
@@ -43,12 +42,12 @@ public class Notice {
 		this.bn_n = bn_n;
 	}
 
-	public String getM_id() {
-		return m_id;
+	public String getM_nick() {
+		return m_nick;
 	}
 
-	public void setM_id(String m_id) {
-		this.m_id = m_id;
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
 	}
 
 	public String getBn_title() {

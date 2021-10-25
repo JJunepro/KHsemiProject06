@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import tbh.articlesix.board.question.service.QuestionService;
 import tbh.articlesix.board.question.vo.Question;
 
-
+/**
+ * Servlet implementation class AddQuestionServlet
+ */
 @WebServlet("/questionwrite.do")
 public class AddQuestionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,18 +47,18 @@ public class AddQuestionServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String bq_title = request.getParameter("bq_title");
-		String m_id = request.getParameter("m_id");
+		String m_nick = request.getParameter("m_nick");
 		String bq_content = request.getParameter("bq_content");
 		
 		out.println("입력된 title: "+ bq_title);
 		out.println("<br>입력된 content: "+ bq_content);
 		
 //		String m_id = (String)request.getSession().getAttribute("memberLoginInfo");
-		if (m_id == null) {
-			m_id = "Manager";
+		if (m_nick == null) {
+			m_nick = "Manager";
 		}
 		
-		Question no = new Question(bq_title, m_id, bq_content);
+		Question no = new Question(bq_title, m_nick, bq_content);
 		
 		int result = new QuestionService().insertQuestion(no);
 		response.sendRedirect("questionlist");
