@@ -43,6 +43,8 @@ public class DetailMarketServlet extends HttpServlet {
 		String memberId = (String)session.getAttribute("memberId");
 		String nickName = (String)session.getAttribute("nickName");
 		
+		System.out.println(nickName);
+		
 		if(memberId==null) {
 			memberId="null";
 		}
@@ -61,6 +63,7 @@ public class DetailMarketServlet extends HttpServlet {
 		request.setAttribute("searchList", searchList);
 		request.setAttribute("chatMarket", chatMarket);
 		request.setAttribute("memberId", memberId);
+		request.setAttribute("nickName", nickName);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketDetail.jsp");
     	requestDispatcher.forward(request, response);
 	}

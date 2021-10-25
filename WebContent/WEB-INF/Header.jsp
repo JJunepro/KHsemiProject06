@@ -15,7 +15,7 @@
 		<div class="header">
 			<div class="headerLogo">
 				<h1>
-					<a href="<%=request.getContextPath()%>/main">T.B.H</a>
+					<a href="<%=request.getContextPath()%>/main"><img src="img/logo.png"></a>
 				</h1>
 				<div class="loginButtonBox">
 					<button class="loginButton" onclick="location.href='login'">로그인</button>
@@ -48,7 +48,7 @@
 			method:"post",
 			data: null,
 			success:function(data){
-				mId = data.mId
+				mId = data.memberId
 				console.log(mId)
 				if(mId !== null) {
 					$(".loginButtonBox").hide();

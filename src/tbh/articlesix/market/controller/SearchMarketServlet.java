@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tbh.articlesix.market.service.MarketService;
 import tbh.articlesix.market.vo.Market;
@@ -63,6 +64,9 @@ public class SearchMarketServlet extends HttpServlet {
 		endPage = startPage + PAGE_BLOCK -1; 
 		if(endPage > pageCount) endPage=pageCount;
 		
+		HttpSession session = request.getSession();
+		String memberId = (String)session.getAttribute("memberId");
+		
 		String title = request.getParameter("searchTitle");
 		ArrayList<Market> searchMkList = new MarketService().SearchMarket(title,startRnum,endRnum);
 
@@ -70,6 +74,7 @@ public class SearchMarketServlet extends HttpServlet {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("memberId", memberId);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/MarketSearch.jsp");
 		requestDispatcher.forward(request, response);
 	}

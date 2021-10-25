@@ -129,12 +129,11 @@
 	<script src="js/marketMain.js"></script>
 	<script src="js/header.js"></script>
 	<script>
-		if(<%=memberId%> == null){
-			$(".addBtn").hide();
-			$(".loginButtonBox").show();
-		}else{
+	$(".addbtn").hide();
+		if("<%=memberId%>" !== "null"){
 			$(".addBtn").show();
-			$(".loginButtonBox").hide();
+		}else if("<%=memberId%>" === "null"){
+			$(".addBtn").hide();
 		}
 	</script>
 </body>
