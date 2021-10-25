@@ -12,6 +12,7 @@
 	ArrayList<Market> detailListOne = (ArrayList<Market>) request.getAttribute("detailListOne");
 	ArrayList<Market> chatMarket = (ArrayList<Market>) request.getAttribute("chatMarket");
 	String memberId = (String)request.getAttribute("memberId");
+	String nickName = (String)request.getAttribute("nickName");
 	int bmN = 0;
 %>
 <!DOCTYPE html>
@@ -79,17 +80,10 @@
 					<div class="showContent"><%=rp.getmId()%></div>
 					<div>
 						<div class="writeTime"><%=rp.getcTimeStamp()%></div>
-						<button class="rewrite">답글 달기</button>
 					</div>
 				</div>
 
 				<p><%=rp.getcContent()%></p>
-
-
-				<form class="replyInputBox" action="chatMarket" method="post">
-					<input id="comment2" type="text" placeholder="댓글을 적어주세요" />
-					<button onclick="clickMoveComment()">확인</button>
-				</form>
 			</div>
 
 		</div>
@@ -119,15 +113,11 @@
 							for (Market mk : searchList) {
 					%><li>
 					<div>
-					<a class="front"
-						href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
-							<img src="<%=mk.getImgScr()%>" alt="img" />
-					</a>
+
 					<a class="back"
 						href="marketDetail?no=<%=mk.getBmN()%>&title=<%=mk.getBmTitle()%>">
-								<img src="<%=mk.getImgScr()%>" alt="img" />
+								<img src="<%=mk.getImgScr()%>" alt="test" />
 								<div class="relatedInfo">
-								<p>가격:<%=mk.getPrice() %></p>
 								</div>
 					</a>
 					</div>
@@ -149,14 +139,11 @@
 	<script src="./js/marketDetail.js"></script>
 	<script src="./js/header.js"></script>
 	<script>
+	
 		$(".reserveContent").hide();
 		$(".replyInputBox").hide();
-
-		$(".replyShowBtn").click(function() {
-			reserveContent.slideToggle();
-		}, function() {
-			$(".reserveContent").slideToggle();
-		})
+		
+		
 
 		$(".rewrite").click(function() {
 			$(".replyInputBox").slideToggle();
@@ -175,7 +162,7 @@
 			let bre_level = 1;
 			bre_level++;
 			const bmN = <%=bmN%>
-			const memberId ="<%=memberId%>"
+			const memberId ="<%=nickName%>"
 			const cContent = $("#comment").val();
 			const bref = 1;
 			const breStep = 1;
@@ -187,7 +174,7 @@
 				alert("댓글을 입력해주세요")
 			}
 			
-			console.log("<%=memberId%>")
+			
 			
 			$.ajax({
 				url:'chatMarket',
@@ -220,9 +207,21 @@
 			$(".btnBox").hide();
 			$(".InputBox").hide();
 		}
-		
+		if("<%=memberId%>" === "null"){
+			$(".replyShowBtn").click(function(){
+				alert("로그인을 해주세요")
+			})
+		}else {
+			$(".replyShowBtn").click(function() {
+				reserveContent.slideToggle();
+		}, function() {
+			$(".reserveContent").slideToggle();
+		})
+		}		
 		<%
 			}}%>
+		
+			
 		
 	</script>
 </body>

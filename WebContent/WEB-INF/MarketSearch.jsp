@@ -10,6 +10,7 @@
 int startPage = Integer.parseInt(request.getAttribute("startPage").toString());
 int endPage = Integer.parseInt(request.getAttribute("endPage").toString());
 int pageCount = Integer.parseInt(request.getAttribute("pageCount").toString());
+String memberId = (String)request.getAttribute("memberId");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,7 +33,7 @@ int pageCount = Integer.parseInt(request.getAttribute("pageCount").toString());
 				<input type="text" id="search" name="searchTitle" placeholder="찾고 싶은 상품을 입력해주세요" />
 				 <input type="submit" id="searchBtn" value="확인" />
 			</form>
-			<div>
+			<div class="addbtn">
 				<a href="<%=request.getContextPath()%>/marketAdd"><button
 						id="searchBtn">추가</button></a>
 			</div>
@@ -87,5 +88,14 @@ int pageCount = Integer.parseInt(request.getAttribute("pageCount").toString());
 
 	<script src="js/marketMain.js"></script>
 	<script src="js/header.js"></script>
+	<script>
+	$(".addbtn").hide();
+	console.log(<%=memberId%>)
+		if("<%=memberId%>" !== "null"){
+			$(".addBtn").show();
+		}else if("<%=memberId%>" === "null"){
+			$(".addBtn").hide();
+		}
+	</script>
 </body>
 </html>

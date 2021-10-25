@@ -199,14 +199,8 @@ li {
   transition: all 1s;
   width: 100px;
 }
-.relatedSlides li div:hover {
-  transform: rotateY(180deg);
-}
-.front {
-  transform: rotateY(0deg);
-}
 .back {
-  transform: rotateY(180deg);
+  z-index: 2;
 }
 
 .inputBox {
@@ -215,6 +209,6 @@ li {
 
 .relatedInfo {
 	position:absolute;
-	top: 30px;
+	bottom: 30px;
 	right:10px;
 }
