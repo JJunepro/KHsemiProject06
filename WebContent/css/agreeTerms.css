@@ -1,7 +1,15 @@
+/*회원가입 동의*/
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 *{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: 'Cafe24SsurroundAir';
 }
 section{
 	background-color: rgb(245, 246, 248);
@@ -23,6 +31,7 @@ form {
 	color: #888;
 	border: solid 1px rgb(217, 218, 220);
 	resize: none;
+	margin-bottom: 8px;
 }
 label{
 	font-size: 15px;

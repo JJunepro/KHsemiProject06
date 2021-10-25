@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Cafe24SsurroundAir';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Cafe24SsurroundAir';
+}
+section{
+    background-color: rgb(245, 246, 248);
+    height: 1000px;
+}
+form {
+    position: relative;
+    top: 10%;
+    left: 50%;
+    width: 400px;
+    height: 500px;
+    margin-left: -320px;
+    margin-top: auto;
+}
+table{
+    /* border: solid 1px red; */
+    width: 600px;
+    border-collapse: collapse;
+}
+tr, td{
+    height: 80px;
+    border-bottom: solid 1px rgb(217, 218, 220);
+}
+tr :first-child{
+    font-weight: bold;
+}
+tr :last-child{
+    /* float: right; */
+    text-align: right;
+    color: mediumblue;
+    font-size: 13px
+}
+#acountInf{
+    font-size: larger;
+    font-weight: bold;
+}
+#btn{
+	width: 630px;
+	text-align: center;
+	margin-top: 50px;
+	margin-left: 10px;
+}
+.subBtn{
+	width: 130px;
+	height: 38px;
+	background-color: #95c2b7;
+    color: rgb(245, 246, 248);
+    border: solid 1px rgb(217, 218, 220);
+    margin-right: 30px;
+    font-weight: bold;
+}

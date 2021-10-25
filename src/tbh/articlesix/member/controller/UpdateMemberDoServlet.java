@@ -78,47 +78,5 @@ public class UpdateMemberDoServlet extends HttpServlet {
 		out.print(gObject.toJson(map2));
 		out.flush();
 		out.close();
-
-//		Gson gObject = new GsonBuilder().setPrettyPrinting().create();
-//		PrintWriter out = response.getWriter();
-//		
-//		HttpSession session = request.getSession();
-//		Member member = (Member)session.getAttribute("member");
-//		MemberService mservice = new MemberService();
-//		String id = request.getParameter("m_id");//request.getParameter("m_id");
-//		String pw = request.getParameter("m_pw");
-//		String nick = request.getParameter("m_nick");
-//		String phone = request.getParameter("m_phone");
-//		String email = request.getParameter("m_email");
-//		String address = request.getParameter("m_address");
-//		String addressDetail = request.getParameter("m_adress_detail");
-//		
-//		
-//		Map<String, String> map2 = new HashMap<String, String>();
-//		try {
-//			if (member != null && member.getM_id().equals(id)) {
-//				member.setM_pw(pw);
-//				member.setM_nick(nick);
-//				member.setM_phone(phone);
-//				member.setM_email(email);
-//				member.setM_address(address);
-//				member.setM_address_detail(addressDetail);
-//
-//				
-//				if (mservice.updateMember(member) > 0) {
-//					map2.put("result", "ok");
-//					session.setAttribute("member", member);
-//					response.sendRedirect("main");
-//				} else {
-//					map2.put("result", "fail");
-//					System.out.println("오류발발생생!");
-//				}
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		out.print(gObject.toJson(map2));
-//		out.flush();
-//		out.close();
 	}
 }
