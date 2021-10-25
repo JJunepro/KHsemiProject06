@@ -179,7 +179,6 @@
 			const cContent = $("#comment").val();
 			const bref = 1;
 			const breStep = 1;
-			console.log(cContent);
 			
 			if(memberId==null){
 				alert("로그인을 한 후 이용해주세요")
@@ -187,6 +186,8 @@
 			if(cContent==null){
 				alert("댓글을 입력해주세요")
 			}
+			
+			console.log("<%=memberId%>")
 			
 			$.ajax({
 				url:'chatMarket',
@@ -199,7 +200,9 @@
 					breStep : breStep,
 					bre_level : bre_level,
 				},
-				success:function(resp){}
+				success:function(resp){
+					location.reload();
+				}
 			})
 		
 		<%
