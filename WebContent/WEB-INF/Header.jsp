@@ -19,7 +19,7 @@
 				</h1>
 				<div class="loginButtonBox">
 					<button class="loginButton" onclick="location.href='login'">로그인</button>
-					<button class="JoinButton" onclick="location.href='join'">회원가입</button>
+					<button class="JoinButton" onclick="location.href='agree'">회원가입</button>
 				</div>
 			</div>
 			<div class="headerNav">
