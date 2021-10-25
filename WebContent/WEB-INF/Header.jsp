@@ -21,6 +21,10 @@
 					<button class="loginButton" onclick="location.href='login'">로그인</button>
 					<button class="JoinButton" onclick="location.href='agree'">회원가입</button>
 				</div>
+				<div class="logoutButtonBox">
+					<button class="logoutButton" onclick="location.href='logout'">로그아웃</button>
+					<button class="mypageButton" onclick="location.href='mypage'">마이페이지</button>
+				</div>
 			</div>
 			<div class="headerNav">
 				<ul class="headerNavList">
@@ -52,6 +56,8 @@
 				console.log(mId)
 				if(mId !== null) {
 					$(".loginButtonBox").hide();
+				}else if(mId === null){
+					$(".logoutButtonBox").hide();
 				}
 			}
 		})
