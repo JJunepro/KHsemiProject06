@@ -83,8 +83,8 @@ public class findIdDoServlet extends HttpServlet {
 		
 		//메일 서버
 		String host = "smtp.naver.com";
-		String user = "khtbh01@naver.com";
-		String password = "khtbh0123!";
+		String user = "";
+		String password = "";
 		
 		//메일받을 주소
 		String to_email = m_email;
