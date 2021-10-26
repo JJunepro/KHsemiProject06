@@ -9,6 +9,16 @@ import tbh.articlesix.common.JDBCTemplate;
 
 public class NoticeService {
 	
+	public ArrayList<Notice> getNoticeList(String item, int start, int end, int search) {
+		ArrayList<Notice> nolist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		
+		nolist = new NoticeDao().getNoticeList(conn, item, search, start, end);
+		
+		JDBCTemplate.close(conn);
+		return nolist;
+	}
+	
 	//1. 공지사항 테이블 출력
 	public ArrayList<Notice> selectNoticeList() {
 		ArrayList<Notice> nolist = null;
@@ -34,6 +44,14 @@ public class NoticeService {
 		int result = 0;
 		Connection conn = JDBCTemplate.getConnection();
 		result = new NoticeDao().getNoticeCount(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int getNoticeCount(int search, String item) {
+		int result = 0;
+		Connection conn = JDBCTemplate.getConnection();
+		result = new NoticeDao().getNoticeCount(conn, search, item);
 		JDBCTemplate.close(conn);
 		return result;
 	}

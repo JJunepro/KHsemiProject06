@@ -17,10 +17,28 @@ public class QuestionService {
 		return volist;
 	}
 	
+	public ArrayList<Question> getQuestionList(String item, int start, int end, int search) {
+		ArrayList<Question> volist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		
+		volist = new QuestionDao().getQuestionList(conn, item, search, start, end);
+		
+		JDBCTemplate.close(conn);
+		return volist;
+	}
+	
 	public int getQuestionCount() {
 		int result = 0;
 		Connection conn = JDBCTemplate.getConnection();
 		result = new QuestionDao().getQuestionCount(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int getQuestionCount(int search, String item) {
+		int result = 0;
+		Connection conn = JDBCTemplate.getConnection();
+		result = new QuestionDao().getQuestionCount(conn, search, item);
 		JDBCTemplate.close(conn);
 		return result;
 	}

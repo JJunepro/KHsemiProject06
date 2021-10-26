@@ -53,6 +53,53 @@ public class QuestionDao {
 		return volist;
 	}
 	
+	public ArrayList<Question> getQuestionList (Connection conn, String item, int search, int start, int end) {
+		ArrayList<Question> volist = new ArrayList<Question>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		if (search == 0) {
+			sql = "SELECT * FROM BOARD_QUESTION "
+				+ " WHERE BQ_TITLE LIKE ? "
+				+ " ORDER BY BQ_N DESC";
+		} else if (search == 1) {
+			sql = "SELECT * FROM BOARD_NOTICE "
+					+ " WHERE BQ_CONTENT LIKE ? "
+					+ " ORDER BY BQ_N DESC";
+		} 
+		
+		System.out.println(sql);
+		System.out.println(item);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%' +item+ '%');
+			rs = pstmt.executeQuery();
+			volist = new ArrayList<Question>();
+			if (rs.next()) {
+				do {
+					Question vo = new Question();
+					vo.setBq_n(rs.getInt("bq_n"));
+					vo.setM_nick(rs.getString("m_nick"));
+					vo.setBq_title(rs.getString("bq_title"));
+					vo.setBq_content(rs.getString("bq_content"));
+					vo.setBq_timestamp(rs.getDate("bq_timestamp"));
+					vo.setBref(rs.getInt("bref"));
+					vo.setBreLevel(rs.getInt("bre_Level"));
+					vo.setBreStep(rs.getInt("bre_Step"));
+					volist.add(vo);
+				} while(rs.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		System.out.println(sql);
+		return volist;
+	}
+	
 	// 글 번호 가져오기
 	public int getQuestionCount(Connection conn) {
 		int result = 0;
@@ -70,6 +117,38 @@ public class QuestionDao {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	public int getQuestionCount(Connection conn, int search, String item) {
+		int result = 0;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if (search == 0) {
+			sql = "SELECT COUNT(BQ_N) FROM BOARD_QUESTION "
+				+ " WHERE BQ_TITLE LIKE ? "
+				+ " ORDER BY BQ_N DESC";
+		} else if (search == 1) {
+			sql = "SELECT COUNT(BQ_N) FROM BOARD_QUESTION "
+					+ " WHERE BQ_CONTENT LIKE ? "
+					+ " ORDER BY BQ_N DESC";
+		} 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%' +item+ '%');
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
 		return result;
