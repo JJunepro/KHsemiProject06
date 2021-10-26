@@ -30,7 +30,7 @@
         	        <div id="url">
             	        <a href="findId" class="alink">아이디 찾기</a>
                 	    <a href="findPw" class="alink">비밀번호 찾기</a>
-                    	<a href="join" class="alink">회원가입</a>
+                    	<a href="agree" class="alink">회원가입</a>
 	                </div>
     	    </div>
     	</form>
