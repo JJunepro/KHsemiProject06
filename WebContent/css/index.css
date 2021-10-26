@@ -29,17 +29,17 @@
 }
 .imageRoom a:nth-child(2) {
   background: no-repeat
-    url("https://plab-football.s3.amazonaws.com/media/daejeon_pc.jpg");
+    url("https://plab-football.s3.amazonaws.com/media/%E1%84%87%E1%85%AE%E1%84%8E%E1%85%A5%E1%86%AB_%E1%84%80%E1%85%AE%E1%86%BA%E1%84%8B%E1%85%B0%E1%84%8B%E1%85%B5_%E1%84%91%E1%85%AE%E1%86%BA%E1%84%89%E1%85%A1%E1%86%AF%E1%84%8C%E1%85%A1%E1%86%BC_home_pc.jpg");
   background-size: cover;
 }
 .imageRoom a:nth-child(3) {
   background: no-repeat
-    url("https://plab-football.s3.amazonaws.com/media/new_%E1%84%8E%E1%85%A5%E1%86%BC%E1%84%8C%E1%85%AE_%E1%84%87%E1%85%A9%E1%86%BC%E1%84%86%E1%85%A7%E1%86%BC_%E1%84%91%E1%85%AE%E1%86%BA%E1%84%89%E1%85%A1%E1%86%AF%E1%84%89%E1%85%A6%E1%86%AB%E1%84%90%E1%85%A5_pc.jpg");
+    url("https://plab-football.s3.amazonaws.com/media/211015_home_covid19_pc.png");
   background-size: cover;
 }
 .imageRoom a:nth-child(4) {
   background: no-repeat
-    url("https://plab-football.s3.amazonaws.com/media/home_manager_apply_pc.jpg");
+    url("https://plab-football.s3.amazonaws.com/media/211019_home_covid19_pc.png");
   background-size: cover;
 }
 
