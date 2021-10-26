@@ -31,7 +31,7 @@ public class RecruitChatInsertServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-		int b_n = new RecruitService().recruitCountList();
+		int b_n = new RecruitService().TotalRecruitCount();
 		// TODO 로그인 세션 가져오기
 
 		HttpSession session = request.getSession();
@@ -45,12 +45,6 @@ public class RecruitChatInsertServlet extends HttpServlet {
 		RecruitChat ch = new RecruitChat(b_n, m_id, chat_time, chat_message);
 
 		int result = new RecruitChatService().recruitChatInsert(ch);
-
-		if (result == 0) {
-			out.println("<br>내용이 입력되지 않았습니다.<br>다시 작성해 주세요.");
-		} else {
-			out.println("<br>채팅이 입력되었습니다.");
-		}
 
 		response.sendRedirect("/WEB-INF/RecruitMake.jsp");
 	}

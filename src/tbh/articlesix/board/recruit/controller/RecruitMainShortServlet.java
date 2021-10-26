@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 /**
@@ -16,15 +17,16 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet("/RecruitMainShort")
+@WebServlet("/recruitmainshort")
 public class RecruitMainShortServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
-    public RecruitMainShortServlet() {
-        super();
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public RecruitMainShortServlet() {
+		super();
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -38,17 +40,21 @@ public class RecruitMainShortServlet extends HttpServlet {
 		int currentPage = 1;
 		int startRnum = 1; // 화면에 글
 		int endRnum = 1; // 화면에 글
-		
+
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		String nickName = (String) session.getAttribute("nickName");
+
 		String pageNum = request.getParameter("pagenum");
 		// page null처리
 		if (pageNum == null) {
-	            pageNum = "1";
-	        }
+			pageNum = "1";
+		}
 		if (pageNum != null) { // 눌려진 페이지가 있음.
 			currentPage = Integer.parseInt(pageNum); // 눌려진 페이지
 		}
 		// 총 글 수
-		bCount = new RecruitService().getRecruitCount(); //총 글 수를 가져오는 메소드 필요
+		bCount = new RecruitService().TotalRecruitCount(); // 총 글 수를 가져오는 메소드 필요
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
 		// rownum 조건 계산
@@ -65,20 +71,22 @@ public class RecruitMainShortServlet extends HttpServlet {
 		endPage = startPage + PAGE_BLOCK - 1;
 		if (endPage > pageCount)
 			endPage = pageCount;
-	
-	// DB에서 값 읽어오기
-		ArrayList<Recruit> rclist = new RecruitService().RecruitShortList(startRnum,endRnum);
-			
-			// Data 전달을 위해서 request에 set
-			request.setAttribute("rclist", rclist);
-			request.setAttribute("startPage", startPage);
-			request.setAttribute("endPage", endPage);
-			request.setAttribute("pageCount", pageCount);
-			request.setAttribute("currentPage", currentPage);
-			// Page 이동하면서 Data도 전달함.
-			request.getRequestDispatcher("/RecruitMainShort.jsp").forward(request, response);
+
+		// DB에서 값 읽어오기
+		ArrayList<Recruit> rcshortlist = new RecruitService().RecruitShortList(startRnum, endRnum);
+
+		// Data 전달을 위해서 request에 set
+		request.setAttribute("rcshortlist", rcshortlist);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("currentPage", currentPage);
+		// Page 이동하면서 Data도 전달함.
+		request.getRequestDispatcher("/RecruitMainShort.jsp").forward(request, response);
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 

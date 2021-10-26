@@ -28,14 +28,19 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
             margin: 0;
             box-sizing: border-box;
         }
-
+		.boardtitle {
+			width : 80%;
+			margin : 0 auto;
+			text-align : center;
+			margin-bottom : 1em;
+		}
         .container {
             width : 80%;
             margin : 0 auto;
             
         }
         .aside {
-        	width : 15%;
+        	width : 10%;
             float : left;
             height : 960px;
         }
@@ -80,63 +85,77 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
 		  border-color : #ccc;
 		}
 		
-		.aside h3 {
-			border : 1px solid #ccc;
-		}
-		
 		.aside ol {
-			counter-reset: li;
-			list-style: none;
-			*list-style: decimal;
-			font-size: 12px;
-			padding: 0;
-			margin-bottom: 10em;
-			text-align : center;
+			margin : 0 auto;
 		}
 		
-        .aside ol li {
-        	margin: 0 0 0 2em;
-        	margin-bottom : 10em;
-        }
+		.aside h2 {
+			margin-bottom : 1em;
+		}
         
-        .aside a {
-        	position: relative;
-			display: block;
-			padding: .4em .4em .4em 2em;
-			*padding: .4em;
-			margin: .5em 0;
-			background: #93C775;
-			color: #000;
-			text-decoration: none;
-			-moz-border-radius: .3em;
-			-webkit-border-radius: .3em;
-			border-radius: 10em;
-			transition: all .2s ease-in-out;
-		}	
+        .aside li, .aside a {
+        	float:left;
+			height:35px;
+			line-height:35px;
+			position:relative;
+			font-size:15px;
+			margin-bottom: 12px;
+			font-family: 'Raleway', sans-serif;
+			transition: background-color 1.5s ease;
+			
+		}
+		
+		.aside a {
+			background:#ccc;
+			color:#fff;
+			text-decoration:none;
+			-moz-border-radius-bottomright:4px;
+			-webkit-border-bottom-right-radius:4px;
+			border-bottom-right-radius:4px;
+			-moz-border-radius-topright:4px;
+			-webkit-border-top-right-radius:4px;
+			border-top-right-radius:4px;
+			width : 8em;
+			text-align : center;
+			margin-left : 1em;
+		}
+		
         .aside a:hover{
-		background: #d6d4d4;
-		text-decoration:none;
-		transform: scale(1.1);
+		background:#555;
 		}
 		
 		.aside a:before{
-		content: counter(li);
-		counter-increment: li;
-		position: absolute;
-		left: -1.3em;
-		top: 50%;
-		margin-top: -1.3em;
-		background:#93C775;
-		height: 2em;
-		width: 2em;
-		line-height: 2em;
-		border: .3em solid #fff;
-		text-align: center;
-		font-weight: bold;
-		-moz-border-radius: 2em;
-		-webkit-border-radius: 2em;
-		border-radius: 2em;
-		color:#FFF;
+			content:"";
+			float:left;
+			position:absolute;
+			top:0;
+			left:-12px;
+			width:0;
+			height:0;
+			border-color:transparent #ddd transparent transparent;
+			border-style:solid;
+			border-width: 18px 12px 18px 0;
+		}
+		
+		.aside a:after{
+			content:"";
+			position:absolute;
+			top:15px;
+			left:0;
+			float:left;
+			width:6px;
+			height:6px;
+			-moz-border-radius:2px;
+			-webkit-border-radius:2px;
+			border-radius:2px;
+			background:#fff;
+			-moz-box-shadow:-1px -1px 2px #004977;
+			-webkit-box-shadow:-1px -1px 2px #004977;
+			box-shadow:-1px -1px 2px #004977;
+		}
+		
+		.aside a:hover:before {
+			border-color:transparent #ddd transparent transparent;
 		}
         .content-box {
             width: 100%;
@@ -151,6 +170,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
             margin : 0 auto;
             text-align: center;
             margin-top : 1em;
+            margin-bottom : 2em;
         }
         .list-search {
             width: 80%;
@@ -158,21 +178,26 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
             display: inline-block;
             margin : 0 auto;
             text-align: center;
-        	margin-top : 3em;
             margin-bottom : 1em;
         }
 
         .left-list {
             float : left;
             width : 49%;
-
+            border : 1px solid #ccc;
+            border-radius: 15% 3%;
+            margin-top : 1em;
         }
         .right-list {
             float : right;
             width : 49%;
+            border : 1px solid #ccc;
+            border-radius: 3% 15%;
+            margin-top : 1em;
         }
         .list-title {
             text-align : center;
+            margin-top : 1em;
         }
         .more {
             float : right;
@@ -188,9 +213,12 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
         .list-table {
             clear : both;
             margin : 0 auto;
-            width : 100%;
+            width : 98%;
             border-top: 1px solid #ccc;
-
+        }
+         .list-table th {
+            background : #F9F7F9;
+            width : 33%;
         }
         .list-table a {
 			color: #333;
@@ -235,14 +263,55 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
 		.list-table tbody th p{
 		  display: none;
 		}
+		
+		.btn {
+		  display: inline-block;
+		  padding: 0 30px;
+		  font-size: 15px;
+		  font-weight: 400;
+		  background: transparent;
+		  text-align: center;
+		  white-space: nowrap;
+		  vertical-align: middle;
+		  -ms-touch-action: manipulation;
+		  touch-action: manipulation;
+		  cursor: pointer;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  border: 1px solid transparent;
+		  text-transform: uppercase;
+		  -webkit-border-radius: 0;
+		  -moz-border-radius: 0;
+		  border-radius: 0;
+		  -webkit-transition: all 0.3s;
+		  -moz-transition: all 0.3s;
+		  -ms-transition: all 0.3s;
+		  -o-transition: all 0.3s;
+		  transition: all 0.3s;
+		}
+		
+		.btn-dark {
+		  background: #555;
+		  color: #fff;
+		}
+		
+		.btn-dark:hover, .btn-dark:focus {
+		  background: #373737;
+		  border-color: #373737;
+		  color: #fff;
+		}
     </style>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
+	<div class="boardtitle">
+		<h1>자유 게시판</h1>
+	</div>
     <div class="container">
         <div class="content-box">
             <div class="aside">
-            	<h2>게시판리스트</h2>
                 <ol>
                     <li><a href="<%=request.getContextPath() %>/boardAll">전체보기</a></li>
                     <li><a href="<%=request.getContextPath() %>/boardHello">가입인사</a></li>
@@ -288,7 +357,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
                 		%>
                         <tr>
                             <td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_title()%></a></td>
-                            <td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_content()%></a></td>
+                            <td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_timestamp()%></a></td>
                             <td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_view()%></a></td>
                            </tr>
                             <%
@@ -312,7 +381,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
                 		%>
                         <tr>
                             <td><a href="boardcontent?no=<%=vo2.getBf_n()%>"><%=vo2.getBf_title()%></a></td>
-                            <td><a href="boardcontent?no=<%=vo2.getBf_n()%>"><%=vo2.getBf_content()%></a></td>
+                            <td><a href="boardcontent?no=<%=vo2.getBf_n()%>"><%=vo2.getBf_timestamp()%></a></td>
                             <td><a href="boardcontent?no=<%=vo2.getBf_n()%>"><%=vo2.getBf_view()%></a></td>
                         </tr>
                         <%
@@ -341,7 +410,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
                         <tbody>
 	                        <tr>
 	                            <td><a href="boardcontent?no=<%=vo3.getBf_n()%>"><%=vo3.getBf_title()%></a></td>
-	                            <td><a href="boardcontent?no=<%=vo3.getBf_n()%>"><%=vo3.getBf_content()%></a></td>
+	                            <td><a href="boardcontent?no=<%=vo3.getBf_n()%>"><%=vo3.getBf_timestamp()%></a></td>
 	                            <td><a href="boardcontent?no=<%=vo3.getBf_n()%>"><%=vo3.getBf_view()%></a></td>
 	                        </tr>
 	                        <%
@@ -367,7 +436,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
                 		%>
                         <tr>
                             <td><a href="boardcontent?no=<%=vo4.getBf_n()%>"><%=vo4.getBf_title()%></a></td>
-                            <td><a href="boardcontent?no=<%=vo4.getBf_n()%>"><%=vo4.getBf_content()%></a></td>
+                            <td><a href="boardcontent?no=<%=vo4.getBf_n()%>"><%=vo4.getBf_timestamp()%></a></td>
                             <td><a href="boardcontent?no=<%=vo4.getBf_n()%>"><%=vo4.getBf_view()%></a></td>
                         </tr>
                      	<%
@@ -394,7 +463,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
                 		%>
                         <tr>
                             <td><a href="boardcontent?no=<%=vo5.getBf_n()%>"><%=vo5.getBf_title()%></a></td>
-                            <td><a href="boardcontent?no=<%=vo5.getBf_n()%>"><%=vo5.getBf_content()%></a></td>
+                            <td><a href="boardcontent?no=<%=vo5.getBf_n()%>"><%=vo5.getBf_timestamp()%></a></td>
                             <td><a href="boardcontent?no=<%=vo5.getBf_n()%>"><%=vo5.getBf_view()%></a></td>
                         </tr>
                         <%
@@ -418,7 +487,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
                 		%>
                         <tr>
                             <td><a href="boardcontent?no=<%=vo6.getBf_n()%>"><%=vo6.getBf_title()%></a></td>
-                            <td><a href="boardcontent?no=<%=vo6.getBf_n()%>"><%=vo6.getBf_content()%></a></td>
+                            <td><a href="boardcontent?no=<%=vo6.getBf_n()%>"><%=vo6.getBf_timestamp()%></a></td>
                             <td><a href="boardcontent?no=<%=vo6.getBf_n()%>"><%=vo6.getBf_view()%></a></td>
                         </tr>
                         <%
@@ -430,7 +499,6 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
             </section>
         </div>
     </div>
-
 </body>
 
 </html>

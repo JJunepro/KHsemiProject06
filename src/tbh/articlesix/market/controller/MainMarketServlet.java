@@ -48,8 +48,7 @@ public class MainMarketServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String memberId = (String)session.getAttribute("memberId");
 		String nickName = (String)session.getAttribute("nickName");
-		
-		
+
 		String pageNum = request.getParameter("pagenum");
 		if(pageNum != null) {   // 눌려진 페이지가 있음.
 			currentPage = Integer.parseInt(pageNum); // 눌려진 페이지

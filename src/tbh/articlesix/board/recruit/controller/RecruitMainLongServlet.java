@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
@@ -16,7 +17,7 @@ import tbh.articlesix.board.recruit.model.vo.Recruit;
 /**
  * Servlet implementation class RecruitMainLongServlet
  */
-@WebServlet("/RecruitMainLong")
+@WebServlet("/recruitmainlong")
 public class RecruitMainLongServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -48,6 +49,10 @@ public class RecruitMainLongServlet extends HttpServlet {
 		int startRnum = 1; // 화면에 글
 		int endRnum = 1; // 화면에 글
 
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		String nickName = (String) session.getAttribute("nickName");
+		
 		String pageNum = request.getParameter("pagenum");
 		// page null처리
 		if (pageNum == null) {
@@ -57,7 +62,7 @@ public class RecruitMainLongServlet extends HttpServlet {
 			currentPage = Integer.parseInt(pageNum); // 눌려진 페이지
 		}
 		// 총 글 수
-		bCount = new RecruitService().getRecruitCount(); // 총 글 수를 가져오는 메소드 필요
+		bCount = new RecruitService().TotalRecruitCount(); // 총 글 수를 가져오는 메소드 필요
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
 		// rownum 조건 계산
@@ -76,10 +81,10 @@ public class RecruitMainLongServlet extends HttpServlet {
 			endPage = pageCount;
 
 		// DB에서 값 읽어오기
-		ArrayList<Recruit> rclist = new RecruitService().RecruitLongList(startRnum, endRnum);
+		ArrayList<Recruit> rclonglist = new RecruitService().RecruitLongList(startRnum, endRnum);
 
 		// Data 전달을 위해서 request에 set
-		request.setAttribute("rclist", rclist);
+		request.setAttribute("rclonglist", rclonglist);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);

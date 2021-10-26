@@ -132,7 +132,8 @@
 	        <button onclick="location.href='boardlist'" class="btn btn-dark">목록</button> 
 	    </div>
     </div>
-    
+    <div>
+    </div>
     <script>
     	$("#modifybtn").click(function(){
     		if(confirm("수정하시겠습니까?")) {

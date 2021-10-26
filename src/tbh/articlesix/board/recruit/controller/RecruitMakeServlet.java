@@ -10,37 +10,43 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
+import tbh.articlesix.market.service.MarketService;
 
-@WebServlet("/RecruitMake")
+@WebServlet("/recruitmake")
 public class RecruitMakeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public RecruitMakeServlet() {
 		super();
 	}
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		
+
 		request.getRequestDispatcher("/WEB-INF/RecruitMake.jsp").forward(request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
 
-		
-		// TODO 로그인 세션 가져오기 해야함
+		int countList = new RecruitService().TotalRecruitCount();
+		countList++;
 
-		String m_id = (String) request.getSession().getAttribute("memberLoginInfo");
-//		if(writer == null) {
-//			writer = "user01";   // TODO: 임시 user 설정
-//		}
+		HttpSession session = request.getSession();
+		String m_id = (String) session.getAttribute("memberId");
+		String m_nick = (String) session.getAttribute("m_nick");
+
 		int ca_n = Integer.parseInt(request.getParameter("ca_n"));
 		char b_type = request.getParameter("b_type").charAt(0);
 		String b_title = request.getParameter("b_title");
@@ -48,7 +54,6 @@ public class RecruitMakeServlet extends HttpServlet {
 		String b_start = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String b_end = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		int b_total = Integer.parseInt(request.getParameter("b_total"));
-		int b_attend = Integer.parseInt(request.getParameter("b_attend"));
 		String b_place = request.getParameter("b_place");
 		int b_fee = Integer.parseInt(request.getParameter("b_fee"));
 		char b_match = request.getParameter("b_match").charAt(0);
@@ -62,20 +67,25 @@ public class RecruitMakeServlet extends HttpServlet {
 		char b_rental = request.getParameter("b_rental").charAt(0);
 		char b_cloth = request.getParameter("b_cloth").charAt(0);
 		String b_facility = request.getParameter("b_facility");
-		String b_timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		int b_view = 0;
 
-		Recruit rc = new Recruit(m_id, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_attend,
-				b_place, b_fee, b_match, b_gender, b_age, b_equip, b_minpeople, b_progress, b_shower, b_parking,
-				b_rental, b_cloth, b_facility, b_timestamp, b_view);
+		Recruit rc = new Recruit(m_id, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_place, b_fee,
+				b_match, b_gender, b_age, b_equip, b_minpeople, b_progress, b_shower, b_parking, b_rental, b_cloth,
+				b_facility);
 
-		int result = new RecruitService().recruitMake(rc);
+		PrintWriter out = response.getWriter();
+		int result = new RecruitService().RecruitMake(rc);
 
 		if (result == 0) {
-			out.println("<br>내용이 입력되지 않았습니다.<br>다시 작성해 주세요.");
+			System.out.println("success");
 		} else {
-			out.println("<br>모집방이 생성되었습니다.");
+			System.out.println("fail");
 		}
-		response.sendRedirect("rclist");
+
+		if (b_start == b_end) {
+			response.sendRedirect("recruitmainshort");
+		} else {
+			response.sendRedirect("recruitmainLong");
+		}
+
 	}
 }

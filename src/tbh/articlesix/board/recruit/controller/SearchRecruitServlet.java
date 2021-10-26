@@ -14,7 +14,7 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
 
-@WebServlet("/SearchRecruit")
+@WebServlet("/searchrecruit")
 public class SearchRecruitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -54,7 +54,7 @@ public class SearchRecruitServlet extends HttpServlet {
 			currentPage = Integer.parseInt(pageNum); // 눌려진 페이지
 		}
 		// 총 글수
-		bCount = new RecruitService().getRecruitCount();
+		bCount = new RecruitService().TotalRecruitCount();
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
 		// rownum 조건 계산
@@ -74,10 +74,10 @@ public class SearchRecruitServlet extends HttpServlet {
 		
 		String title = request.getParameter("searchTitle");
 	// DB에서 값 읽어오기
-		ArrayList<Recruit> searchRClist = new RecruitService().searchRecruit(title,startRnum,endRnum);
+		ArrayList<Recruit> searchrclist = new RecruitService().searchRecruit(title,startRnum,endRnum);
 		
 			// Data 전달을 위해서 request에 set
-			request.setAttribute("searchRCList", searchRClist);
+			request.setAttribute("searchrclist", searchrclist);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("pageCount", pageCount);
