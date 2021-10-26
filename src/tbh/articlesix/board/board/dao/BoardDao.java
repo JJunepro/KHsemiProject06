@@ -49,6 +49,84 @@ public class BoardDao {
 		return null;
 	}
 
+	public ArrayList<Board> getBoardList (Connection conn, String item, int search, int start, int end) {
+		ArrayList<Board> volist = new ArrayList<Board>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		if (search == 0) {
+			sql = "SELECT * FROM BOARD_FREE "
+				+ " WHERE BF_TITLE LIKE ? "
+				+ " ORDER BY BF_N DESC";
+		} else if (search == 1) {
+			sql = "SELECT * FROM BOARD_FREE "
+					+ " WHERE BF_CONTENT LIKE ? "
+					+ " ORDER BY BF_N DESC";
+		} 
+		
+		System.out.println(sql);
+		System.out.println(item);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%' +item+ '%');
+			rs = pstmt.executeQuery();
+			volist = new ArrayList<Board>();
+			if (rs.next()) {
+				do {
+					Board vo = new Board();
+					vo.setBf_n(rs.getInt("bf_n"));
+					vo.setM_nick(rs.getString("m_nick"));
+					vo.setBf_title(rs.getString("bf_title"));
+					vo.setBf_content(rs.getString("bf_content"));
+					vo.setBf_timestamp(rs.getDate("bf_timestamp"));
+					vo.setBf_view(rs.getInt("bf_view"));
+					vo.setBf_category(rs.getInt("bf_category"));
+					volist.add(vo);
+				} while(rs.next());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(pstmt);
+		}
+		System.out.println(sql);
+		return volist;
+	}
+	
+	public int getBoardCount(Connection conn, int search, String item) {
+		int result = 0;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if (search == 0) {
+			sql = "SELECT COUNT(BF_N) FROM BOARD_FREE "
+				+ " WHERE BF_TITLE LIKE ? "
+				+ " ORDER BY BF_N DESC";
+		} else if (search == 1) {
+			sql = "SELECT COUNT(BF_N) FROM BOARD_FREE "
+					+ " WHERE BF_CONTENT LIKE ? "
+					+ " ORDER BY BF_N DESC";
+		} 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%' +item+ '%');
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
 	public int getBoardCount(Connection conn) {
 		int result = 0;
 		String sql = "select count(bf_n) from board_free";

@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="./css/header.css" />
 <link rel="stylesheet" href="./css/index.css" />
 
@@ -328,6 +327,7 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
 	<div class="boardtitle">
 		<h1>자유 게시판</h1>
 	</div>
+<<<<<<< HEAD
 	<div class="container">
 		<div class="content-box">
 			<div class="aside">
@@ -340,6 +340,37 @@ ArrayList<Board> volist6 = (ArrayList<Board>) request.getAttribute("boardvolist6
 					<li><a href="<%=request.getContextPath()%>/boardMeet">동네
 							소개/홍보</a></li>
 				</ol>
+=======
+    <div class="container">
+        <div class="content-box">
+            <div class="aside">
+                <ol>
+                    <li><a href="<%=request.getContextPath() %>/boardAll">전체보기</a></li>
+                    <li><a href="<%=request.getContextPath() %>/boardHello">가입인사</a></li>
+                    <li><a href="<%=request.getContextPath() %>/boardEvent">이벤트</a></li>
+                    <li><a href="<%=request.getContextPath() %>/boardChat">수다</a></li>
+                    <li><a href="<%=request.getContextPath() %>/boardTip">운동팁</a></li>
+                    <li><a href="<%=request.getContextPath() %>/boardMeet">동네 소개/홍보</a></li>
+                </ol>
+            </div>
+            <section class="list-search">
+            <div id="board-search">
+            	<div class="search-window">
+					<form action="boardlist.do" method="get">
+						<div class="search-wrap">
+							<select name="search" class="select">
+								<option value="0">제목</option>
+								<option value="1">내용</option>
+							</select>
+							<label for="search" class="blind">자유게시판 내용 검색</label>
+							<input id="search" type="text" name="item" placeholder="검색어를 입력해주세요." value="">
+							<%//TODO %>
+							<button type="submit" class="btn btn-dark">검색</button>
+						</div>
+					</form>
+				</div>
+				<h2>각 게시판 기준 조회수가 높은 5개의 글이 보여집니다.</h2>
+>>>>>>> 6a478da4ff4b70336da507d83ad60ee9ac0dca7b
 			</div>
 			<section class="list-search">
 				<div id="board-search">

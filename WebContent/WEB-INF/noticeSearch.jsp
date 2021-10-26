@@ -1,13 +1,10 @@
-
-<link rel="stylesheet" href="./css/header.css" />
-<link rel="stylesheet" href="./css/index.css" />
-
 <%@page import="tbh.articlesix.board.notice.vo.Notice"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 ArrayList<Notice> nolist = (ArrayList<Notice>)request.getAttribute("noticenolist");
+String item = request.getParameter("item");
 int startPage = (int) request.getAttribute("startPage");
 int endPage = (int) request.getAttribute("endPage");
 int pageCount = (int) request.getAttribute("pageCount");
@@ -292,7 +289,7 @@ section.notice {
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
-				<h3><a href="<%=request.getContextPath()%>/noticelist">공지사항</a></h3>
+				<h3>공지사항 - " <%out.println(item);%>" 검색 결과입니다.</h3>
 			</div>
 		</div>
 		<div id="board-search">
@@ -377,5 +374,7 @@ section.notice {
 			</div>
 		</div>
 	</section>
+</body>
+</html>
 </body>
 </html>

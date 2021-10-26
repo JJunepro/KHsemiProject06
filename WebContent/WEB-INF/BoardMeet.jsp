@@ -297,8 +297,9 @@ section.notice {
 		<div id="board-search">
 			<div class="container">
 				<div class="search-window">
-					<form action="noticelist.do" method="get">
+					<form action="boardlist.do" method="get">
 						<div class="search-wrap">
+<<<<<<< HEAD
 							<select name="type" class="select">
 								<option value="제목">제목</option>
 								<option value="내용">내용</option>
@@ -309,6 +310,15 @@ section.notice {
 							<%
 								//TODO
 							%>
+=======
+							<select name="search" class="select">
+								<option value="0">제목</option>
+								<option value="1">내용</option>
+							</select>
+							<label for="search" class="blind">자유게시판 내용 검색</label>
+							<input id="search" type="text" name="item" placeholder="검색어를 입력해주세요." value="">
+							<%//TODO %>
+>>>>>>> 6a478da4ff4b70336da507d83ad60ee9ac0dca7b
 							<button type="submit" class="btn btn-dark">검색</button>
 						</div>
 					</form>

@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-ArrayList<Question> volist = (ArrayList<Question>)request.getAttribute("noticenolist");
+ArrayList<Question> volist = (ArrayList<Question>)request.getAttribute("questionvolist");
 int startPage = (int) request.getAttribute("startPage");
 int endPage = (int) request.getAttribute("endPage");
 int pageCount = (int) request.getAttribute("pageCount");
@@ -299,13 +299,12 @@ section.notice {
 				<div class="search-window">
 					<form action="questionlist.do" method="get">
 						<div class="search-wrap">
-							<select name="type" class="select">
-								<option value="제목">제목</option>
-								<option value="내용">내용</option>
-								<option value="제목+내용">제목+내용</option>
+							<select name="search" class="select">
+								<option value="0">제목</option>
+								<option value="1">내용</option>
 							</select>
-							<label for="search" class="blind">공지사항 내용 검색</label>
-							<input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="">
+							<label for="search" class="blind">QnA 내용 검색</label>
+							<input id="search" type="text" name="item" placeholder="검색어를 입력해주세요." value="">
 							<%//TODO %>
 							<button type="submit" class="btn btn-dark">검색</button>
 						</div>

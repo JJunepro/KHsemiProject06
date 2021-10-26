@@ -14,16 +14,16 @@ import tbh.articlesix.board.question.service.QuestionService;
 import tbh.articlesix.board.question.vo.Question;
 
 /**
- * Servlet implementation class QuestionListServlet
+ * Servlet implementation class QuestionListActionServlet
  */
-@WebServlet({"/questionlist", "/question"})
-public class QuestionListServlet extends HttpServlet {
+@WebServlet("/questionlist.do")
+public class QuestionListActionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionListServlet() {
+    public QuestionListActionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +46,12 @@ public class QuestionListServlet extends HttpServlet {
 		int currentPage = 1;
 		int startRnum = 1;   // 화면에 글
 		int endRnum = 1;  // 화면에 글
+		String val = request.getParameter("search");
+		int search = Integer.parseInt(val);
+		String item = request.getParameter("item");
 		
+		System.out.println(search);
+		System.out.println(item);
 		
 		
 		String pageNum = request.getParameter("pagenum");
@@ -55,7 +60,7 @@ public class QuestionListServlet extends HttpServlet {
 //			currentPage = Integer.valueOf( request.getParameter("page") );
 		}
 		// 총 글수
-		bCount = new QuestionService().getQuestionCount();
+		bCount = new QuestionService().getQuestionCount(search, item);
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
@@ -72,14 +77,15 @@ public class QuestionListServlet extends HttpServlet {
 		endPage = startPage + PAGE_BLOCK -1; 
 		if(endPage > pageCount) endPage=pageCount;
 		
-		ArrayList<Question> volist = new QuestionService().selectQuestionList(startRnum, endRnum);
+		ArrayList<Question> volist = new QuestionService().getQuestionList(item, startRnum, endRnum, search);
 		
+		request.setAttribute("item", item);
 		request.setAttribute("questionvolist", volist);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
-		request.getRequestDispatcher("/WEB-INF/QuestionList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/QuestionSearch.jsp").forward(request, response);
 	}
 
 	/**
