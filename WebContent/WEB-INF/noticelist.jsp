@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 
 <link rel="stylesheet" href="./css/header.css" />
 <link rel="stylesheet" href="./css/index.css" />
 
+=======
+<link rel="stylesheet" href="./css/header.css" />
+>>>>>>> 99a1f5ba3d6301e53c2a4b9ea45aaece612ca95c
 <%@page import="tbh.articlesix.board.notice.vo.Notice"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,8 +22,6 @@ int next = endPage + 1;
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./css/header.css" />
-<link rel="stylesheet" href="./css/index.css" />
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>

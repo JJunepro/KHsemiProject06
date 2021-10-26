@@ -21,7 +21,7 @@
 <title>모임참가방 Page</title>
 </head>
 <body>
-	<form method="get" action="" id="modify" name="form">
+	<form method="get" name="form">
 		<input type="hidden" name="no" value="<%=bn.getB_n()%>">
 		<h1><%=bn.getB_title()%></h1>
 		<pre>

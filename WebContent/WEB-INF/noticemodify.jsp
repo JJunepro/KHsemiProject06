@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 
 <link rel="stylesheet" href="./css/header.css" />
 <link rel="stylesheet" href="./css/index.css" />
 
+=======
+<link rel="stylesheet" href="./css/header.css" />
+>>>>>>> 99a1f5ba3d6301e53c2a4b9ea45aaece612ca95c
 <%@page import="tbh.articlesix.board.notice.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
