@@ -1,12 +1,14 @@
-<%@page import="tbh.articlesix.board.board.vo.Board"%>
+<%@page import="tbh.articlesix.board.question.vo.Question"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-ArrayList<Board> volist = (ArrayList<Board>)request.getAttribute("boardvolist");
+ArrayList<Question> volist = (ArrayList<Question>)request.getAttribute("questionvolist");
+String item = request.getParameter("item");
 int startPage = (int) request.getAttribute("startPage");
 int endPage = (int) request.getAttribute("endPage");
 int pageCount = (int) request.getAttribute("pageCount");
+int currentPage = (int) request.getAttribute("currentPage");
 int previous = startPage - 1;
 int next = endPage + 1;
 %>
@@ -19,7 +21,7 @@ int next = endPage + 1;
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>TBH 자유게시판 전체</title>
+<title>TBH QnA</title>
 <style>
 
 * {
@@ -52,7 +54,6 @@ int next = endPage + 1;
 	padding : 0.5em;
 	width : 5.5em;
 }
-
 .nav ul li:first-child {
 	border-radius: 2em 0 0 2em;
 }
@@ -60,12 +61,12 @@ int next = endPage + 1;
 	border-radius: 0 2em 2em 0;
 }
 
-.p1 {
+.p2 {
 	background : #ccc;
 	font-weight : bold;
 }
 
-.p1 a {
+.p2 a {
 	color : #4D4D4D;
 }
 
@@ -131,7 +132,6 @@ section.notice {
   padding: 0;
   font-size: 16px;
 }
-
 
 .select { 
   height: 40px;
@@ -236,7 +236,6 @@ section.notice {
  	color: #fff;
  	border : 1px solid #ccc;
  	padding : 10px;
- 	
 }
 
 .towrite:hover, .towrite:focus {
@@ -275,26 +274,33 @@ section.notice {
 	text-weight : bold;
 	color : #aaa;
 }
+
 </style>
 </head>
 <body>
 	<%@ include file="./Header.jsp"%>
+	<div class="nav">
+		<ul>
+			<li class="p1"><a href='noticelist'>공지사항</a></li>
+			<li class="p2"><a href='questionlist'>QnA</a></li>
+		</ul>
+	</div>
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
-				<h3>자유게시판 / 가입인사</h3>
+				<h3>Q n A - " <%out.println(item);%>" 검색 결과입니다.</h3>
 			</div>
 		</div>
 		<div id="board-search">
 			<div class="container">
 				<div class="search-window">
-					<form action="boardlist.do" method="get">
+					<form action="questionlist.do" method="get">
 						<div class="search-wrap">
 							<select name="search" class="select">
 								<option value="0">제목</option>
 								<option value="1">내용</option>
 							</select>
-							<label for="search" class="blind">자유게시판 내용 검색</label>
+							<label for="search" class="blind">공지사항 내용 검색</label>
 							<input id="search" type="text" name="item" placeholder="검색어를 입력해주세요." value="">
 							<%//TODO %>
 							<button type="submit" class="btn btn-dark">검색</button>
@@ -312,42 +318,47 @@ section.notice {
 							<th scope="col" class="th-title">제목</th>
 							<th scope="col"  class="th-writer">작성자</th>
 							<th scope="col" class="th-date">등록일</th>
-							<th scope="col" class="th-view">조회수</th>
 						</tr>
 				</thead>
-					<%
-                		if (volist != null) {
-                			for (Board vo : volist) {
-                	%>
+				<%
+               		if (volist != null) {
+               			for (Question vo : volist) {
+               	%>
 				<tbody>
 					<tr>
-						<td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_n()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBref()%></a>
 						</td>
-						<td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_title()%></a>
+						<td>
+						<%
+						for( int i=0; i<vo.getBreLevel(); i++){
+						%>
+							<span style="color : red; font-weight : bold;">&#9977;RE : </span>
+						<%
+							}
+						%>
+						<a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_title()%></a>
 						</td>
-						<td><a href="boardcontent?no=<%=vo.getBf_n()%>">&#9977;<%=vo.getM_nick()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getM_nick()%></a>
 						</td>
-						<td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_timestamp()%></a>
-						</td>
-						<td><a href="boardcontent?no=<%=vo.getBf_n()%>"><%=vo.getBf_view()%></a>
+						<td><a href="questioncontent?no=<%=vo.getBq_n()%>"><%=vo.getBq_timestamp()%></a>
 						</td>
 					</tr>
-					<%
-               				}
-               			}
-                    %>
+				<%
+             			}
+             		}
+                %>
 				</tbody>
 				</table>
 				<div class="pageController">
 				<%
 					if (startPage > 1){
 				%>
-				<a href="./boardHello?pagenum=<%=previous%>">이전</a>
+				<a href="./questionlist?pagenum=<%=previous%>" class="pc_d">이전</a>
 				<%
 					}
-						for (int i = startPage; i <= endPage; i++) {
+					for (int i = startPage; i <= endPage; i++) {
 				%>
-				<a href="./boardHello?pagenum=<%=i%>"><%=i%></a>
+				<a href="./questionlist?pagenum=<%=i%>"><%=i%></a>
 				<%
 					if (i != endPage) {
 				%>
@@ -356,13 +367,13 @@ section.notice {
 				}
 				if (endPage < pageCount) {
 				%>
-					<a href="./boardHello?pagenum=<%=next%>">다음</a>
+					<a href="./questionlist?pagenum=<%=next%>" class="pc_d">다음</a>
 				<%
 				}
 				%>
 				</div>
 				<button class="btn towrite">
-				<a href='boardwrite.do'>글쓰기</a>
+				<a href='questionwrite.do'>글쓰기</a>
 				</button>
 			</div>
 		</div>

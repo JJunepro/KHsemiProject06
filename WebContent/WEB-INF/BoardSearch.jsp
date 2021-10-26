@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%
 ArrayList<Board> volist = (ArrayList<Board>)request.getAttribute("boardvolist");
+String item = request.getParameter("item");
 int startPage = (int) request.getAttribute("startPage");
 int endPage = (int) request.getAttribute("endPage");
 int pageCount = (int) request.getAttribute("pageCount");
@@ -19,7 +20,7 @@ int next = endPage + 1;
 <script src="https://code.jquery.com/jquery-3.6.0.js"
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
-<title>TBH 자유게시판 전체</title>
+<title>TBH 자유게시판 검색</title>
 <style>
 
 * {
@@ -282,7 +283,7 @@ section.notice {
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
-				<h3>자유게시판 / 가입인사</h3>
+				<h3>자유게시판 - " <%out.println(item);%>" 검색 결과입니다.</h3>
 			</div>
 		</div>
 		<div id="board-search">
@@ -342,12 +343,12 @@ section.notice {
 				<%
 					if (startPage > 1){
 				%>
-				<a href="./boardHello?pagenum=<%=previous%>">이전</a>
+				<a href="./boardAll?pagenum=<%=previous%>">이전</a>
 				<%
 					}
 						for (int i = startPage; i <= endPage; i++) {
 				%>
-				<a href="./boardHello?pagenum=<%=i%>"><%=i%></a>
+				<a href="./boardAll?pagenum=<%=i%>"><%=i%></a>
 				<%
 					if (i != endPage) {
 				%>
@@ -356,7 +357,7 @@ section.notice {
 				}
 				if (endPage < pageCount) {
 				%>
-					<a href="./boardHello?pagenum=<%=next%>">다음</a>
+					<a href="./boardAll?pagenum=<%=next%>">다음</a>
 				<%
 				}
 				%>

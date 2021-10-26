@@ -288,7 +288,7 @@ section.notice {
 	<section class="notice">
 		<div class="page-title">
 			<div class="container">
-				<h3>공지사항</h3>
+				<h3><a href="<%=request.getContextPath()%>/noticelist">공지사항</a></h3>
 			</div>
 		</div>
 		<div id="board-search">
@@ -296,13 +296,12 @@ section.notice {
 				<div class="search-window">
 					<form action="noticelist.do" method="get">
 						<div class="search-wrap">
-							<select name="type" class="select">
-								<option value="제목">제목</option>
-								<option value="내용">내용</option>
-								<option value="제목+내용">제목+내용</option>
+							<select name="search" class="select">
+								<option value="0">제목</option>
+								<option value="1">내용</option>
 							</select>
 							<label for="search" class="blind">공지사항 내용 검색</label>
-							<input id="search" type="search" name="search" placeholder="검색어를 입력해주세요." value="">
+							<input id="search" type="text" name="item" placeholder="검색어를 입력해주세요." value="">
 							<%//TODO %>
 							<button type="submit" class="btn btn-dark">검색</button>
 						</div>

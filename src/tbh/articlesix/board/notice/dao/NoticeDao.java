@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import tbh.articlesix.board.notice.vo.Notice;
 import tbh.articlesix.common.JDBCTemplate;
@@ -65,87 +64,96 @@ public class NoticeDao {
 //		return nolist;
 //	}
 	
-	public ArrayList<Notice> getNoticeList(HashMap<String, Object> listOpt, Connection conn) {
-		ArrayList<Notice> list = new ArrayList<Notice>();
-		
-		String opt = (String)listOpt.get("opt"); //검색 옵션(제목, 내용, 글쓴이 등등)
-		String condition = (String)listOpt.get("condition"); //검색내용
-		int start = (Integer)listOpt.get("start");
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			StringBuffer sql = new StringBuffer();
-			
-			if (opt == null) {
-				sql.append("SELECT * FROM BOARD_NOTICE ORDER BY BN_N DESC");
-				pstmt = conn.prepareStatement(sql.toString());
-				pstmt.setInt(1, start);
-				
-				sql.delete(start, sql.toString().length());
-			} else if(opt.equals("0")) {
-				sql.append("SELECT * FROM BOARD_NOTICE");
-				sql.append(" WHERE BN_TITLE like ?");
-				sql.append(" ORDER BY BN_N DESC");
-				
-				pstmt = conn.prepareStatement(sql.toString());
-				pstmt.setString(1, "%"+condition+"%");
-				
-				sql.delete(start, sql.toString().length());
-			}
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				Notice no = new Notice();
-				no.setBn_n(rs.getInt("bn_n"));
-				no.setM_nick(rs.getString("m_nick"));
-				no.setBn_title(rs.getString("bn_title"));
-				no.setBn_content(rs.getString("bn_content"));
-				no.setBn_timestamp(rs.getDate("bn_timestamp"));
-				no.setBn_view(rs.getInt("bn_view"));
-				list.add(no);
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
-		}finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(pstmt);
-		};
-		return list;
-	}
+//	public ArrayList<Notice> getNoticeList(HashMap<String, Object> listOpt, Connection conn) {
+//		ArrayList<Notice> list = new ArrayList<Notice>();
+//		
+//		String opt = (String)listOpt.get("opt"); //검색 옵션(제목, 내용, 글쓴이 등등)
+//		String condition = (String)listOpt.get("condition"); //검색내용
+//		int start = (Integer)listOpt.get("start");
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		try {
+//			StringBuffer sql = new StringBuffer();
+//			
+//			if (opt == null) {
+//				sql.append("SELECT * FROM BOARD_NOTICE ORDER BY BN_N DESC");
+//				pstmt = conn.prepareStatement(sql.toString());
+//				pstmt.setInt(1, start);
+//				
+//				sql.delete(start, sql.toString().length());
+//			} else if(opt.equals("0")) {
+//				sql.append("SELECT * FROM BOARD_NOTICE");
+//				sql.append(" WHERE BN_TITLE like ?");
+//				sql.append(" ORDER BY BN_N DESC");
+//				
+//				pstmt = conn.prepareStatement(sql.toString());
+//				pstmt.setString(1, "%"+condition+"%");
+//				
+//				sql.delete(start, sql.toString().length());
+//			}
+//			rs = pstmt.executeQuery();
+//			while(rs.next()) {
+//				Notice no = new Notice();
+//				no.setBn_n(rs.getInt("bn_n"));
+//				no.setM_nick(rs.getString("m_nick"));
+//				no.setBn_title(rs.getString("bn_title"));
+//				no.setBn_content(rs.getString("bn_content"));
+//				no.setBn_timestamp(rs.getDate("bn_timestamp"));
+//				no.setBn_view(rs.getInt("bn_view"));
+//				list.add(no);
+//			}
+//		} catch (Exception e) {
+//			throw new RuntimeException(e.getMessage());
+//		}finally {
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(pstmt);
+//		};
+//		return list;
+//	}
 	
-	public int getNoticeListCount (HashMap<String, Object> listOpt, Connection conn) {
-		int result = 0;
-		String opt = (String)listOpt.get("opt");
-		String condition = (String)listOpt.get("condition");
+	public ArrayList<Notice> getNoticeList (Connection conn, String item, int search, int start, int end) {
+		ArrayList<Notice> nolist = new ArrayList<Notice>();
+		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		String sql = null;
+		if (search == 0) {
+			sql = "SELECT * FROM BOARD_NOTICE "
+				+ " WHERE BN_TITLE LIKE ? "
+				+ " ORDER BY BN_N DESC";
+		} else if (search == 1) {
+			sql = "SELECT * FROM BOARD_NOTICE "
+					+ " WHERE BN_CONTENT LIKE ? "
+					+ " ORDER BY BN_N DESC";
+		} 
+		
+		System.out.println(sql);
+		System.out.println(item);
 		try {
-			StringBuffer sql = new StringBuffer();
-			
-			if(opt==null) {
-				sql.append("select count(bn_n) from BOARD_NOTICE");
-				pstmt = conn.prepareStatement(sql.toString());
-				
-				sql.delete(0, sql.toString().length());
-			} else if (opt.equals("0")) {
-				sql.append("select count(bn_n) from BOARD_NOTICE where bn_title like ?");
-				
-				pstmt = conn.prepareStatement(sql.toString());
-				pstmt.setString(1, "%"+condition+"%");
-				
-				sql.delete(0, sql.toString().length());
-			}
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%' +item+ '%');
 			rs = pstmt.executeQuery();
-	         if(rs.next()) {
-	        	 result = rs.getInt(1);
-	         }
+			nolist = new ArrayList<Notice>();
+			if (rs.next()) {
+				do {
+					Notice no = new Notice();
+					no.setBn_n(rs.getInt("bn_n"));
+					no.setM_nick(rs.getString("m_nick"));
+					no.setBn_title(rs.getString("bn_title"));
+					no.setBn_content(rs.getString("bn_content"));
+					no.setBn_timestamp(rs.getDate("bn_timestamp"));
+					no.setBn_view(rs.getInt("bn_view"));
+					nolist.add(no);
+				} while(rs.next());
+			}
 		} catch (Exception e) {
-			throw new RuntimeException(e.getMessage());
-		}finally {
+			e.printStackTrace();
+		} finally {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(pstmt);
-		};
-		
-		return result;
+		}
+		System.out.println(sql);
+		return nolist;
 	}
 
 	//공지사항 테이블 출력
@@ -231,6 +239,38 @@ public class NoticeDao {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	
+	public int getNoticeCount(Connection conn, int search, String item) {
+		int result = 0;
+		String sql = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if (search == 0) {
+			sql = "SELECT COUNT(BN_N) FROM BOARD_NOTICE "
+				+ " WHERE BN_TITLE LIKE ? "
+				+ " ORDER BY BN_N DESC";
+		} else if (search == 1) {
+			sql = "SELECT COUNT(BN_N) FROM BOARD_NOTICE "
+					+ " WHERE BN_CONTENT LIKE ? "
+					+ " ORDER BY BN_N DESC";
+		} 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, '%' +item+ '%');
+			rset = pstmt.executeQuery();
 			if (rset.next()) {
 				result = rset.getInt(1);
 			}

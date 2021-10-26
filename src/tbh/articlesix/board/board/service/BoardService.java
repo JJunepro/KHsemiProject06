@@ -12,7 +12,17 @@ public class BoardService {
 	public BoardService() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public ArrayList<Board> getBoardList(String item, int start, int end, int search) {
+		ArrayList<Board> volist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		
+		volist = new BoardDao().getBoardList(conn, item, search, start, end);
+		
+		JDBCTemplate.close(conn);
+		return volist;
+	}
+	
 	public ArrayList<Board> selectBoardList(){
 		ArrayList<Board> volist = null;
 		Connection conn = JDBCTemplate.getConnection();
@@ -97,6 +107,14 @@ public class BoardService {
 		int result = 0;
 		Connection conn = JDBCTemplate.getConnection();
 		result = new BoardDao().getBoardCount(conn);
+		JDBCTemplate.close(conn);
+		return result;
+	}
+	
+	public int getBoardCount(int search, String item){
+		int result = 0;
+		Connection conn = JDBCTemplate.getConnection();
+		result = new BoardDao().getBoardCount(conn, search, item);
 		JDBCTemplate.close(conn);
 		return result;
 	}
