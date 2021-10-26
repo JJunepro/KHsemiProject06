@@ -24,6 +24,7 @@ String createDate = (String)session.getAttribute("createDate");
 	<section>
         <form action="login.do" method="post">
             <div>
+            <h1 id="title">TBH</h1><br><br>
                 <table>
                 	<tr>
                         <td id="acountInf" colspan="1">계정 정보</td>

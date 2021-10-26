@@ -81,6 +81,7 @@ select{
     height: 26px;
     width: 62px;
     font-size: 12px;
+    font-weight: bold;
     text-align: center;
     vertical-align: bottom;
 }
@@ -97,6 +98,7 @@ select{
     height: 26px;
     width: 50px;
     font-size: 12px;
+    font-weight: bold;
     text-align: center;
     vertical-align: bottom;
 }

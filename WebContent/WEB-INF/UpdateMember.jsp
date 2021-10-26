@@ -38,6 +38,7 @@
 	            <!-- 카카오맵 api -->
 	            <input type="button" value="수정" id="upBrn">
 	            <!-- 수정후 마이페이지 -->
+	            <p id="note">*회원정보 수정이 완료되면 자동으로 로그아웃 됩니다.
             </div>
         </form>
     </section>

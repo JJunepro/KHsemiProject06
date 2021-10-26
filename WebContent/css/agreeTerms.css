@@ -54,6 +54,7 @@ span{
 	width: 200px;
     height: 33px;
     font-size: 15px;
+    font-weight: bold;
     background-color: #95c2b7;
     color: rgb(245, 246, 248);
     border: solid 1px rgb(217, 218, 220);

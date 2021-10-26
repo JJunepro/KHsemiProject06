@@ -35,9 +35,9 @@ public class DetailBoardServlet extends HttpServlet {
 		
 		String no = request.getParameter("no");
 		
-		int bno = Integer.parseInt(no);
+		int bf_n = Integer.parseInt(no);
 
-		Board vo = new BoardService().getBoard(bno);
+		Board vo = new BoardService().getBoard(bf_n);
 		request.setAttribute("boardvo", vo);
 		request.getRequestDispatcher("/WEB-INF/BoardContent.jsp").forward(request, response);
 	}
