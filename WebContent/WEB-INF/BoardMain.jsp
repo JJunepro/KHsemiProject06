@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="./css/header.css" />
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -85,6 +86,5 @@
     
     
  <%@ include file="./Footer.jsp" %>
-    <script src="./js/header.js"></script>
   </body>
 </html>
