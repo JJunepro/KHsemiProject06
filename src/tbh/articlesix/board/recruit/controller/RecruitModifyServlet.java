@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,8 +16,7 @@ import javax.servlet.http.HttpSession;
 import tbh.articlesix.board.recruit.model.service.RecruitService;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-
-@WebServlet("/RecruitModify")
+@WebServlet("/recruitmodify")
 public class RecruitModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -29,10 +29,9 @@ public class RecruitModifyServlet extends HttpServlet {
 		String no = request.getParameter("no");
 		int b_n = Integer.parseInt(no);
 
-		Recruit rc = new RecruitService().detailRecruit(b_n);
-
-		request.setAttribute("recruitrc", rc);
-		request.getRequestDispatcher("/WEB-INF/RecruitModifyServlet.jsp").forward(request, response);
+		Recruit rc = new RecruitService().DetailRecruit(b_n);
+		request.setAttribute("rclist", rc);
+		request.getRequestDispatcher("/WEB-INF/RecruitModify.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -42,13 +41,10 @@ public class RecruitModifyServlet extends HttpServlet {
 
 		PrintWriter out = response.getWriter();
 
-//		HttpSession session = request.getSession(false);
-//		Recruit rc = (Recruit)session.getAttribute("rc");
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		String nickName = (String) session.getAttribute("nickName");
 
-		String m_id = (String) request.getSession().getAttribute("memberLoginInfo");
-//		if (id == null) {
-//			id = "user01"; // TODO: 임시 user 설정
-//		}
 		int ca_n = Integer.parseInt(request.getParameter("ca_n"));
 		char b_type = request.getParameter("b_type").charAt(0);
 		String b_title = request.getParameter("b_title");
@@ -56,7 +52,6 @@ public class RecruitModifyServlet extends HttpServlet {
 		String b_start = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		String b_end = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 		int b_total = Integer.parseInt(request.getParameter("b_total"));
-		int b_attend = Integer.parseInt(request.getParameter("b_attend"));
 		String b_place = request.getParameter("b_place");
 		int b_fee = Integer.parseInt(request.getParameter("b_fee"));
 		char b_match = request.getParameter("b_match").charAt(0);
@@ -70,37 +65,23 @@ public class RecruitModifyServlet extends HttpServlet {
 		char b_rental = request.getParameter("b_rental").charAt(0);
 		char b_cloth = request.getParameter("b_cloth").charAt(0);
 		String b_facility = request.getParameter("b_facility");
-		String b_timestamp = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-		int b_view = Integer.parseInt(request.getParameter("b_view"));
-		
-		Recruit rc = new Recruit(m_id, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_attend,
-				b_place, b_fee, b_match, b_gender, b_age, b_equip, b_minpeople, b_progress, b_shower, b_parking,
-				b_rental, b_cloth, b_facility, b_timestamp, b_view);
-		
+
+		Recruit rc = new Recruit(memberId, ca_n, b_type, b_title, b_content, b_start, b_end, b_total, b_place, b_fee,
+				b_match, b_gender, b_age, b_equip, b_minpeople, b_progress, b_shower, b_parking, b_rental, b_cloth,
+				b_facility);
+
 		int result = new RecruitService().update(rc);
 
-//		if(rc !=null && rc.getM_id().equals(m_id)) {
-//			rc.setM_pw();
-//			member.setM_nick(nick);
-//			member.setM_phone(phone);
-//			member.setM_email(email);
-//			member.setM_address(address);
-//			member.setM_address_detail(addressDetail);
-//			
-//			if(mservice.updateMember(member) > 0) {
-//				session.setAttribute("member", member);
-//				response.sendRedirect("/WEB-INF/MainPage.jsp");
-//			}else {
-//				out.append("<script>alert('오료발생!')</script>");
-//			}
-//		}else {
-//			RequestDispatcher view = request.getRequestDispatcher("?????.jsp");
-//			request.setAttribute("???", "????????");
-//			view.forward(request, response);
-//		}
-//		out.flush();
-//		out.close();
-//	}
+		if (result == 0) {
+			System.out.println("success");
+		} else {
+			System.out.println("fail");
+		}
+		if (b_start == b_end) {
+			response.sendRedirect("recruitshortmain");
+		} else {
+			response.sendRedirect("recruitLongmain");
+		}
 	}
 
 }

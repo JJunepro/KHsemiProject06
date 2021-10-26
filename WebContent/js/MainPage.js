@@ -1,4 +1,4 @@
-// 메인페이지
+// 마켓 메인
 
 "use strict";
 
@@ -30,5 +30,3 @@ next.addEventListener("click", function () {
     moveSlide(hotSlides, currentIdx + 1);
   }
 });
-
-

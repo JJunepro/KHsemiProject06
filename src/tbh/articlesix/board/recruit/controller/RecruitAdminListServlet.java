@@ -17,7 +17,7 @@ import tbh.articlesix.board.recruit.model.service.RecruitService;
  */
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 
-@WebServlet({ "/RecruitAdminList" })
+@WebServlet({ "/recruitadminlist" })
 public class RecruitAdminListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,12 +37,16 @@ public class RecruitAdminListServlet extends HttpServlet {
 		int startRnum = 1; // 화면에 글
 		int endRnum = 1; // 화면에 글
 
+		HttpSession session = request.getSession();
+		String memberId = (String) session.getAttribute("memberId");
+		String nickName = (String) session.getAttribute("nickName");
+
 		String pageNum = request.getParameter("pagenum");
 		if (pageNum != null) { // 눌려진 페이지가 있음.
 			currentPage = Integer.parseInt(pageNum); // 눌려진 페이지
 		}
 		// 총 글수
-		bCount = new RecruitService().getRecruitCount();
+		bCount = new RecruitService().TotalRecruitCount();
 		// 총 페이지수 = (총글개수 / 페이지당글수) + (총글개수에서 페이지당글수로 나눈 나머지가 0이 아니라면 페이지개수를 1 증가)
 		pageCount = (bCount / PAGE_SIZE) + (bCount % PAGE_SIZE == 0 ? 0 : 1);
 		// rownum 조건 계산
@@ -69,6 +73,10 @@ public class RecruitAdminListServlet extends HttpServlet {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("currentPage", currentPage);
+
+		request.setAttribute("memberId", memberId);
+		request.setAttribute("nickName", nickName);
+
 		// Page 이동하면서 Data도 전달함.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/RecruitAdminList.jsp");
 		dispatcher.forward(request, response);

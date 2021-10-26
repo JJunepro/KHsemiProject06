@@ -6,23 +6,24 @@ import java.util.*;
 import tbh.articlesix.board.recruit.model.dao.RecruitDao;
 import tbh.articlesix.board.recruit.model.vo.Recruit;
 import tbh.articlesix.common.JDBCTemplate;
+import tbh.articlesix.market.dao.MarketDao;
 
 public class RecruitService {
 	public RecruitService() {
-	}
-
-	public ArrayList<Recruit> RecruitList(int startRnum, int endRnum) {
-		ArrayList<Recruit> rclist = null;
-		Connection conn = JDBCTemplate.getConnection();
-		rclist = new RecruitDao().RecruitList(conn, startRnum, endRnum);
-		JDBCTemplate.close(conn);
-		return rclist;
 	}
 
 	public ArrayList<Recruit> RecruitList() {
 		ArrayList<Recruit> rclist = null;
 		Connection conn = JDBCTemplate.getConnection();
 		rclist = new RecruitDao().RecruitList(conn);
+		JDBCTemplate.close(conn);
+		return rclist;
+	}
+
+	public ArrayList<Recruit> RecruitList(int startRnum, int endRnum) {
+		ArrayList<Recruit> rclist = null;
+		Connection conn = JDBCTemplate.getConnection();
+		rclist = new RecruitDao().RecruitList(conn, startRnum, endRnum);
 		JDBCTemplate.close(conn);
 		return rclist;
 	}
@@ -60,10 +61,10 @@ public class RecruitService {
 	}
 
 	public Recruit DetailRecruit(int b_n) {
-		Recruit rc = null;
+		Recruit no = null;
 		Connection conn = JDBCTemplate.getConnection();
-		rc = new RecruitDao().DetailRecruit(conn, b_n);
-		return rc;
+		no = new RecruitDao().DetailRecruit(conn, b_n);
+		return no;
 	}
 
 	public ArrayList<Recruit> searchRecruit(String b_title, int startRnum, int endRnum) {
@@ -74,26 +75,16 @@ public class RecruitService {
 		return rclist;
 	}
 
-	public int getRecruitCount() {
-		int result = 0;
+	public int TotalRecruitCount() {
 		Connection conn = JDBCTemplate.getConnection();
-		result = new RecruitDao().getRecruitCount(conn);
+		int result = new RecruitDao().TotalRecruitCount(conn);
 		JDBCTemplate.close(conn);
 		return result;
 	}
 
-	public String getDate() {
-		String result = "";
+	public int RecruitMake(Recruit rc) {
 		Connection conn = JDBCTemplate.getConnection();
-		result = new RecruitDao().getDate(conn);
-		JDBCTemplate.close(conn);
-		return result;
-	}
-
-	public int recruitMake(Recruit rc) {
-		int result = -1;
-		Connection conn = JDBCTemplate.getConnection();
-		result = new RecruitDao().recruitMake(conn, rc);
+		int result = new RecruitDao().RecruitMake(conn, rc);
 		JDBCTemplate.close(conn);
 		return result;
 	}
@@ -114,11 +105,16 @@ public class RecruitService {
 		return result;
 	}
 
-	public int viewCount(int b_n) {
-		int result = -1;
+	public int ViewCount(int b_n) {
 		Connection conn = JDBCTemplate.getConnection();
-		result = new RecruitDao().viewCount(conn, b_n);
-		JDBCTemplate.close(conn);
+		int result = new MarketDao().ViewCount(conn, b_n);
 		return result;
 	}
+
+	public int ViewAddCount(int viewCount, int b_n) {
+		Connection conn = JDBCTemplate.getConnection();
+		int result = new MarketDao().ViewAddCount(conn, viewCount, b_n);
+		return result;
+	}
+
 }

@@ -152,7 +152,6 @@ public class MarketDao {
 				mk.setImgScr(rs.getString("img_scr"));
 				mk.setPrice(rs.getInt("bm_price"));
 				mkList.add(mk);
-
 			}
 		} catch (Exception e) {
 			System.out.println("error");

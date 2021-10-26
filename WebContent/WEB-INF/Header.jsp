@@ -15,7 +15,8 @@
 		<div class="header">
 			<div class="headerLogo">
 				<h1>
-					<a href="<%=request.getContextPath()%>/main"><img src="img/logo.png"></a>
+					<a href="<%=request.getContextPath()%>/main"><img
+						src="img/logo.png"></a>
 				</h1>
 				<div class="loginButtonBox">
 					<button class="loginButton" onclick="location.href='login'">로그인</button>
@@ -28,9 +29,8 @@
 			</div>
 			<div class="headerNav">
 				<ul class="headerNavList">
-					<li class="reserveBtn">
-						<!-- TODO 경로 수정 --> <a href="<%=request.getContextPath()%>/RecruitAdminList">예약페이지</a>
-					</li>
+					<li class="reserveBtn"><a
+						href="<%=request.getContextPath()%>/recruitadminlist">예약페이지</a></li>
 					<li><a href="<%=request.getContextPath()%>/marketMain">중고나라</a>
 					</li>
 					<li><a href="<%=request.getContextPath()%>/noticelist">게시판</a>
@@ -39,30 +39,31 @@
 				</ul>
 			</div>
 			<div class="subReserve">
-				<span><a href="<%=request.getContextPath()%>/RecruitMainShort">장기</a></span> <span><a href="<%=request.getContextPath()%>/RecruitMainLong">단기</a></span>
+				<span><a
+					href="<%=request.getContextPath()%>/recruitmainshort">단기</a></span>
+				 <span><a
+					href="<%=request.getContextPath()%>/recruitmainlong">장기</a></span>
+
 			</div>
 		</div>
 	</header>
 	<script src="js/header.js"></script>
 	<script>
-	
-	let mId = null;
+		let mId = null;
 		$.ajax({
-			url:"header",
-			method:"post",
-			data: null,
-			success:function(data){
+			url : "header",
+			method : "post",
+			data : null,
+			success : function(data) {
 				mId = data.memberId
 				console.log(mId)
-				if(mId !== null) {
+				if (mId !== null) {
 					$(".loginButtonBox").hide();
-				}else if(mId === null){
+				} else if (mId === null) {
 					$(".logoutButtonBox").hide();
 				}
 			}
 		})
-		
-		
 	</script>
 </body>
 </html>
