@@ -46,7 +46,8 @@
 					<tr>
 						<th>사진</th>
 						<td><input class="input" type="file" name="img"></td>
-						<td><button onclick="onClick()">check</button></td>
+						<td><input class="input" type="file" name="img"></td>
+						<td><input class="input" type="file" name="img"></td>
 						<td><div class="divImg"></div></td>
 					</tr>
 					<tr>
@@ -61,7 +62,6 @@
 				</table>
 				<div class="submitBox">
 					<input type="submit" class="formButton" value="수정">
-					<input type="reset" value="초기화">
 				</div>
 				<%
 					}
