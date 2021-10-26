@@ -1,3 +1,7 @@
+
+<link rel="stylesheet" href="./css/header.css" />
+<link rel="stylesheet" href="./css/index.css" />
+
 <%@page import="tbh.articlesix.board.question.vo.Question"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

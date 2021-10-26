@@ -73,46 +73,48 @@ int pageCount = (int) request.getAttribute("pageCount");
 				if (rcshortlist != null) {
 				for (Recruit rc : rcshortlist) {
 			%>
-
-			<ul>
-				<li>
-					<div class="b_title">
-						<div class="recruit-cover"></div>
-						<div class="recruit-info">
-							<p class="recruit-title">앨범1</p>
-							<p class="">2017.02.16.</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-			<h1>
-				방 제목
-				<%=rc.getB_title()%></h1>
-			<p class="b_title">
-				카테고리
-				<%=rc.getCa_n()%></p>
-			<p class="card-body-nickname">
-				작성자
-				<%=rc.getM_id()%></p>
-			</div>
-			<p class="card-body-description">
-				content
-				<%=rc.getB_content()%></p>
-			<!--  카드 바디 본문 -->
-			<!--  카드 바디 푸터 -->
-			<div class="card-body-footer">
-				<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
-				<i class="icon icon-view_count"></i>조회
-				<%=rc.getB_view()%>회 <i class="icon icon-comments_count"></i>댓글 4개 <i
-					class="reg_date"> 작성일 <%=rc.getB_timestamp()%></i>
-			</div>
-			</div>
+			<div>
+				<div>
+					<a href="recruitdetail?no=<%=rc.getB_n()%>"><%=rc.getB_n()%>
+						<ul>
+							<li>
+								<div class="b_title">
+									<div class="recruit-cover"></div>
+									<div class="recruit-info">
+										<p class="recruit-title"></p>
+										<p class=""></p>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<h1>
+							방 제목
+							<%=rc.getB_title()%></h1>
+						<p class="b_title">
+							카테고리
+							<%=rc.getCa_n()%></p>
+						<p class="card-body-nickname">
+							작성자
+							<%=rc.getM_id()%></p>
+				</div>
+				<p class="card-body-description">
+					content
+					<%=rc.getB_content()%></p>
+				<!--  카드 바디 본문 -->
+				<!--  카드 바디 푸터 -->
+				<div class="card-body-footer">
+					<hr style="margin-bottom: 8px; opacity: 0.5; border-color: #EF5A31">
+					<i class="icon icon-view_count"></i>조회
+					<%=rc.getB_view()%>회 작성일
+					<%=rc.getB_timestamp()%></i>
+				</div>
 			</div>
 			<%
 				}
 			}
 			%>
 			</a>
+
 		</section>
 		<div class="pageBox"></div>
 		<%
@@ -137,6 +139,9 @@ int pageCount = (int) request.getAttribute("pageCount");
 			
 		%>
 	</form>
+	<button class="btn towrite">
+		<a href="recruitmake">방 만들기</a>
+	</button>
 	<%@ include file="./Footer.jsp"%>
 	<script src="js/header.js"></script>
 </body>

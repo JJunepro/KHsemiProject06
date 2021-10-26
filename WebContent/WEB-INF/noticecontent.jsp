@@ -1,3 +1,7 @@
+
+<link rel="stylesheet" href="./css/header.css" />
+<link rel="stylesheet" href="./css/index.css" />
+
 <%@page import="tbh.articlesix.board.notice.vo.Notice"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

@@ -127,7 +127,7 @@ public class RecruitDao {
 	public ArrayList<Recruit> RecruitShortList(Connection conn) {
 		ArrayList<Recruit> rcshortlist = null;
 
-		String sql = "select * from board_recruit where b_start = b_end order by b_n desc";
+		String sql = "select * from board_recruit where 'b_start' = 'b_end' order by b_n desc";
 
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
