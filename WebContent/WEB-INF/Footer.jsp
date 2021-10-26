@@ -8,6 +8,10 @@
 <title>footer</title>
 </head>
 <body>
-<footer>이 페이지는 상업용이 아닙니다.</footer>
+<footer>
+   전화 : 02.0000.0000<br/>
+    팩스 : 02.0000.0000<br/>
+    이메일 : hansunsu@naver.com<br/>
+    카카오톡 ID : T.B.H</footer>
 </body>
 </html>
